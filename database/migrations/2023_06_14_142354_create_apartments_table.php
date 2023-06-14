@@ -18,8 +18,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->unsignedTinyInteger('rooms')->default(1);
+            $table->unsignedTinyInteger('bathrooms')->default(1);
             $table->unsignedTinyInteger('beds')->default(1);
-            $table->unsignedTinyInteger('square_meters')->default(1);
+            $table->unsignedSmallInteger('square_meters')->default(1);
             $table->text('cover_image');
             $table->string('address');
             $table->float('latitude',8,5);

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\message;
-use App\Http\Requests\StoremessageRequest;
-use App\Http\Requests\UpdatemessageRequest;
+use App\Models\Message;
+use App\Http\Requests\StoreMessageRequest;
+use App\Http\Requests\UpdateMessageRequest;
 
 class MessageController extends Controller
 {
@@ -31,10 +31,10 @@ class MessageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoremessageRequest  $request
+     * @param  \App\Http\Requests\StoreMessageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoremessageRequest $request)
+    public function store(StoreMessageRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class MessageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\message  $message
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(message $message)
+    public function show(Message $message)
     {
         //
     }
@@ -53,10 +53,10 @@ class MessageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\message  $message
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function edit(message $message)
+    public function edit(Message $message)
     {
         //
     }
@@ -64,11 +64,11 @@ class MessageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatemessageRequest  $request
-     * @param  \App\Models\message  $message
+     * @param  \App\Http\Requests\UpdateMessageRequest  $request
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatemessageRequest $request, message $message)
+    public function update(UpdateMessageRequest $request, Message $message)
     {
         //
     }
@@ -76,10 +76,10 @@ class MessageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\message  $message
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(message $message)
+    public function destroy(Message $message)
     {
         //
     }
