@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Apartment;
 use App\Models\Service;
+use App\Models\Sponsorship;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -39,16 +40,28 @@ class ApartmentSeeder extends Seeder
             $apartment->price = $faker->randomFloat(2, 1, 999);
             $apartment->slug = Str::slug($title, '-');
             $apartment->save();
-
+            //Service Pivot Seeder
             $services = Service::inRandomOrder()->take(7)->get();
-        
+
             foreach ($services as $service) {
                 $apartment->services()->attach([
-                    $apartment->id=>$service->id,
+                    $apartment->id => $service->id,
                 ]);
             }
+            //Sponsor Pivot Seeder
+            $sponsorship = Sponsorship::inRandomOrder()->first();
 
-            
+            $startDate = date("Y-m-d H:i:s");
+            $finishDate = date("Y-m-d H:i:s", strtotime("+{$sponsorship->time} hours"));
+            $apartment->sponsorships()->attach([
+
+                $apartment->id => [
+                    'sponsorship_id'=>$sponsorship->id,
+                    'start_date' => $startDate,
+                    'finish_date' => $finishDate
+                ]
+
+            ]);
         }
     }
 }
