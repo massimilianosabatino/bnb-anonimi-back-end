@@ -42,9 +42,17 @@ class ApartmentController extends Controller
 
         $newApartments = new Apartment();
         $newApartments->fill($data);
-        $newApartments->slug = Str::slug($data['apartment']);
 
+        //Sto passando uno in user_id perche' bisogna passargli l'id di chi carica ma per ora testiamo
+        $newApartments->user_id = 1;
+        $newApartments->slug = Str::slug($data['title']);
+        //dd($data);
+        // come per lo user id ci sara' da cambiare
+        $newApartments->latitude = 40.12345;
+        $newApartments->longitude =40.12345;
         $newApartments->save();
+
+        return redirect()->route('user.apartment.index')->with('message', 'Appartamento creato con successo!!!');
     }
 
     /**
