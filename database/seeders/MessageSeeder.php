@@ -21,7 +21,8 @@ class MessageSeeder extends Seeder
 
         //Get apartment from db and attach to message
         $apartment = Apartment::inRandomOrder()->first();
-        $newMessage->apartment_id()->attach($apartment->id);
+        
+        $newMessage->apartment_id = $apartment->id;
 
         $newMessage->name = $faker->firstName() . ' ' . $faker->lastName();
         $newMessage->email = $faker->email();
