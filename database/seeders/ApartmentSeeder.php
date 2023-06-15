@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Apartment;
+use App\Models\Service;
+use App\Models\Sponsorship;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,7 +23,7 @@ class ApartmentSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             $apartment = new Apartment();
-            $users = User::inRandomOrder()->first(); 
+            $users = User::inRandomOrder()->first();
             $apartment->user_id = $users->id;
             //Variabile Titolo Località BnB
             $title = $faker->cityPrefix() . $faker->secondaryAddress();
@@ -35,9 +37,31 @@ class ApartmentSeeder extends Seeder
             $apartment->address = $faker->address();
             $apartment->latitude = $faker->latitude(-90, 90);
             $apartment->longitude = $faker->longitude(-180, 180);
-            $apartment->price = $faker->randomFloat(2,1,999);
+            $apartment->price = $faker->randomFloat(2, 1, 999);
             $apartment->slug = Str::slug($title, '-');
             $apartment->save();
+            //Service Pivot Seeder
+            $services = Service::inRandomOrder()->take(7)->get();
+
+            foreach ($services as $service) {
+                $apartment->services()->attach([
+                    $apartment->id => $service->id,
+                ]);
+            }
+            //Sponsor Pivot Seeder
+            $sponsorship = Sponsorship::inRandomOrder()->first();
+
+            $startDate = date("Y-m-d H:i:s");
+            $finishDate = date("Y-m-d H:i:s", strtotime("+{$sponsorship->time} hours"));
+            $apartment->sponsorships()->attach([
+
+                $apartment->id => [
+                    'sponsorship_id'=>$sponsorship->id,
+                    'start_date' => $startDate,
+                    'finish_date' => $finishDate
+                ]
+
+            ]);
         }
     }
 }
