@@ -39,7 +39,10 @@ class ApartmentController extends Controller
     {
         $data = $request->all();
 
-        $newApartments
+        $newApartments = new Apartment();
+
+
+        $newApartments->save();
     }
 
     /**
