@@ -23,16 +23,62 @@
 
         <!-- sign Up form section start-->
         <div class="form sign_up">
-            <form action="#">
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
                 <!-- heading -->
                 <h1>Create An Account</h1>
                 <!-- social media icons -->
                 <span>use email for registration</span>
                 <!-- input fields start -->
-                <input type="text" placeholder="User Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Create Account</button>
+                <input id="name" type="text" placeholder="Name" class="@error('name') is-invalid @enderror"
+                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+                <input id="surname" type="text" placeholder="Surname"
+                    class="@error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required
+                    autocomplete="surname" autofocus>
+                @error('surname')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+                <input id="birth_date" type="date" placeholder="Birth Date"
+                    class="@error('birth_date') is-invalid @enderror" name="birth_date" value="{{ old('birth_date') }}"
+                    required autocomplete="birth_date" autofocus>
+                @error('birth_date')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+                <input id="email" type="email" placeholder="Email" class="@error('email') is-invalid @enderror"
+                    name="email" value="{{ old('email') }}" required autocomplete="email">
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+                <input id="password" type="password" placeholder="Password"
+                    class="@error('password') is-invalid @enderror" name="password" required
+                    autocomplete="new-password">
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+                <input id="password-confirm" placeholder="Confirm Password" type="password" name="password_confirmation"
+                    required autocomplete="new-password">
+
+                <button type="submit" class="btn btn-primary">
+                    {{ __('Register') }}
+                </button>
                 <!-- input fields end -->
             </form>
         </div>
@@ -59,7 +105,30 @@
                 <input id="password" type="password" placeholder="Password"
                     class="@error('password') is-invalid @enderror" name="password" required
                     autocomplete="current-password">
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
                 <span>Forgot your <span class="forgot">password?</span></span>
+
+                <div class="mb-4 row align-items-center">
+                    <div class="col-9">
+                        <label class="form-check-label" for="remember">
+                            {{ __('Remember Me') }}
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                            {{ old('remember') ? 'checked' : '' }}>
+                    </div>
+
+
+
+                </div>
+
+
                 <button type="submit">
                     {{ __('Login') }}
                 </button>
