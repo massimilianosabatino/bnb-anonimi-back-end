@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             $user->email = $faker->email();
             $password = 'password';
             $user->password = Hash::make($password);
-            $user->name = $faker->name();
+            $user->name = $faker->firstName();
             $user->surname = $faker->lastname();    
             $user->birth_date = $faker->date();                                 
             $user->save();
