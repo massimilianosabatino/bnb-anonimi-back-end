@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Apartment;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,7 +22,7 @@ class ApartmentSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             $apartment = new Apartment();
-            $users = User::inRandomOrder()->first(); 
+            $users = User::inRandomOrder()->first();
             $apartment->user_id = $users->id;
             //Variabile Titolo Località BnB
             $title = $faker->cityPrefix() . $faker->secondaryAddress();
@@ -35,9 +36,19 @@ class ApartmentSeeder extends Seeder
             $apartment->address = $faker->address();
             $apartment->latitude = $faker->latitude(-90, 90);
             $apartment->longitude = $faker->longitude(-180, 180);
-            $apartment->price = $faker->randomFloat(2,1,999);
+            $apartment->price = $faker->randomFloat(2, 1, 999);
             $apartment->slug = Str::slug($title, '-');
             $apartment->save();
+
+            $services = Service::inRandomOrder()->take(7)->get();
+        
+            foreach ($services as $service) {
+                $apartment->services()->attach([
+                    $apartment->id=>$service->id,
+                ]);
+            }
+
+            
         }
     }
 }
