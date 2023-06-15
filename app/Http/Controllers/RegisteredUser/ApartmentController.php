@@ -110,6 +110,7 @@ class ApartmentController extends Controller
         $apartment->delete();
         
         return redirect()->route('user.apartments.index')->with('message', "Appartamento $old_id eliminato con successo");
+
         // return redirect()->route('user.profile.destroy')->with('message', "Appartamento $old_id eliminato con successo");
     }
 }
