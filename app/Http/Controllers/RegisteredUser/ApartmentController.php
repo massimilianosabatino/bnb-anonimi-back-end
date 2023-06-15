@@ -16,7 +16,9 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        
+        $apartments = Apartment::all();
+
+        return view('user.apartments.index',compact('apartments'));
     }
 
     /**
@@ -48,7 +50,7 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
+        return view('user.apartments.show', compact('apartment'));
     }
 
     /**
