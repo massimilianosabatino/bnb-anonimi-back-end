@@ -9,6 +9,9 @@ class Apartment extends Model
 {
     use HasFactory;
 
+    //protected $fillable = ['*'];
+    protected $guarded = ['slug'];
+
     public function user(){
         return $this->belongsTo(User::class);
     }
