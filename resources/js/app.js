@@ -1,6 +1,7 @@
 import './bootstrap';
 import Alpine from 'alpinejs';
 import '~resources/scss/app.scss';
+import '../js/login';
 import.meta.glob([
     '../img/**'
 ]);
