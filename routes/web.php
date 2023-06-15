@@ -23,7 +23,7 @@ Route::get('/', function () {
 //     return view('admin.dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
+    Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
     Route::resource('apartment', ApartmentController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
