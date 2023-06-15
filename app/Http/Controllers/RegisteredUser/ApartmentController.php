@@ -101,6 +101,15 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $old_id = $apartment->id;
+
+        // if($apartment->image){
+        //     Storage::delete($apartment->image);
+        // }
+        
+        $apartment->delete();
+        
+        return redirect()->route('user.apartments.index')->with('message', "Appartamento $old_id eliminato con successo");
+        // return redirect()->route('user.profile.destroy')->with('message', "Appartamento $old_id eliminato con successo");
     }
 }
