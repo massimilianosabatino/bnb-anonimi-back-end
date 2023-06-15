@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
+use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
 {
@@ -40,7 +41,8 @@ class ApartmentController extends Controller
         $data = $request->all();
 
         $newApartments = new Apartment();
-
+        $newApartments->fill($data);
+        $newApartments->slug = Str::slug($data['apartment']);
 
         $newApartments->save();
     }
