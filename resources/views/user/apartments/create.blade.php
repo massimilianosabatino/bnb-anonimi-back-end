@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<form action="{{ route('user.dashboard.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     {{-- TITLE --}}
