@@ -28,5 +28,7 @@ class MessageSeeder extends Seeder
         $newMessage->content = $faker->realText();
         $newMessage->send_date = $faker->date();
         $newMessage->read = $faker->numberBetween(0,1);
+        
+        $newMessage->save();
     }
 }
