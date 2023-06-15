@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <a class="btn btn-primary" href="{{ route('user.apartment.create') }}">Create</a>
         <table class="table">
             <thead>
                 <tr>
@@ -39,16 +40,16 @@
                         @elseif ($apartment->visible == false)
                             <td><i class="fa-solid fa-xmark"></i></td>
                         @endif
-                        <td>{{ $apartment->price }}</td>
+                        <td>{{ $apartment->price }}€</td>
                         <td>{{ $apartment->slug }}</td>
                         <td>
                             <a href="{{ route('user.apartment.show', $apartment->id) }}" role="button" class="btn btn-success">Info</a>
                         </td>
-                        <td>
+                        {{-- <td>
                             <a href="{{ route('user.apartment.edit', $apartment) }}" role="button" class="btn btn-warning">Edit</a>
-                        </td>
+                        </td> --}}
                         <td>
-                            <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
+                            <form action="{{ route('user.apartment.destroy', $apartment->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input id='alert' type="submit" value="Delete" class="btn btn-danger">

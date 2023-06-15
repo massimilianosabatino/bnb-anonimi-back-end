@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Model\User;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ApartmentController extends Controller
 {
@@ -20,7 +21,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $apartments = DB::table('apartments')->where('user_id' , '=', Auth::id())->get();
 
         return view('user.apartments.index',compact('apartments'));
     }
@@ -109,8 +110,7 @@ class ApartmentController extends Controller
         
         $apartment->delete();
         
-        return redirect()->route('user.apartments.index')->with('message', "Appartamento $old_id eliminato con successo");
+        return redirect()->route('user.apartment.index')->with('message', "Appartamento $old_id eliminato con successo");
 
-        // return redirect()->route('user.profile.destroy')->with('message', "Appartamento $old_id eliminato con successo");
     }
 }
