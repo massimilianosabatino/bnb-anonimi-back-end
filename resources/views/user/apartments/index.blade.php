@@ -42,13 +42,13 @@
                         <td>{{ $apartment->price }}</td>
                         <td>{{ $apartment->slug }}</td>
                         <td>
-                            <a href="{{ route('user.dashboard.show', $apartment) }}" role="button" class="btn btn-success">Info</a>
+                            <a href="{{ route('user.apartment.show', $apartment->id) }}" role="button" class="btn btn-success">Info</a>
                         </td>
                         <td>
-                            <a href="{{ route('user.dashboard.edit', $apartment) }}" role="button" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('user.apartment.edit', $apartment) }}" role="button" class="btn btn-warning">Edit</a>
                         </td>
                         <td>
-                            <form action="{{ route('user.dashboard.destroy', $apartment) }}" method="POST">
+                            <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input id='alert' type="submit" value="Delete" class="btn btn-danger">

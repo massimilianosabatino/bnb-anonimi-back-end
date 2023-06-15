@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="card">
+                <div class="card w-25 my-5">
                     @if ($apartment->cover_image)
                         <img class="card-img-top" src="{{ $apartment->cover_image }}" alt="{{ $apartment->title }}">
                     @endif
