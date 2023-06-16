@@ -19,7 +19,18 @@
 </head>
 
 <body id="login">
-    <div class="container" id="container">
+
+@if (($errors->any()))
+    
+    @if (array_search('These credentials do not match our records.', $errors->all()) === false)
+        <div class="container right-panel-active" id="container">
+    @else
+        <div class="container" id="container">
+    @endif
+@else
+<div class="container" id="container">
+@endif
+
 
         <!-- sign Up form section start-->
         <div class="form sign_up">
@@ -39,7 +50,7 @@
                 @enderror
 
                 <input id="surname" type="text" placeholder="Surname"
-                    class="@error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required
+                    class="@error('surname') is-invalid  @enderror" name="surname" value="{{ old('surname') }}" required
                     autocomplete="surname" autofocus>
                 @error('surname')
                     <span class="invalid-feedback" role="alert">
