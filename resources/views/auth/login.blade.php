@@ -49,7 +49,7 @@
 
                 <input id="birth_date" type="date" placeholder="Birth Date"
                     class="@error('birth_date') is-invalid @enderror" name="birth_date" value="{{ old('birth_date') }}"
-                    required autocomplete="birth_date" autofocus>
+                     autocomplete="birth_date" autofocus>
                 @error('birth_date')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
