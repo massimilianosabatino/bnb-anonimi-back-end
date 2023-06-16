@@ -43,20 +43,46 @@
                         <td>{{ $apartment->price }}€</td>
                         <td>{{ $apartment->slug }}</td>
                         <td>
-                            <a href="{{ route('user.apartment.show', $apartment->id) }}" role="button" class="btn btn-success">Info</a>
+                            <a href="{{ route('user.apartment.show', $apartment->id) }}" role="button"
+                                class="btn btn-success">Info</a>
                         </td>
                         <td>
-                            <a href="{{ route('user.apartment.edit', $apartment) }}" role="button" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
+                                class="btn btn-warning">Edit</a>
                         </td>
                         <td>
-                            <form action="{{ route('user.apartment.destroy', $apartment->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input id='alert' type="submit" value="Delete" class="btn btn-danger">
-                            </form>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#delete{{ $apartment->id }}">
+                                Delete
+                            </button>
                         </td>
                         <td>
                     </tr>
+                    {{-- Modale delete --}}
+                    <div class="modal fade" id="delete{{ $apartment->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">DELETE</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>Delete apartment n°{{ $apartment->id }}: {{ $apartment->title }} ?</div>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </tbody>
         </table>
