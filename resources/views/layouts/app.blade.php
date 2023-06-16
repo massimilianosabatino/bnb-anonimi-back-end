@@ -89,12 +89,6 @@
                 @yield('content')
             </main>
         </div>
-
-        <script>
-            if (window.location.pathname === '/user/apartment') {
-                history.replaceState(null, null, window.location.origin);
-            }
-        </script>
     </body>
 
 </html>

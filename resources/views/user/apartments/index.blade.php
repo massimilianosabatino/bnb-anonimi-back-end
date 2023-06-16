@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container p-3">
         <a class="btn btn-primary" href="{{ route('user.apartment.create') }}">Create</a>
         <table class="table">
             <thead>
@@ -46,7 +46,7 @@
                             <a href="{{ route('user.apartment.show', $apartment->id) }}" role="button" class="btn btn-success">Info</a>
                         </td>
                         <td>
-                            <a href="{{ route('user.apartment.edit', $apartment->id) }}" role="button" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('user.apartment.edit', $apartment) }}" role="button" class="btn btn-warning">Edit</a>
                         </td>
                         <td>
                             <form action="{{ route('user.apartment.destroy', $apartment->id) }}" method="POST">

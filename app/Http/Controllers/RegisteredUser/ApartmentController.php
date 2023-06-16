@@ -22,8 +22,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = DB::table('apartments')->where('user_id' , '=', Auth::id())->get();
-
+        $apartments = Apartment::where('user_id' , '=', Auth::id())->get();
         return view('user.apartments.index',compact('apartments'));
     }
 
@@ -99,11 +98,12 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        $data = $request->validated();
+        $data = $request->all();
 
         $apartment->update($data);
+        // dd($apartment);
 
-        return view('user.apartments.index');
+        return redirect()->route('user.apartment.index');
     }
 
     /**
