@@ -10,7 +10,7 @@ class Apartment extends Model
     use HasFactory;
 
     //protected $fillable = ['*'];
-    protected $guarded = [];
+    protected $guarded = ['service', 'cover_image'];
 
     public function user(){
         return $this->belongsTo(User::class);

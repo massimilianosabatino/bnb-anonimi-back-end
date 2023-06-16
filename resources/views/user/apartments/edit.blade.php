@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container p-4">
-        <form action="{{ route('user.apartment.update',$apartment) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('user.apartment.update',$apartment) }}" method="POST" enctype="multipart/form-data" class="form-input-image">
             @csrf
             @method('PUT')
             {{-- TITLE --}}
@@ -41,17 +41,18 @@
             </div>
 
             {{-- COVER IMAGE --}}
-            <div class="thumb-input-wrapper">
-                {{-- <div class="mb-3 d-none" id="link-input">
-            <label for="cover_image" class="form-label">Cover Image File</label>
-            <input class="form-control" type="file" id="cover_image" name="cover_image">
-        </div> --}}
-                <div class="mb-3" id="link-file">
-                    <label for="thumb" class="form-label">Cover Image Link</label>
-                    <input type="text" class="form-control" id="cover_image" name="cover_image"
-                        placeholder="Insert the cover image link" value="{{ old('cover_image') }}">
+
+            <div class="mb-3 @if(!$apartment->cover_image) d-none @endif"  id="image-input-container">
+                <!-- anteprima immagine upload -->
+                <div class="preview">
+                    <img id="file-image-preview" @if($apartment->cover_image) src="{{ asset('storage/' . $apartment->cover_image) }}" @endif>
                 </div>
+                <!-- /anteprima immagine upload -->
+    
+                <label for="cover_image" class="form-label">Image</label>
+                <input class="form-control" type="file" id="cover_image" name="cover_image">
             </div>
+            
 
             {{-- ADDRESS --}}
             <div class="mb-3">
