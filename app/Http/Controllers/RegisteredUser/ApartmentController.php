@@ -34,6 +34,7 @@ class ApartmentController extends Controller
     public function create()
     {
         $services= Service::all();
+        
         return view('user.apartments.create', compact('services'));
     }
 
@@ -99,7 +100,7 @@ class ApartmentController extends Controller
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
         $data = $request->all();
-
+        $apartment->slug = Str::slug($data['title']);
         $apartment->update($data);
         // dd($apartment);
 
