@@ -24,7 +24,7 @@ class StoreApartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+          
         ];
     }
 }
