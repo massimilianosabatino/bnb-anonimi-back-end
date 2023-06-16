@@ -47,8 +47,7 @@ class ApartmentController extends Controller
     public function store(StoreApartmentRequest $request)
     {
         
-        $data = $request->all();
-        //dd($data);
+        $data = $request->validated();
 
         $newApartments = new Apartment();
         $newApartments->fill($data);
@@ -61,8 +60,8 @@ class ApartmentController extends Controller
         $newApartments->save();
 
         // salvo i services selezionati nella pivot solo se esistono nell"array service
-        if ($data['service']) {
-        $newApartments->services()->attach($data['service']);
+        if ($request['service']) {
+        $newApartments->services()->attach($request['service']);
         }
 
         return redirect()->route('user.apartment.index')->with('message', 'Appartamento creato con successo!!!');
@@ -87,7 +86,8 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        return view('user.apartments.edit',compact('apartment'));
+        $services= Service::all();
+        return view('user.apartments.edit',compact('apartment', 'services'));
     }
 
     /**
@@ -99,10 +99,14 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        $data = $request->all();
+        
+        $data = $request->validated();
         $apartment->slug = Str::slug($data['title']);
+
         $apartment->update($data);
-        // dd($apartment);
+        if ($request['service']) {
+            $apartment->services()->sync($request['service']);
+            }
 
         return redirect()->route('user.apartment.index');
     }
