@@ -5,9 +5,14 @@
         <div class="row">
             <div class="col">
                 <div class="card w-25 my-5">
+                    
                     @if ($apartment->cover_image)
-                        <img class="card-img-top" src="{{ $apartment->cover_image }}" alt="{{ $apartment->title }}">
+                        <div>
+                            <img class="card-img-top" src="{{ asset('storage/' . $apartment->cover_image) }}" alt=" {{ $apartment->title }}">
+                        </div>
                     @endif
+
+
                     <div class="card-body">
                         <p class="card-text">{{ $apartment->title }}</p>
                         <p class="card-text">{{ $apartment->rooms }}</p>

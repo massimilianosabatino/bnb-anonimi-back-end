@@ -31,7 +31,7 @@ class StoreApartmentRequest extends FormRequest
             "bathrooms" => 'required|numeric|min:1',
             "beds" => 'required|numeric|min:1',
             "square_meters" => 'required|numeric|min:28',
-            "cover_image" => 'required',
+            "cover_image" => 'required|image',
             "address" => 'required',
             "visible" => 'required|boolean',
             "price" => 'required|numeric|min:20',

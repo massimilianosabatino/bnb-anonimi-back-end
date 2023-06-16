@@ -11,7 +11,7 @@
                 @endforeach
             </div>
         @endif
-        <form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data" class="form-input-image">
             @csrf
             <div class="row row-cols-1 row-cols-md-2 pt-3">
                 <div>
@@ -63,12 +63,27 @@
                         </div>
                     </div>
 
+
+            {{-- COVER IMAGE --}}
+
+            <div class="mb-3">
+                <!-- anteprima immagine upload -->
+                <div class="preview">
+                    <img id="cover_image">
+                </div>
+                <!-- /anteprima immagine upload -->
+
+                <label for="cover_image" class="form-label">Image</label>
+                <input class="form-control" type="file" id="cover_image" name="cover_image">
+            </div>
+
                     {{-- ADDRESS --}}
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <input type="text" class="form-control" id="address" name="address"
                             placeholder="insert the address" value="{{ old('address') }}">
                     </div>
+
 
 
                     {{-- VISIBILITY --}}

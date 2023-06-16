@@ -12,6 +12,7 @@ use App\Models\Service;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -53,6 +54,11 @@ class ApartmentController extends Controller
         $newApartments->fill($data);
         $newApartments->user_id = Auth::id();
         $newApartments->slug = Str::slug($data['title']);
+
+        
+        if(isset($data['cover_image'])){
+            $newApartments->cover_image = Storage::put('uploads', $data['cover_image']);
+        }
         
         //  ci sara' da cambiare per tomtom
         $newApartments->latitude = 40.12345;
@@ -103,6 +109,25 @@ class ApartmentController extends Controller
         $data = $request->validated();
         $apartment->slug = Str::slug($data['title']);
 
+        $old_image = $apartment->cover_image;
+        
+
+        if(empty($data['cover_image'])){
+            if($apartment->cover_image){
+                $apartment->cover_image=$old_image;
+            }
+
+        }else {
+            if (isset($data['cover_image'])) {
+
+                if($apartment->cover_image){
+                    Storage::delete($apartment->cover_image);
+                }
+
+                $apartment->cover_image = Storage::put('uploads', $data['cover_image']);
+            }
+        }
+
         $apartment->update($data);
         if ($request['service']) {
             $apartment->services()->sync($request['service']);
@@ -121,8 +146,8 @@ class ApartmentController extends Controller
     {
         $old_id = $apartment->id;
 
-        // if($apartment->image){
-        //     Storage::delete($apartment->image);
+        // if($apartment->cover_image){
+        //     Storage::delete($apartment->cover_image);
         // }
         
         $apartment->delete();
