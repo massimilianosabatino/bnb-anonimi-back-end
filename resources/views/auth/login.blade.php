@@ -20,17 +20,17 @@
 
 <body id="login">
 
-@if (($errors->any()))
-    
-    @if (array_search('These credentials do not match our records.', $errors->all()) === false)
-        <div class="container right-panel-active" id="container">
+    {{-- Check control for switch panel --}}
+    @if (($errors->any()))
+        @if (array_search('These credentials do not match our records.', $errors->all()) === false)
+            <div class="container right-panel-active" id="container">
+        @else
+            <div class="container" id="container">
+        @endif
     @else
-        <div class="container" id="container">
+    <div class="container" id="container">
     @endif
-@else
-<div class="container" id="container">
-@endif
-
+    {{-- Check control for switch panel --}}
 
         <!-- sign Up form section start-->
         <div class="form sign_up">
