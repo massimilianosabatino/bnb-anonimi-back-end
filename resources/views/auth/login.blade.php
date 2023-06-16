@@ -42,7 +42,7 @@
                 <span>use email for registration</span>
                 <!-- input fields start -->
                 <input id="name" type="text" placeholder="Name" class="@error('name') is-invalid @enderror"
-                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
                 @enderror
 
                 <input id="surname" type="text" placeholder="Surname"
-                    class="@error('surname') is-invalid  @enderror" name="surname" value="{{ old('surname') }}" required
+                    class="@error('surname') is-invalid  @enderror" name="surname" value="{{ old('surname') }}" 
                     autocomplete="surname" autofocus>
                 @error('surname')
                     <span class="invalid-feedback" role="alert">
