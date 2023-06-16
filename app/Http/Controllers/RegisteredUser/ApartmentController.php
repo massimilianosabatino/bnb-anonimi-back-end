@@ -79,7 +79,7 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        return view('user.apartments.edit',compact('apartment'));
     }
 
     /**
@@ -91,7 +91,11 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        $data = $request->validated();
+
+        $apartment->update($data);
+
+        return view('user.apartments.index');
     }
 
     /**
