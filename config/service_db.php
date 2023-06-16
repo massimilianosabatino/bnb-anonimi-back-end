@@ -61,7 +61,7 @@ return [
         'icon' => '<i class="fa-solid fa-bucket"></i>'
     ],
     [
-        'name' => "Doccia all'aparto",
+        'name' => "Doccia all'aperto",
         'icon' => '<i class="fa-solid fa-shower"></i>'
     ],
     [

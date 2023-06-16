@@ -50,19 +50,6 @@
                             placeholder="insert the Square meters" value="{{ old('square_meters') }}">
                     </div>
 
-                    {{-- COVER IMAGE --}}
-                    <div class="thumb-input-wrapper">
-                        {{-- <div class="mb-3 d-none" id="link-input">
-                        <label for="cover_image" class="form-label">Cover Image File</label>
-                        <input class="form-control" type="file" id="cover_image" name="cover_image">
-                        </div> --}}
-                        <div class="mb-3" id="link-file">
-                            <label for="thumb" class="form-label">Cover Image Link</label>
-                            <input type="text" class="form-control" id="cover_image" name="cover_image"
-                                placeholder="Insert the cover image link" value="{{ old('cover_image') }}">
-                        </div>
-                    </div>
-
 
             {{-- COVER IMAGE --}}
 
