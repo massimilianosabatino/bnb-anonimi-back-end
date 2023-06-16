@@ -46,7 +46,6 @@ class ApartmentController extends Controller
     public function store(StoreApartmentRequest $request)
     {
         
-        dd($request->all());
         $data = $request->validated();
 
         $newApartments = new Apartment();
@@ -86,7 +85,8 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        return view('user.apartments.edit',compact('apartment'));
+        $services= Service::all();
+        return view('user.apartments.edit',compact('apartment', 'services'));
     }
 
     /**
@@ -101,7 +101,9 @@ class ApartmentController extends Controller
         $data = $request->validated();
 
         $apartment->update($data);
-        // dd($apartment);
+        if ($request['service']) {
+            $apartment->services()->sync($request['service']);
+            }
 
         return redirect()->route('user.apartment.index');
     }
