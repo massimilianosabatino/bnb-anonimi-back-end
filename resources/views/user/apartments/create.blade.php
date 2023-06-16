@@ -2,6 +2,15 @@
 
 @section('content')
     <div class="container p-4">
+        @if ($errors->any())
+            <div>
+                @foreach ($errors->all() as $error)
+                    <ul>
+                        <li>{{ $error }}</li>
+                    </ul>
+                @endforeach
+            </div>
+        @endif
         <form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -90,7 +99,7 @@
                     {{-- <input type="checkbox" class="btn-check" id="{{$service->id}}" autocomplete="off">
                     <label class="btn btn-outline-primary" for="{{$service->id}}">{{$service->name}}</label> --}}
                     
-                    <input type="checkbox" class="btn-check" id="{{$service->id}}" checked autocomplete="off" value="{{old('service', $service->id)}}" name="service[]">
+                    <input type="checkbox" class="btn-check" id="{{$service->id}}" {{ in_array($service->id, old('service', [])) ? 'checked' : null }} autocomplete="off" value="{{ $service->id }}" name="service[]">
                     <label class="btn btn-outline-secondary" for="{{$service->id}}">{{$service->name}}</label><br>
                     @endforeach
                     

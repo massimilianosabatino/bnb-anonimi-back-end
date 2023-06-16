@@ -23,8 +23,19 @@ class StoreApartmentRequest extends FormRequest
      */
     public function rules()
     {
+
+        // dd($service);
         return [
-            //
+            "title" => 'required|string|max:255',
+            "rooms" => 'required|numeric|min:1',
+            "bathrooms" => 'required|numeric|min:1',
+            "beds" => 'required|numeric|min:1',
+            "square_meters" => 'required|numeric|min:28',
+            "cover_image" => 'required',
+            "address" => 'required',
+            "visible" => 'required|boolean',
+            "price" => 'required|numeric|min:20',
+            "service" => "required|exists:services,id" 
         ];
     }
 }
