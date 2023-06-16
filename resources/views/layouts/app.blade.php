@@ -44,7 +44,7 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                                <a class="nav-link" href="{{url('user/apartment') }}">{{ __('Home') }}</a>
                             </li>
                         </ul>
 
@@ -89,6 +89,12 @@
                 @yield('content')
             </main>
         </div>
+
+        <script>
+            if (window.location.pathname === '/user/apartment') {
+                history.replaceState(null, null, window.location.origin);
+            }
+        </script>
     </body>
 
 </html>
