@@ -80,6 +80,25 @@
                     value="{{ old('price') }}">
             </div>
 
+            {{-- SERVICES --}}
+            <div>
+                <P>Click on the services offered in your apartment</P>
+                
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    
+                    @foreach ($services as $service)
+                    {{-- <input type="checkbox" class="btn-check" id="{{$service->id}}" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="{{$service->id}}">{{$service->name}}</label> --}}
+                    
+                    <input type="checkbox" class="btn-check" id="{{$service->id}}" checked autocomplete="off" value="{{old('service', $service->id)}}" name="service[]">
+                    <label class="btn btn-outline-secondary" for="{{$service->id}}">{{$service->name}}</label><br>
+                    @endforeach
+                    
+                    
+                </div>
+                
+            </div>
+
             <button type="submit" class="btn btn-success">Create</button>
         </form>
 
