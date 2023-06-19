@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container p-4">
-         @if ($errors->any())
+        @if ($errors->any())
             <div>
                 @foreach ($errors->all() as $error)
                     <ul>
@@ -11,7 +11,8 @@
                 @endforeach
             </div>
         @endif
-        <form action="{{ route('user.apartment.update',$apartment) }}" method="POST" enctype="multipart/form-data" class="form-input-image">
+        <form action="{{ route('user.apartment.update', $apartment) }}" method="POST" enctype="multipart/form-data"
+            class="form-input-image">
 
             @csrf
             @method('PUT')
@@ -55,19 +56,16 @@
                     </div>
 
 
-            {{-- COVER IMAGE --}}
+                    {{-- COVER IMAGE --}}
 
-            <div class="mb-3 @if(!$apartment->cover_image) d-none @endif"  id="image-input-container">
-                <!-- anteprima immagine upload -->
-                <div class="preview">
-                    <img id="file-image-preview" @if($apartment->cover_image) src="{{ asset('storage/' . $apartment->cover_image) }}" @endif>
-                </div>
-                <!-- /anteprima immagine upload -->
-    
-                <label for="cover_image" class="form-label">Image</label>
-                <input class="form-control" type="file" id="cover_image" name="cover_image">
-            </div>
-            
+                    <div class="mb-3 @if (!$apartment->cover_image) d-none @endif" id="image-input-container">
+                        <label for="cover_image" class="form-label">Image</label>
+                        <input class="form-control select_img" type="file" id="cover_image" name="cover_image">
+                        <!-- anteprima immagine upload -->
+                        <img class="img-fluid my-3" id="preview" @if ($apartment->cover_image) src="{{ asset('storage/' . $apartment->cover_image) }}" @endif>
+                        <!-- /anteprima immagine upload -->
+                    </div>
+
                     {{-- ADDRESS --}}
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
@@ -108,12 +106,10 @@
                             <label class="btn btn-outline-primary" for="{{$service->id}}">{{$service->name}}</label> --}}
 
                             <input type="checkbox" class="btn-check" id="{{ $service->id }}"
-                                @if ($errors->any()) 
-                                    {{ in_array($service->id, old('service', [])) ? 'checked' : null }}
+                                @if ($errors->any()) {{ in_array($service->id, old('service', [])) ? 'checked' : null }}
                                 @else
-                                    {{ $apartment->services->contains($service->id) ? 'checked' : null }} 
-                                @endif
-                                    autocomplete="off" value="{{ $service->id }}" name="service[]">
+                                    {{ $apartment->services->contains($service->id) ? 'checked' : null }} @endif
+                                autocomplete="off" value="{{ $service->id }}" name="service[]">
                             <label
                                 class="btn btn-outline-dark d-flex p-1 m-0 justify-content-center align-items-center rounded-2 flex-column"
                                 for="{{ $service->id }}">{!! $service->icon !!}{{ $service->name }}</label><br>
@@ -125,7 +121,7 @@
         </form>
     </div>
 
-    
+
 
     </div>
 @endsection
