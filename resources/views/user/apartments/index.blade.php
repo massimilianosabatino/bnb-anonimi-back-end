@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container p-3">
-        <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Create</a>
+        <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Aggiungi appartamenti</a>
 
         @if (session('message'))
             <div class="toast-container position-fixed bottom-0 end-0 p-3" id="message">
@@ -22,15 +22,15 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Rooms</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Bathrooms</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Beds</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Square Meters</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Address</th>
-                        <th scope="col">Visible</th>
-                        <th scope="col">Price</th>
-                        <th class="text-center" scope="col" colspan="4">Actions</th>
+                        <th scope="col">Nome</th>
+                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Stanze</th>
+                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Bagni</th>
+                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Letti</th>
+                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Metri quadri</th>
+                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Indirizzo</th>
+                        <th scope="col">Visibilità</th>
+                        <th scope="col">Prezzo</th>
+                        <th class="text-center" scope="col" colspan="4">Funzioni</th>
                     </tr>
                 </thead>
 
@@ -73,20 +73,20 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">DELETE</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div>Delete apartment n°{{ $apartment->id }}: {{ $apartment->title }} ?</div>
+                                        <div>Cancella appartmento n°{{ $apartment->id }}: {{ $apartment->title }} ?</div>
                                     </div>
                                     <div class="modal-footer">
                                         <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                data-bs-dismiss="modal">Annulla</button>
+                                            <button type="submit" class="btn btn-danger">Cancella</button>
                                         </form>
                                     </div>
                                 </div>

@@ -20,38 +20,38 @@
                 <div>
                     {{-- TITLE --}}
                     <div class="mb-3">
-                        <label for="title" class="form-label">Title of the apartment</label>
+                        <label for="title" class="form-label">Nome dell'appartamento</label>
                         <input type="text" class="form-control" id="title" name="title"
-                            placeholder="insert the title of your apartment" value="{{ old('title', $apartment->title) }}">
+                            placeholder="Nome dell'appartamento" value="{{ old('title', $apartment->title) }}">
                     </div>
 
                     {{-- ROOMS --}}
                     <div class="mb-3">
-                        <label for="rooms" class="form-label">Rooms</label>
+                        <label for="rooms" class="form-label">Stanze</label>
                         <input type="text" class="form-control" id="rooms" name="rooms"
-                            placeholder="insert the number of rooms" value="{{ old('rooms', $apartment->rooms) }}">
+                            placeholder="inserisci numero delle stanze" value="{{ old('rooms', $apartment->rooms) }}">
                     </div>
 
                     {{-- BATHROOMS --}}
                     <div class="mb-3">
-                        <label for="bathrooms" class="form-label">Bathrooms</label>
+                        <label for="bathrooms" class="form-label">Bagni</label>
                         <input type="text" class="form-control" id="bathrooms" name="bathrooms"
-                            placeholder="insert the number of bathrooms"
+                            placeholder="inserisci numero di bagni"
                             value="{{ old('bathrooms', $apartment->bathrooms) }}">
                     </div>
 
                     {{-- BEDS --}}
                     <div class="mb-3">
-                        <label for="beds" class="form-label">Beds</label>
+                        <label for="beds" class="form-label">Letti</label>
                         <input type="text" class="form-control" id="beds" name="beds"
-                            placeholder="insert the number of beds" value="{{ old('beds', $apartment->beds) }}">
+                            placeholder="inserisci numero dei letti" value="{{ old('beds', $apartment->beds) }}">
                     </div>
 
                     {{-- SQUARE METERS --}}
                     <div class="mb-3">
-                        <label for="square_meters" class="form-label">Square meters</label>
+                        <label for="square_meters" class="form-label">Metri quadri</label>
                         <input type="text" class="form-control" id="square_meters" name="square_meters"
-                            placeholder="insert the Square meters"
+                            placeholder="inserisci metri quadri"
                             value="{{ old('square_meters', $apartment->square_meters) }}">
                     </div>
 
@@ -59,7 +59,7 @@
                     {{-- COVER IMAGE --}}
 
                     <div class="mb-3 @if (!$apartment->cover_image) d-none @endif" id="image-input-container">
-                        <label for="cover_image" class="form-label">Image</label>
+                        <label for="cover_image" class="form-label">Immagine</label>
                         <input class="form-control select_img" type="file" id="cover_image" name="cover_image">
                         <!-- anteprima immagine upload -->
                         <img class="img-fluid my-3" id="preview" @if ($apartment->cover_image) src="{{ asset('storage/' . $apartment->cover_image) }}" @endif>
@@ -68,43 +68,40 @@
 
                     {{-- ADDRESS --}}
                     <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
+                        <label for="address" class="form-label">Indirizzo</label>
                         <input type="text" class="form-control" id="address" name="address"
-                            placeholder="insert the address" value="{{ old('address', $apartment->address) }}">
+                            placeholder="Esempio: Via del Corso,9,Roma" value="{{ old('address', $apartment->address) }}">
                     </div>
 
 
                     {{-- VISIBILITY --}}
                     <div>
-                        <p>Set the visibility on our platform</p>
+                        <p>Scegli la visibilità dell'appartamento</p>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                             <input type="radio" class="btn-check" name="visible" id="visible" autocomplete="off" checked
                                 value="1">
-                            <label class="btn btn-outline-primary" for="visible">Visible</label>
+                            <label class="btn btn-outline-primary" for="visible">Visibile</label>
 
                             <input type="radio" class="btn-check" name="visible" id="notVisible" autocomplete="off"
                                 value="0">
-                            <label class="btn btn-outline-primary" for="notVisible">Not Visible</label>
+                            <label class="btn btn-outline-primary" for="notVisible">Not Visibile</label>
                         </div>
                     </div>
 
                     {{-- PRICE --}}
                     <div class="mb-3">
-                        <label for="price" class="form-label">Set the price</label>
+                        <label for="price" class="form-label">Prezzo</label>
                         <input type="text" class="form-control" id="price" name="price"
-                            placeholder="insert the price" value="{{ old('price', $apartment->price) }}">
+                            placeholder="Stabilisci Prezzo" value="{{ old('price', $apartment->price) }}">
                     </div>
                 </div>
                 <div>
-                    <P>Click on the services offered in your apartment</P>
+                    <P>Seleziona i servizi del tuo appartamento</P>
 
                     <div class="btn-group row row-cols-4 row-cols-xol-6 gap-2" role="group"
                         aria-label="Basic checkbox toggle button group">
 
                         @foreach ($services as $service)
-                            {{-- <input type="checkbox" class="btn-check" id="{{$service->id}}" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="{{$service->id}}">{{$service->name}}</label> --}}
-
                             <input type="checkbox" class="btn-check" id="{{ $service->id }}"
                                 @if ($errors->any()) {{ in_array($service->id, old('service', [])) ? 'checked' : null }}
                                 @else
@@ -117,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success">Edit</button>
+            <button type="submit" class="btn btn-success">Modifica</button>
         </form>
     </div>
 

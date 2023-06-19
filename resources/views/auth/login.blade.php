@@ -37,11 +37,11 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <!-- heading -->
-                <h1>Create An Account</h1>
+                <h1>Crea un Account</h1>
                 <!-- social media icons -->
-                <span>use email for registration</span>
+                <span>Inserisci email per registrarti</span>
                 <!-- input fields start -->
-                <input id="name" type="text" placeholder="Name" class="@error('name') is-invalid @enderror"
+                <input id="name" type="text" placeholder="Nome" class="@error('name') is-invalid @enderror"
                     name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
                 @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
                     </span>
                 @enderror
 
-                <input id="surname" type="text" placeholder="Surname"
+                <input id="surname" type="text" placeholder="Cognome"
                     class="@error('surname') is-invalid  @enderror" name="surname" value="{{ old('surname') }}" 
                     autocomplete="surname" autofocus>
                 @error('surname')
@@ -58,7 +58,7 @@
                     </span>
                 @enderror
 
-                <input id="birth_date" type="date" placeholder="Birth Date"
+                <input id="birth_date" type="date" placeholder="Data di nascità"
                     class="@error('birth_date') is-invalid @enderror" name="birth_date" value="{{ old('birth_date') }}"
                      autocomplete="birth_date" autofocus>
                 @error('birth_date')
@@ -84,11 +84,11 @@
                     </span>
                 @enderror
 
-                <input id="password-confirm" placeholder="Confirm Password" type="password" name="password_confirmation"
+                <input id="password-confirm" placeholder="Conferma Password" type="password" name="password_confirmation"
                     required autocomplete="new-password">
 
                 <button type="submit" class="btn btn-primary">
-                    {{ __('Register') }}
+                    {{ __('Registrati') }}
                 </button>
                 <!-- input fields end -->
             </form>
@@ -100,9 +100,9 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <!-- heading -->
-                <h1>Login In</h1>
+                <h1>Accedi</h1>
                 <!-- social media icons -->
-                <span>Login In with your Account</span>
+                <span>Accedi con il tuo Account</span>
                 <!-- input fields start -->
                 <input id="email" type="email" placeholder="Email" class="@error('email') is-invalid @enderror "
                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -122,12 +122,12 @@
                     </span>
                 @enderror
 
-                <span>Forgot your <span class="forgot">password?</span></span>
+                <span>Hai dimenticato la <span class="forgot">password?</span></span>
 
                 <div class="mb-4 row align-items-center">
                     <div class="col-9">
                         <label class="form-check-label" for="remember">
-                            {{ __('Remember Me') }}
+                            {{ __('Ricorda Utente') }}
                         </label>
                     </div>
                     <div class="col-3">
@@ -141,7 +141,7 @@
 
 
                 <button type="submit">
-                    {{ __('Login') }}
+                    {{ __('Accedi') }}
                 </button>
                 <!-- input fields end -->
             </form>
@@ -152,14 +152,14 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-pannel overlay-left">
-                    <h1>Already have an account</h1>
-                    <p>Please Login</p>
-                    <button id="signIn" class="overBtn">SignIn</button>
+                    <h1>Hai già un'account</h1>
+                    <p>Perfavore accedi</p>
+                    <button id="signIn" class="overBtn">Accedi</button>
                 </div>
                 <div class="overlay-pannel overlay-right">
-                    <h1>Create Account</h1>
-                    <p>Start Your Journey with Us</p>
-                    <button id="signUp" class="overBtn">Sign Up</button>
+                    <h1>Crea Account</h1>
+                    <p>Inizia il tuo viaggio con noi</p>
+                    <button id="signUp" class="overBtn">Registrati</button>
                 </div>
             </div>
         </div>
