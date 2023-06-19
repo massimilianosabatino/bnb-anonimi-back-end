@@ -6,7 +6,7 @@ return [
     ],
     [
         'name' => 'Aria Condizionata',
-        '<i class="fa-solid fa-fan"></i>'
+        'icon' => '<i class="fa-solid fa-fan"></i>'
     ],
     [
         'name' => 'Parcheggio gratuito in strada',
