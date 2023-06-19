@@ -116,7 +116,7 @@
                                     autocomplete="off" value="{{ $service->id }}" name="service[]">
                             <label
                                 class="btn btn-outline-dark d-flex p-1 m-0 justify-content-center align-items-center rounded-2 flex-column"
-                                for="{{ $service->id }}">{{ $service->name }}</label><br>
+                                for="{{ $service->id }}">{!! $service->icon !!}{{ $service->name }}</label><br>
                         @endforeach
                     </div>
                 </div>
