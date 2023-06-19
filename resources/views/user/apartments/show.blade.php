@@ -3,12 +3,12 @@
 @section('content')
     <div class="container ">
         <div class="row">
-            <div class="col">
+            <div class="col-9">
                 <h2>{{ $apartment->title }}</h2>
 
 
                  {{-- visibilita' --}}
-                 <p>Il tuo appartamento e': @if ($apartment->visible == true)
+                 <p>Il tuo appartamento e' impostato su: @if ($apartment->visible == true)
                     'VISIBILE'
                 @elseif ($apartment->visible == false)
                     'NON VISIBILE'
@@ -16,7 +16,7 @@
 
                 @if ($apartment->cover_image)
                     <div class="d-flex justify-content-start">
-                        <img class="w-50" src="{{ asset('storage/' . $apartment->cover_image) }}"
+                        <img class="w-75" src="{{ asset('storage/' . $apartment->cover_image) }}"
                             alt="{{ $apartment->title }}">
                     </div>
                 @endif
@@ -38,10 +38,15 @@
 
                 {{-- bottone per edit --}}
                 <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
-                    class="btn btn-warning">Edit</a>
+                    class="btn btn-warning">Modifica questo appartamento</a>
 
-                
+            </div>
 
+                {{-- sponsorizzazioni --}}
+            <div class="col-3 gy-4">
+                <p class="text-center">Vuoi sponsorizzare il tuo appartamento?</p>
+                <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                    class="btn btn-success w-100">Sponsorizza!</a>
             </div>
 
 
