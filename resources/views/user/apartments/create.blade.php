@@ -68,7 +68,7 @@
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <input type="text" class="form-control" id="address" name="address"
-                            placeholder="insert the address" value="{{ old('address') }}">
+                            placeholder="Esempio: Via del Corso,9,Roma" value="{{ old('address') }}">
                     </div>
 
 
