@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisteredUser\ApartmentController;
+use App\Http\Controllers\RegisteredUser\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +31,7 @@ Route::middleware('auth')
     ->prefix('user')
     ->name('user.')
     ->group(function () {
-        Route::get('dashboard', function(){
-            return view('user.dashboard');
-        })->name('dashboard');
+        Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
         Route::resource('apartment', ApartmentController::class);
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

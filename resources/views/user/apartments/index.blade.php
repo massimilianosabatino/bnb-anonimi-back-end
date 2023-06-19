@@ -18,7 +18,7 @@
                 </div>
             </div>
         @endif
-        
+
         <table class="table">
             <thead>
                 <tr>
@@ -52,9 +52,9 @@
                         <td>{{ $apartment->latitude }}</td>
                         <td>{{ $apartment->longitude }}</td>
                         @if ($apartment->visible == true)
-                            <td><i class="fa-solid fa-check"></i></td>
+                            <td><i class="fa-solid fa-eye"></i></td>
                         @elseif ($apartment->visible == false)
-                            <td><i class="fa-solid fa-xmark"></i></td>
+                            <td><i class="fa-solid fa-eye-slash"></i></td>
                         @endif
                         <td>{{ $apartment->price }}€</td>
                         <td>{{ $apartment->slug }}</td>
