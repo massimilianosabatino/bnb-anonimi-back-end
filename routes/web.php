@@ -21,13 +21,18 @@ Route::get('/', function () {
 });
 
 //Route Auth Apartment
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-    Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
+// Rotta utente autenticato
+Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
     Route::resource('apartment', ApartmentController::class);
+    Route::get('dashboard', function(){
+        return view('user.dashboard');
+    });
 });
+
 
 //Route profile
 Route::get('/dashboard', function () {
