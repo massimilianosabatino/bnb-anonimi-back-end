@@ -19,12 +19,12 @@
         @endif
         {{-- Welcome User  --}}
         <div class="container p-4">
-            <h2>Hi {{ Auth::user()->name }}</h2>
+            <h2 class="d-none d-lg-block">Hi {{ Auth::user()->name }}</h2>
             <div class="w-100 text-end">
                 <a class="btn btn-primary my-3" href="{{ route('user.apartment.index') }}">Go to Apartments List</a>
             </div>
-            <div class="row justify-content-center">
-                <h3>Apartment List:</h3>
+            <h3 class="fs-3 fw-bold mb-3">Apartment List</h3>
+            <div class="row card-body justify-content-center">
                 <div class="col-12">
                     <table class="table d-none d-lg-block align-middle">
                         <thead>
@@ -41,11 +41,13 @@
                                 <tr>
                                     <td class="w-25">
                                         <div class="p-2">
-                                            <img class="img-fluid rounded-3" src="{{ asset('storage/' . $apartment->cover_image) }}" alt="{{$apartment->title}}">
+                                            <img class="img-fluid rounded-3"
+                                                src="{{ asset('storage/' . $apartment->cover_image) }}"
+                                                alt="{{ $apartment->title }}">
                                         </div>
                                     </td>
                                     <td>{{ $apartment->title }}</td>
-                                    <td>{{ $apartment->address }}</td>
+                                    <td class="card-text">{{ substr($apartment->address, 0, 50) . '...' }}</td >
                                     <td>{{ $apartment->price }} €</td>
                                     @if ($apartment->visible == true)
                                         <td class="text-center"><i class="fa-solid fa-eye"></i></td>
@@ -56,6 +58,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="row d-lg-none">
+                <div class="col-12">
                     <!--Mobile layout-->
                     <div class="card d-lg-none">
                         <img class="card-img-top" src="{{ asset('storage/' . $apartment->cover_image) }}"

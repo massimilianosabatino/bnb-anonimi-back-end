@@ -3,10 +3,12 @@
 @import 'partials/login.scss';
 @import 'partials/nav.scss';
 @import 'partials/variables.scss';
+@import 'partials/typo.scss';
 
 .hidden{
     display: none;
 }
 body{
-   background-color: #F5F5F5;;
+   background-color: #F5F5F5;
+   font-family: "Quicksand";
 }
