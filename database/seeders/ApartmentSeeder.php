@@ -34,7 +34,11 @@ class ApartmentSeeder extends Seeder
             $apartment->bathrooms = $faker->numberBetween(1, 4);
             $apartment->beds = $faker->randomDigitNotNull();
             $apartment->square_meters = $faker->numberBetween(40, 255);
-            $apartment->cover_image = fake()->image('public/storage/uploads',640,480, null, false);
+            
+            //Create a fake image and save it locally
+            $image = fake()->image('public/storage/uploads',440,260, null, false);
+            $apartment->cover_image = 'uploads/' . $image;
+
             $apartment->address = $faker->address();
             $apartment->latitude = $faker->latitude(-90, 90);
             $apartment->longitude = $faker->longitude(-180, 180);
