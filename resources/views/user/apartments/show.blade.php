@@ -22,10 +22,10 @@
                     </div>
                 @endif
 
-                <div class="apart-services row">
+                <div class="apart-services row m-0 my-3">
 
                     @foreach ($apartment->services as $service)
-                        <div class="col-2 single-service justify-content-center align-items-center">
+                        <div class="col-2 single-service d-flex flex-column justify-content-center align-items-center p-2 text-light">
                             <div>
                                 {!! $service->icon !!}
                             </div>
@@ -39,23 +39,29 @@
                 </div>
 
                 <ul class="list-group list-group-flush col-6">
-                    <li class="list-group-item">Rooms: {{ $apartment->rooms }}</li>
-                    <li class="list-group-item">Bathrooms: {{ $apartment->bathrooms }}</li>
-                    <li class="list-group-item">Beds: {{ $apartment->beds }}</li>
-                    <li class="list-group-item">Square meters: {{ $apartment->square_meters }}</li>
-                    <li class="list-group-item">Address: {{ $apartment->address }}</li>
-                    <li class="list-group-item">Price: {{ $apartment->price }}</li>
+                    <li class="list-group-item">Stanze: {{ $apartment->rooms }}</li>
+                    <li class="list-group-item">Bagni: {{ $apartment->bathrooms }}</li>
+                    <li class="list-group-item">Letti: {{ $apartment->beds }}</li>
+                    <li class="list-group-item">Metri quadri: {{ $apartment->square_meters }}&#13217</li>
+                    <li class="list-group-item">Indirizzo: {{ $apartment->address }}</li>
+                    <li class="list-group-item">Prezzo: {{ $apartment->price }} €</li>
                 </ul>
 
 
+                <div class="my-3">
+                    {{-- bottone per tornare all'index  --}}
+                    <a href="{{ route('user.apartment.index', $apartment) }}" role="button" class="btn btn-success">Torna
+                        ai
+                        tuoi appartamenti
+                    </a>
 
-                {{-- bottone per tornare all'index  --}}
-                <a href="{{ route('user.apartment.index', $apartment) }}" role="button" class="btn btn-success">Torna ai
-                    tuoi appartamenti</a>
+                    {{-- bottone per edit --}}
+                    <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
+                        class="btn btn-warning">Modifica
+                        questo appartamento
+                    </a>
+                </div>
 
-                {{-- bottone per edit --}}
-                <a href="{{ route('user.apartment.edit', $apartment) }}" role="button" class="btn btn-warning">Modifica
-                    questo appartamento</a>
 
             </div>
 
@@ -72,7 +78,7 @@
                 <div>
                     <p class="text-center sponsor">Visualizza le statistiche</p>
                     <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
-                        class="btn btn-success w-100">STATS !</a>
+                        class="btn btn-success w-100">STATISTICHE !</a>
                 </div>
                 {{-- sponsorizzazioni --}}
                 <div>

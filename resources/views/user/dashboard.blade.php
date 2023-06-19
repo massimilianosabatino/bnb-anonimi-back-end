@@ -87,7 +87,7 @@
                     Nessun appartamento inserito
                 </div>
                 <div>
-                    <a href="{{ route('user.apartment.create') }}" class="btn btn-primary my-3">Add Apartment</a>
+                    <a href="{{ route('user.apartment.create') }}" class="btn btn-primary my-3">Aggiungi nuovo appartamento</a>
                 </div>
             @endif
         </div>
