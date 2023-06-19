@@ -75,6 +75,9 @@
                     </div>
                     <div class="border-bottom w-100 text-center text-xxl-start pb-2" id="nav-link">
                         <div class="my-4">
+                            <a class="my-btn" href="{{ route('user.dashboard')}}"><i class="fa-solid fa-chalkboard-user fs-4 me-2"></i><span class="fw-bold">Dashboard</span></a>
+                        </div>
+                        <div class="my-4">
                             <a class="my-btn " href="{{ route('user.apartment.index') }}"><i
                                     class="fa-solid fa-house fs-4 me-2"></i><span
                                     class="fw-bold d-none d-xxl-inline-block">I tuoi appartamenti</span></a>
