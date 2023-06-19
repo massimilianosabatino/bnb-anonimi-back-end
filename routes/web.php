@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisteredUser\ApartmentController;
+use App\Http\Controllers\RegisteredUser\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,9 +29,7 @@ Route::get('/', function () {
 // Rotta utente autenticato
 Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
     Route::resource('apartment', ApartmentController::class);
-    Route::get('dashboard', function(){
-        return view('user.dashboard');
-    });
+    Route::get('dashboard', [DashboardController::class,'index']);
 });
 
 
