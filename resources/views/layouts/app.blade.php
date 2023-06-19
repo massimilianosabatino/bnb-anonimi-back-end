@@ -98,7 +98,7 @@
             <div class="col-lg-1 col-xxl-2 d-none d-lg-block p-0 border-end">
                 <div class="d-flex flex-column justify-content-between align-items-center" id="left-nav">
                     <div id="logo">
-                        Logo
+                        <img src="{{ url('logo.png') }}" alt="" srcset="">
                     </div>
                     {{-- Contenitore per la gestione delle pagine --}}
                     <div class="border-bottom w-100 text-center text-xxl-start pb-2" id="nav-link">
