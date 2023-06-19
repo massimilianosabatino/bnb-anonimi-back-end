@@ -17,7 +17,7 @@
 
                 @if ($apartment->cover_image)
                     <div class="d-flex justify-content-start show-image">
-                        <img class="w-50" src="{{ asset('storage/' . $apartment->cover_image) }}"
+                        <img class="w-50" src="{{ asset('storage/uploads/' . $apartment->cover_image) }}"
                             alt="{{ $apartment->title }}">
                     </div>
                 @endif
