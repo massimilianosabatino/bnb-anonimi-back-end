@@ -3,20 +3,20 @@
 
 <div class="container">
     <h2 class="fs-4 text-secondary my-4">
-        {{ __('Profile') }}
+        {{ __('Profilo') }}
     </h2>
     <div class="card p-4 mb-4 bg-white shadow rounded-lg">
         <header>
             <h2 class="text-secondary">
-                {{ __('Profile Information') }}
+                {{ __('Informazioni del Profilo') }}
             </h2>
     
             <p class="mt-1 text-muted">
-                {{ __("View your account's profile information and email address.") }}
+                {{ __("Visualizza le informazioni del profilo e dell'indirizzo email.") }}
             </p>
         </header>
         <div class="mb-2">
-            <label for="name">{{__('Name')}}</label>
+            <label for="name">{{__('Nome')}}</label>
             <input class="form-control" type="text" name="name" id="name" autocomplete="name" value="{{old('name', $user->name)}}" disabled >
         </div>
 
