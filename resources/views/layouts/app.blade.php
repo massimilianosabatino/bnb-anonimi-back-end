@@ -101,34 +101,34 @@
                         <img src="{{ url('logo.png') }}" alt="" srcset="">
                     </div>
                     {{-- Contenitore per la gestione delle pagine --}}
-                    <div class="border-bottom w-100 text-center text-xxl-start pb-2" id="nav-link">
-
+                    <ul class="border-bottom w-100 text-center text-xxl-start pb-2 list-unstyled" id="nav-link">
+                        
                         {{-- Pulsante della dashboard generale --}}
-                        <div class="my-4">
+                        <li class="my-4">
                             <a class="my-btn" href="{{ route('user.dashboard')}}"><i class="fa-solid fa-house fs-4 me-2"></i><span class="fw-bold d-none d-xxl-inline-block">Dashboard</span></a>
-                        </div>
+                        </li>
 
                         {{-- Pulsante per la pagina degli appartamenti --}}
-                        <div class="my-4">
+                        <li class="my-4">
                             <a class="my-btn " href="{{ route('user.apartment.index') }}"><i
                                     class="fa-solid fa-building-user fs-4 me-2"></i><span
                                     class="fw-bold d-none d-xxl-inline-block">I tuoi appartamenti</span></a>
-                        </div>
+                        </li>
 
                         {{-- Pulsante per la pagina delle statistiche --}}
-                        <div class="my-4">
+                        <li class="my-4">
                             <a class="my-btn" href=""><i class="fa-solid fa-chart-simple fs-4 me-2"></i></i><span
                                     class="fw-bold d-none d-xxl-inline-block">Statistiche</span></a>
-                        </div>
+                        </li>
 
                         {{-- Pulsante per la pagina del profilo --}}
-                        <div class="my-4">
+                        <li class="my-4">
                             <a class="my-btn" href="{{ url('user/profile') }}"><i
                                     class="fa-solid fa-user fs-4 me-2"></i><span
                                     class="fw-bold d-none d-xxl-inline-block">Profilo</span></a>
-                        </div>
+                        </li>
 
-                    </div>
+                    </ul>
 
                     {{-- Pulsante per il logout con il form --}}
                     <div>
