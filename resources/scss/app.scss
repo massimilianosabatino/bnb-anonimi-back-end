@@ -1,7 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 @import "@fortawesome/fontawesome-free/css/all.css";
 @import 'partials/login.scss';
+@import 'partials/nav.scss';
 
 .hidden{
     display: none;
+}
+body{
+   background-color: #F5F5F5;;
 }
