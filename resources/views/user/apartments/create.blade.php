@@ -75,11 +75,17 @@
                     <div>
                         <p>Set the visibility on our platform</p>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="visible" id="visible" autocomplete="off" checked
+                            <input type="radio" class="btn-check" name="visible" id="visible" autocomplete="off"
+                                 
+                                {{ old('visible', 1)== 1? 'checked' : null }}
+                                
                                 value="1">
                             <label class="btn btn-outline-primary" for="visible">Visible</label>
 
-                            <input type="radio" class="btn-check" name="visible" id="notVisible" autocomplete="off"
+                            <input type="radio" class="btn-check" name="visible" id="notVisible" autocomplete="off" 
+                                
+                                {{ old('visible', 1)== 0? 'checked' : null }}
+                              
                                 value="0">
                             <label class="btn btn-outline-primary" for="notVisible">Not Visible</label>
                         </div>

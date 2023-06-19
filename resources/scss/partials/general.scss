@@ -1,0 +1,26 @@
+// gestione dimensione immagine in show
+
+.show-image {
+    width: 120rem;
+    height: auto;
+}
+
+.apart-services {
+    text-align: center;
+    margin-top: 3.9375rem;
+    width: 60rem;
+    padding-bottom: 20px;
+    .single-service {
+        background-color: rgb(96, 96, 122);
+        margin: 5px;
+        border-radius: 5px;
+    }
+}
+
+.extra {
+    padding-top: 60px;
+    height: 800px;
+    div {
+        height: calc(100% / 3);
+    }
+}
