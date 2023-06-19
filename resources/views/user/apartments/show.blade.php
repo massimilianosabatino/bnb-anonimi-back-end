@@ -22,6 +22,22 @@
                     </div>
                 @endif
 
+                <div class="apart-services row">
+
+                    @foreach ($apartment->services as $service)
+                        <div class="col-2 single-service justify-content-center align-items-center">
+                            <div>
+                                {!! $service->icon !!}
+                            </div>
+                            <div>
+                                {{ $service->name }}
+                            </div>
+
+                        </div>
+                    @endforeach
+
+                </div>
+
                 <ul class="list-group list-group-flush col-6">
                     <li class="list-group-item">Rooms: {{ $apartment->rooms }}</li>
                     <li class="list-group-item">Bathrooms: {{ $apartment->bathrooms }}</li>
@@ -44,31 +60,27 @@
             </div>
 
 
-            <div class="col-3 gy-4">
+            <div class="col-3 gy-4 extra">
 
                 {{-- vai a messaggi appartamento --}}
-                <p class="text-center sponsor">Domande dai clienti</p>
-                <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
-                    class="btn btn-success w-100">Messaggi ricevuti</a>
-
-                {{-- visualizza le statistiche --}}
-                <p class="text-center sponsor">Visualizza le statistiche</p>
-                <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
-                    class="btn btn-success w-100">STATS !</a>
-
-                {{-- sponsorizzazioni --}}
-                <p class="text-center sponsor">Vuoi sponsorizzare il tuo appartamento?</p>
-                <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
-                    class="btn btn-info w-100">Sponsorizza!</a>
-
-                <div class="apart-services">
-                    @foreach ($apartment->services as $service)
-                        <input type="checkbox" class="btn-check" id="{{ $service->id }}" checked>
-                        <label
-                            class="btn btn-outline-dark d-flex p-1 m-0 justify-content-center align-items-center rounded-2 flex-column"
-                            for="{{ $service->id }}">{!! $service->icon !!}{{ $service->name }}</label><br>
-                    @endforeach
+                <div>
+                    <p class="text-center sponsor">Domande dai clienti</p>
+                    <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                        class="btn btn-success w-100">Messaggi ricevuti</a>
                 </div>
+                {{-- visualizza le statistiche --}}
+                <div>
+                    <p class="text-center sponsor">Visualizza le statistiche</p>
+                    <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                        class="btn btn-success w-100">STATS !</a>
+                </div>
+                {{-- sponsorizzazioni --}}
+                <div>
+                    <p class="text-center sponsor">Vuoi sponsorizzare il tuo appartamento?</p>
+                    <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                        class="btn btn-info w-100">Sponsorizza!</a>
+                </div>
+
             </div>
 
 
