@@ -12,6 +12,7 @@ use App\Models\Service;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
@@ -54,15 +55,18 @@ class ApartmentController extends Controller
         $newApartments->fill($data);
         $newApartments->user_id = Auth::id();
         $newApartments->slug = Str::slug($data['title']);
-
-        
+    
         if(isset($data['cover_image'])){
             $newApartments->cover_image = Storage::put('uploads', $data['cover_image']);
         }
         
+        $apiUrl="https://api.tomtom.com/search/2/geocode/";
+        $apiAddress =$data['address'];
+        $apiKey = env('API_KEY');
+        $address= Http::withOptions(['verify'=>false])->get($apiUrl.$apiAddress.$apiKey)->json();
         //  ci sara' da cambiare per tomtom
-        $newApartments->latitude = 40.12345;
-        $newApartments->longitude = 40.12345;
+        $newApartments->latitude = $address['results'][0]['position']['lat'];
+        $newApartments->longitude = $address['results'][0]['position']['lon'];
         $newApartments->save();
 
         // salvo i services selezionati nella pivot solo se esistono nell"array service

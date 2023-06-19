@@ -11,7 +11,8 @@
                 @endforeach
             </div>
         @endif
-        <form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data" class="form-input-image">
+        <form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data"
+            class="form-input-image">
             @csrf
             <div class="row row-cols-1 row-cols-md-2 pt-3">
                 <div>
@@ -51,24 +52,21 @@
                     </div>
 
 
-            {{-- COVER IMAGE --}}
+                    {{-- COVER IMAGE --}}
 
-            <div class="mb-3">
-                <!-- anteprima immagine upload -->
-                <div class="preview">
-                    <img id="cover_image">
-                </div>
-                <!-- /anteprima immagine upload -->
-
-                <label for="cover_image" class="form-label">Image</label>
-                <input class="form-control" type="file" id="cover_image" name="cover_image">
-            </div>
+                    <div class="mb-3">
+                        <label for="cover_image" class="form-label">Image</label>
+                        <input class="form-control select_img" type="file" id="cover_image" name="cover_image">
+                        <!-- anteprima immagine upload -->
+                        <img id="preview" class="img-fluid my-3">
+                        <!-- /anteprima immagine upload -->
+                    </div>
 
                     {{-- ADDRESS --}}
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <input type="text" class="form-control" id="address" name="address"
-                            placeholder="insert the address" value="{{ old('address') }}">
+                            placeholder="Esempio: Via del Corso,9,Roma" value="{{ old('address') }}">
                     </div>
 
 
@@ -104,7 +102,8 @@
                 <div>
                     <P>Click on the services offered in your apartment</P>
 
-                    <div class="btn-group row row-cols-4 row-cols-xol-6 gap-2" role="group" aria-label="Basic checkbox toggle button group">
+                    <div class="btn-group row row-cols-4 row-cols-xol-6 gap-2" role="group"
+                        aria-label="Basic checkbox toggle button group">
 
                         @foreach ($services as $service)
                             {{-- <input type="checkbox" class="btn-check" id="{{$service->id}}" autocomplete="off">
@@ -113,7 +112,8 @@
                             <input type="checkbox" class="btn-check" id="{{ $service->id }}"
                                 {{ in_array($service->id, old('service', [])) ? 'checked' : null }} autocomplete="off"
                                 value="{{ $service->id }}" name="service[]">
-                            <label class="btn btn-outline-dark d-flex p-1 m-0 justify-content-center align-items-center rounded-2 flex-column"
+                            <label
+                                class="btn btn-outline-dark d-flex p-1 m-0 justify-content-center align-items-center rounded-2 flex-column"
                                 for="{{ $service->id }}">{!! $service->icon !!}{{ $service->name }}</label><br>
                         @endforeach
 

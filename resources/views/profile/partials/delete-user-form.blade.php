@@ -34,7 +34,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 
-                    <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+                    <form method="post" action="{{ route('user.profile.destroy') }}" class="p-6">
                         @csrf
                         @method('delete')
 
