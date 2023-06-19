@@ -36,8 +36,8 @@ Contatti se hai domande, suggerimenti o feedback!
 Speriamo che questa documentazione ti sia stata utile! In caso di ulteriori domande, non esitare a contattarci.  
 
 #### Team di sviluppo
-[Alberto Gioia](https://github.com/albertogioia93)
-[Leonardo Sallustio](https://github.com/LeoSallu)
-[Luca Zanfrisco](https://github.com/LucaZanfrisco)
-[Massimiliano Sabatino](https://github.com/massimilianosabatino)
+[Alberto Gioia](https://github.com/albertogioia93)  
+[Leonardo Sallustio](https://github.com/LeoSallu)  
+[Luca Zanfrisco](https://github.com/LucaZanfrisco)  
+[Massimiliano Sabatino](https://github.com/massimilianosabatino)  
 [Mattia Fezzardi](https://github.com/Fez06)
