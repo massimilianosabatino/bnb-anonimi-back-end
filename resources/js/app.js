@@ -21,3 +21,14 @@ if(document.getElementById('message')){
     },5000)
 })
 }
+
+const selectImage = document.querySelector('.select_img')
+// Anteprima Immagine 
+selectImage.onchange = evt => {
+    let preview = document.getElementById('preview');
+    preview.style.display = 'block';
+    const [file] = selectImage.files
+    if (file) {
+        preview.src = URL.createObjectURL(file)
+    }
+}
