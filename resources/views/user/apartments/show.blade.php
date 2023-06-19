@@ -4,14 +4,19 @@
     <div class="container ">
         <div class="row">
             <div class="col">
-                <h2 class="">{{ $apartment->title }}</h2>
+                <h2>{{ $apartment->title }}</h2>
 
 
-
+                 {{-- visibilita' --}}
+                 <p>Il tuo appartamento e': @if ($apartment->visible == true)
+                    'VISIBILE'
+                @elseif ($apartment->visible == false)
+                    'NON VISIBILE'
+                @endif </p>
 
                 @if ($apartment->cover_image)
                     <div class="d-flex justify-content-start">
-                        <img class="justify-content-start" src="{{ asset('storage/' . $apartment->cover_image) }}"
+                        <img class="w-50" src="{{ asset('storage/' . $apartment->cover_image) }}"
                             alt="{{ $apartment->title }}">
                     </div>
                 @endif
@@ -24,35 +29,23 @@
                     <li class="list-group-item">Address: {{ $apartment->address }}</li>
                     <li class="list-group-item">Price: {{ $apartment->price }}</li>
                 </ul>
+
+               
+
+                {{-- bottone per tornare all'index  --}}
+                <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                    class="btn btn-success">Torna ai tuoi appartamenti</a>
+
+                {{-- bottone per edit --}}
+                <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
+                    class="btn btn-warning">Edit</a>
+
+                
+
             </div>
 
 
         </div>
 
-
-        {{-- <div class="row">
-            <div class="col">
-                <div class="card w-25 my-5">
-                    
-                    @if ($apartment->cover_image)
-                        <div>
-                            <img class="card-img-top" src="{{ asset('storage/' . $apartment->cover_image) }}" alt=" {{ $apartment->title }}">
-                        </div>
-                    @endif
-
-
-                    <div class="card-body">
-                        <p class="card-text">{{ $apartment->title }}</p>
-                        <p class="card-text">{{ $apartment->rooms }}</p>
-                        <p class="card-text">{{ $apartment->bathrooms }}</p>
-                        <p class="card-text">{{ $apartment->beds }}</p>
-                        <p class="card-text">{{ $apartment->square_meters }}</p>
-                        <p class="card-text">{{ $apartment->address }}</p>
-                        <p class="card-text">{{ $apartment->latitude }}</p>
-                        <p class="card-text">{{ $apartment->longitude }}</p>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 @endsection
