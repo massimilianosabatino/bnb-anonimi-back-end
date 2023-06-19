@@ -84,7 +84,7 @@
                                     class="fw-bold d-none d-xxl-inline-block">Statistiche</span></a>
                         </div>
                         <div class="my-4">
-                            <a class="my-btn" href="{{ url('profile') }}"><i
+                            <a class="my-btn" href="{{ url('user/profile') }}"><i
                                     class="fa-solid fa-user fs-4 me-2"></i><span
                                     class="fw-bold d-none d-xxl-inline-block">Profilo</span></a>
                         </div>
