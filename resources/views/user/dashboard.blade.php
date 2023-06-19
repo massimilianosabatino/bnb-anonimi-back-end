@@ -24,62 +24,72 @@
                 <a class="btn btn-primary my-3" href="{{ route('user.apartment.index') }}">Go to Apartments List</a>
             </div>
             <h3 class="fs-3 fw-bold mb-3">Apartment List</h3>
-            <div class="row card-body justify-content-center">
-                <div class="col-12">
-                    <table class="table d-none d-lg-block align-middle">
-                        <thead>
-                            <tr>
-                                <th scope="col">Image</th>
-                                <th scope="col">Appartment</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Visible</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($apartments as $apartment)
+            @if (!$apartments->isEmpty())
+                <div class="row card-body justify-content-center">
+                    <div class="col-12">
+                        <table class="table d-none d-lg-block align-middle">
+                            <thead>
                                 <tr>
-                                    <td class="w-25">
-                                        <div class="p-2">
-                                            <img class="img-fluid rounded-3"
-                                                src="{{ asset('storage/' . $apartment->cover_image) }}"
-                                                alt="{{ $apartment->title }}">
-                                        </div>
-                                    </td>
-                                    <td>{{ $apartment->title }}</td>
-                                    <td class="card-text">{{ substr($apartment->address, 0, 50) . '...' }}</td >
-                                    <td>{{ $apartment->price }} €</td>
-                                    @if ($apartment->visible == true)
-                                        <td class="text-center"><i class="fa-solid fa-eye"></i></td>
-                                    @elseif ($apartment->visible == false)
-                                        <td class="text-center"><i class="fa-solid fa-eye-slash"></i></td>
-                                    @endif
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Appartment</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Visible</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($apartments as $apartment)
+                                    <tr>
+                                        <td class="w-25">
+                                            <div class="p-2">
+                                                <img class="img-fluid rounded-3"
+                                                    src="{{ asset('storage/' . $apartment->cover_image) }}"
+                                                    alt="{{ $apartment->title }}">
+                                            </div>
+                                        </td>
+                                        <td>{{ $apartment->title }}</td>
+                                        <td class="card-text">{{ substr($apartment->address, 0, 50) . '...' }}</td>
+                                        <td>{{ $apartment->price }} €</td>
+                                        @if ($apartment->visible == true)
+                                            <td class="text-center"><i class="fa-solid fa-eye"></i></td>
+                                        @elseif ($apartment->visible == false)
+                                            <td class="text-center"><i class="fa-solid fa-eye-slash"></i></td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="row d-lg-none">
-                <div class="col-12">
-                    <!--Mobile layout-->
-                    <div class="card d-lg-none">
-                        <img class="card-img-top" src="{{ asset('storage/' . $apartment->cover_image) }}"
-                            alt=" {{ $apartment->title }}">
-                        <div class="card-body">
-                            <h5 class="card-title fs-3">{{ $apartment->title }}</h5>
-                            <p class="card-text fs-4">Address: {{ $apartment->address }}.</p>
-                            <p class="card-text fs-5">Price: {{ $apartment->price }} €</p>
-                            @if ($apartment->visible == true)
-                                <p><i class="fa-solid fa-eye"></i></p>
-                            @elseif ($apartment->visible == false)
-                                <p><i class="fa-solid fa-eye-slash"></i></p>
-                            @endif
-                            <a href="{{ route('user.apartment.show', $apartment->id) }}" class="btn btn-primary">Info</a>
+                <div class="row d-lg-none">
+                    <div class="col-12">
+                        <!--Mobile layout-->
+                        <div class="card d-lg-none">
+                            <img class="card-img-top" src="{{ asset('storage/' . $apartment->cover_image) }}"
+                                alt=" {{ $apartment->title }}">
+                            <div class="card-body">
+                                <h5 class="card-title fs-3">{{ $apartment->title }}</h5>
+                                <p class="card-text fs-4">Address: {{ $apartment->address }}.</p>
+                                <p class="card-text fs-5">Price: {{ $apartment->price }} €</p>
+                                @if ($apartment->visible == true)
+                                    <p><i class="fa-solid fa-eye"></i></p>
+                                @elseif ($apartment->visible == false)
+                                    <p><i class="fa-solid fa-eye-slash"></i></p>
+                                @endif
+                                <a href="{{ route('user.apartment.show', $apartment->id) }}"
+                                    class="btn btn-primary">Info</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="alert alert-danger mb-0 w-25">
+                    Nessun appartamento inserito
+                </div>
+                <div>
+                    <a href="{{ route('user.apartment.create') }}" class="btn btn-primary my-3">Add Apartment</a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

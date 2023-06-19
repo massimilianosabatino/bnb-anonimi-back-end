@@ -48,7 +48,7 @@
                                         class="fw-bold">Statistiche</span></a>
                             </div>
                             <div class="m">
-                                <a class="my-btn" href="{{ url('profile') }}"><i
+                                <a class="my-btn" href="{{ route('user.profile.index') }}"><i
                                         class="fa-solid fa-user fs-4 me-2"></i><span class="fw-bold">Profilo</span></a>
                             </div>
                             <div class="my-5">
