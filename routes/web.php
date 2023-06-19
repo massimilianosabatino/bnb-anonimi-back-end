@@ -26,21 +26,28 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Rotta utente autenticato
-Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
-    Route::resource('apartment', ApartmentController::class);
-    Route::get('dashboard', function(){
-        return view('user.dashboard');
+Route::middleware('auth')
+    ->prefix('user')
+    ->name('user.')
+    ->group(function () {
+        Route::get('dashboard', function(){
+            return view('user.dashboard');
+        })->name('dashboard');
+        Route::resource('apartment', ApartmentController::class);
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+        // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
-});
 
 
 //Route profile
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
 require __DIR__.'/auth.php';
