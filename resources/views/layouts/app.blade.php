@@ -105,7 +105,7 @@
 
                         {{-- Pulsante della dashboard generale --}}
                         <div class="my-4">
-                            <a class="my-btn" href="{{ route('user.dashboard')}}"><i class="fa-solid fa-house fs-4 me-2"></i><span class="fw-bold">Dashboard</span></a>
+                            <a class="my-btn" href="{{ route('user.dashboard')}}"><i class="fa-solid fa-house fs-4 me-2"></i><span class="fw-bold d-none d-xxl-inline-block">Dashboard</span></a>
                         </div>
 
                         {{-- Pulsante per la pagina degli appartamenti --}}
