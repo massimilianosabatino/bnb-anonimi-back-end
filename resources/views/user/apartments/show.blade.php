@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container ">
+    <div class="container pb-3">
         <div class="row">
-            <div class="col-9">
-                <h2>{{ $apartment->title }}</h2>
+            <div class="col-12 col-md-8">
+                <h2 class="mt-3">{{ strtoupper($apartment->title ) }}</h2>
 
 
                 {{-- visibilita' --}}
@@ -16,7 +16,7 @@
                 </p>
 
                 @if ($apartment->cover_image)
-                    <div class="d-flex justify-content-start show-image">
+                    <div>
                         <img class="img-fluid" src="{{ asset('storage/' . $apartment->cover_image) }}"
                             alt="{{ $apartment->title }}">
                     </div>
@@ -66,25 +66,25 @@
             </div>
 
 
-            <div class="col-3 gy-4 extra">
+            <div class=" d-flex flex-md-column col-12 col-md-4 gy-4 extra">
 
                 {{-- vai a messaggi appartamento --}}
-                <div>
-                    <p class="text-center sponsor">Domande dai clienti</p>
+                <div class="me-2 mb-md-3">
+                    {{-- <p class="text-center sponsor">Domande dai clienti</p> --}}
                     <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
                         class="btn btn-success w-100">Messaggi ricevuti</a>
                 </div>
                 {{-- visualizza le statistiche --}}
-                <div>
-                    <p class="text-center sponsor">Visualizza le statistiche</p>
+                <div class="me-2 mb-md-3">
+                    {{-- <p class="text-center sponsor">Visualizza le statistiche</p> --}}
                     <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
-                        class="btn btn-success w-100">STATISTICHE !</a>
+                        class="btn btn-success w-100">Statistiche</a>
                 </div>
                 {{-- sponsorizzazioni --}}
-                <div>
-                    <p class="text-center sponsor">Vuoi sponsorizzare il tuo appartamento?</p>
+                <div class="me-2 mb-md-3">
+                    {{-- <p class="text-center sponsor">Vuoi sponsorizzare il tuo appartamento?</p> --}}
                     <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
-                        class="btn btn-info w-100">Sponsorizza!</a>
+                        class="btn btn-info w-100">Sponsorizza</a>
                 </div>
 
             </div>
