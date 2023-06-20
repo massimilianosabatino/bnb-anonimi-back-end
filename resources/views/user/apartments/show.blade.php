@@ -71,7 +71,7 @@
                 {{-- vai a messaggi appartamento --}}
                 <div class="me-2 mb-md-3">
                     {{-- <p class="text-center sponsor">Domande dai clienti</p> --}}
-                    <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                    <a href="{{ route('user.message.index', $apartment->id) }}" role="button"
                         class="btn btn-success w-100">Messaggi ricevuti</a>
                 </div>
                 {{-- visualizza le statistiche --}}

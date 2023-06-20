@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
+use App\Models\Apartment;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -13,9 +15,18 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Apartment $apartment)
     {
-        //
+        
+        $apartmenId = array_keys($_REQUEST);
+        
+        $messages = Message::where('apartment_id', '=', $apartmenId[0])->get();
+        
+        if ($messages->contains($apartmenId[0])) {
+            return view('user.messages.index', compact('messages'));
+        }else{
+            return redirect()->route('user.apartment.show', $apartmenId[0]);
+        }
     }
 
     /**
