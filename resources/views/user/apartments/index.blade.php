@@ -2,8 +2,12 @@
 
 @section('content')
     <div class="container p-3">
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger my-3 col-6 col-md-3" id="autorizzazione">{{ $error }}</div>
+            @endforeach
+        @endif
         <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Aggiungi appartamenti</a>
-
         @if (session('message'))
             <div class="toast-container position-fixed bottom-0 end-0 p-3" id="message">
                 <div class="toast show align-items-center my-bg-success border-0" role="alert" aria-live="assertive"

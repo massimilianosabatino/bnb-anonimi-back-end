@@ -24,8 +24,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where('user_id' , '=', Auth::id())->get();
-        return view('user.apartments.index',compact('apartments'));
+        $apartments = Apartment::where('user_id', '=', Auth::id())->get();
+        return view('user.apartments.index', compact('apartments'));
     }
 
     /**
@@ -35,8 +35,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        $services= Service::all();
-        
+        $services = Service::all();
+
         return view('user.apartments.create', compact('services'));
     }
 
@@ -48,22 +48,22 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        
+
         $data = $request->validated();
 
         $newApartments = new Apartment();
         $newApartments->fill($data);
         $newApartments->user_id = Auth::id();
         $newApartments->slug = Str::slug($data['title']);
-    
-        if(isset($data['cover_image'])){
+
+        if (isset($data['cover_image'])) {
             $newApartments->cover_image = Storage::put('uploads', $data['cover_image']);
         }
-        
-        $apiUrl="https://api.tomtom.com/search/2/geocode/";
-        $apiAddress =$data['address'];
+
+        $apiUrl = "https://api.tomtom.com/search/2/geocode/";
+        $apiAddress = $data['address'];
         $apiKey = env('API_KEY');
-        $address= Http::withOptions(['verify'=>false])->get($apiUrl.$apiAddress.$apiKey)->json();
+        $address = Http::withOptions(['verify' => false])->get($apiUrl . $apiAddress . $apiKey)->json();
         //  ci sara' da cambiare per tomtom
         $newApartments->latitude = $address['results'][0]['position']['lat'];
         $newApartments->longitude = $address['results'][0]['position']['lon'];
@@ -71,7 +71,7 @@ class ApartmentController extends Controller
 
         // salvo i services selezionati nella pivot solo se esistono nell"array service
         if ($request['service']) {
-        $newApartments->services()->attach($request['service']);
+            $newApartments->services()->attach($request['service']);
         }
 
         return redirect()->route('user.apartment.index')->with('message', 'Appartamento creato con successo!!!');
@@ -85,7 +85,11 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('user.apartments.show', compact('apartment'));
+        if ($apartment->user_id == Auth::user()->id) {
+            return view('user.apartments.show', compact('apartment'));
+        } else {
+            return redirect()->route('user.apartment.index')->withErrors('Nessun appartamento');
+        }
     }
 
     /**
@@ -96,8 +100,12 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        $services= Service::all();
-        return view('user.apartments.edit',compact('apartment', 'services'));
+        if ($apartment->user_id == Auth::user()->id) {
+            $services = Service::all();
+            return view('user.apartments.edit', compact('apartment', 'services'));
+        }else{
+            return redirect()->route('user.apartment.index')->withErrors('Nessun appartamento');
+        }
     }
 
     /**
@@ -109,22 +117,21 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        
+
         $data = $request->validated();
         $apartment->slug = Str::slug($data['title']);
 
         $old_image = $apartment->cover_image;
-        
 
-        if(empty($data['cover_image'])){
-            if($apartment->cover_image){
-                $apartment->cover_image=$old_image;
+
+        if (empty($data['cover_image'])) {
+            if ($apartment->cover_image) {
+                $apartment->cover_image = $old_image;
             }
-
-        }else {
+        } else {
             if (isset($data['cover_image'])) {
 
-                if($apartment->cover_image){
+                if ($apartment->cover_image) {
                     Storage::delete($apartment->cover_image);
                 }
 
@@ -135,7 +142,7 @@ class ApartmentController extends Controller
         $apartment->update($data);
         if ($request['service']) {
             $apartment->services()->sync($request['service']);
-            }
+        }
 
         return redirect()->route('user.apartment.index')->with('message', "Apartment $apartment->title edited with success");
     }
@@ -153,10 +160,9 @@ class ApartmentController extends Controller
         // if($apartment->cover_image){
         //     Storage::delete($apartment->cover_image);
         // }
-        
-        $apartment->delete();
-        
-        return redirect()->route('user.apartment.index')->with('message', "Appartamento $old_id eliminato con successo");
 
+        $apartment->delete();
+
+        return redirect()->route('user.apartment.index')->with('message', "Appartamento $old_id eliminato con successo");
     }
 }
