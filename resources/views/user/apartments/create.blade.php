@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('script')
+    <link rel="stylesheet" type="text/css"
+        href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css" />
+        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js"></script>
+        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
+@endsection
+
 @section('content')
     <div class="container p-4">
         @if ($errors->any())
@@ -65,8 +72,10 @@
                     {{-- ADDRESS --}}
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>
-                        <input type="text" class="form-control" id="address" name="address"
-                            placeholder="Esempio: Via del Corso,9,Roma" value="{{ old('address') }}">
+                        <div id="address"></div>
+
+                        {{-- <input type="text" class="form-control" id="address" name="address"
+                            placeholder="Esempio: Via del Corso,9,Roma" value="{{ old('address') }}"> --}}
                     </div>
 
 
@@ -76,17 +85,11 @@
                         <p>Scegli la visibilità dell'appartamento</p>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                             <input type="radio" class="btn-check" name="visible" id="visible" autocomplete="off"
-                                 
-                                {{ old('visible', 1)== 1? 'checked' : null }}
-                                
-                                value="1">
+                                {{ old('visible', 1) == 1 ? 'checked' : null }} value="1">
                             <label class="btn btn-outline-primary" for="visible">Visibile</label>
 
-                            <input type="radio" class="btn-check" name="visible" id="notVisible" autocomplete="off" 
-                                
-                                {{ old('visible', 1)== 0? 'checked' : null }}
-                              
-                                value="0">
+                            <input type="radio" class="btn-check" name="visible" id="notVisible" autocomplete="off"
+                                {{ old('visible', 1) == 0 ? 'checked' : null }} value="0">
                             <label class="btn btn-outline-primary" for="notVisible">Non Visibile</label>
                         </div>
                     </div>
@@ -122,12 +125,35 @@
 
                 </div>
             </div>
-
-
-
-
             <button type="submit" class="btn btn-success">Crea</button>
         </form>
+        <script>
+            var options = {
+                searchOptions: {
+                    key: "8SNIXFOGffeajHOtNAuZdfTSBRjqGKau",
+                    language: "it-IT",
+                    limit: 5,
+                },
+                autocompleteOptions: {
+                    key: "8SNIXFOGffeajHOtNAuZdfTSBRjqGKau",
+                    language: "it-IT",
+                },
+            }
+            let input = document.getElementById("address");
 
+            // var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+            var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+            var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+
+            let nostro = document.getElementsByClassName("tt-search-box-input")
+
+            input.append(searchBoxHTML);
+
+            nostro.forEach(element => {
+                element.setAttribute('name', 'address');
+            });
+
+        </script>
     </div>
+
 @endsection
