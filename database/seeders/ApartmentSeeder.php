@@ -10,6 +10,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentSeeder extends Seeder
 {
@@ -33,7 +34,11 @@ class ApartmentSeeder extends Seeder
             $apartment->bathrooms = $faker->numberBetween(1, 4);
             $apartment->beds = $faker->randomDigitNotNull();
             $apartment->square_meters = $faker->numberBetween(40, 255);
-            $apartment->cover_image = $faker->imageUrl(360, 360);
+            
+            //Create a fake image and save it locally
+            $image = fake()->image('public/storage/uploads',440,260, null, false);
+            $apartment->cover_image = 'uploads/' . $image;
+
             $apartment->address = $faker->address();
             $apartment->latitude = $faker->latitude(-90, 90);
             $apartment->longitude = $faker->longitude(-180, 180);
