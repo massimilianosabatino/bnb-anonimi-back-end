@@ -4,6 +4,11 @@
     font-family: "Nunito", sans-serif;
     height: 100vh;
     /* headings */
+
+    .invalid-feedback {
+        color: red;
+    }
+    
     h1 {
         font-weight: bold;
         margin: 0;
