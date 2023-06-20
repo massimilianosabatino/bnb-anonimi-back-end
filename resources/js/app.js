@@ -22,6 +22,16 @@ if(document.getElementById('message')){
 })
 }
 
+// Timer che mostra il messagio di non autorizzazione se si accede alla pagina di un appartamento in modo fraudolento
+if(document.getElementById('autorizzazione')){
+    window.addEventListener('load',function(){
+    let message = document.getElementById('autorizzazione');
+    this.setInterval(function(){
+        message.classList.add('hidden');
+    },5000)
+})
+}
+
 const selectImage = document.querySelector('.select_img')
 // Anteprima Immagine 
 if(selectImage){
