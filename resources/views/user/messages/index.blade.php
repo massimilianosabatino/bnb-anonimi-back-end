@@ -31,6 +31,8 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <h2>Nessun messaggio per questo appartamento</h2>
             @endif
         </div>
     </div>
