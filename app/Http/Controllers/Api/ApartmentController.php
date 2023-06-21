@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ApartmentController extends Controller
 {
     public function index(){
-        $apartments=Apartment::with('services')->paginate(1);
+        $apartments=Apartment::with('services')->get();
         return response()->json([
             'success'=>true,
             'results'=>$apartments
