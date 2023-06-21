@@ -42,25 +42,27 @@ class ApartmentController extends Controller
             ], 500);
         }
     }
-    public function search(array $params)
+    public function search(Request $request)
     {
+        $latA = $request['lat'] * 3.14 / 180;
+        $lonA = $request['lon'] * 3.14 / 180;
+        $dist = $request['dist'];
+        $R = 6372.795477598;
         $apartments = Apartment::all();
-        // $apartment = $apartments->filter(function ($apartment,$latitude,$longitude,$dist) {
-        //     $calc_dist = sqrt(pow(($apartment->latitude - $latitude), 2) + pow(($apartment->longitude - $longitude), 2));
-        //     if ($calc_dist < $dist) {
-        //         return $apartment;
-        //     }
-        // });
+
         $filtered_apartment=[];
         foreach($apartments as $apartment){
-            $calc_dist = sqrt(pow(($apartment->latitude - $latitude), 2) + pow(($apartment->longitude - $longitude), 2));
+            
+            $latB = $apartment->latitude * 3.14 / 180;
+            $lonB = $apartment->longitude * 3.14 / 180;
+            $calc_dist = $R * acos((sin($latA)* sin($latB) + cos($latA) * cos($latB) * cos($lonA-$lonB)));
             if ($calc_dist < $dist) {
                 array_push($filtered_apartment,$apartment);
             }
         }
         return response()->json([
             'success' => true,
-            'results' => $apartments
+            'results' => $filtered_apartment
         ]);
     }
 }

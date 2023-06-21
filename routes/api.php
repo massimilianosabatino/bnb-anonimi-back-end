@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // API Apartments
 Route::get('apartments', [ApartmentController::class,'index']);
 Route::get('apartment/{id}', [ApartmentController::class,'show']);
-Route::post('apartment',[ApartmentController::class,'search']);
+Route::post('search',[ApartmentController::class,'search']);
 
 
 // API Services
