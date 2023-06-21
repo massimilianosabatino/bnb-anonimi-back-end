@@ -2,12 +2,15 @@
 
 @section('content')
 <ul>
-    
+    @if ($messages->isNotEmpty())
     @foreach ($messages as $message)
     <li>
-        {{ $message->name }}
+        <a href="{{ route('user.message.show', $message) }}">{{ $message->name }}</a>
     </li>
         
     @endforeach
+    @else
+    picche
+    @endif
 </ul>
 @endsection
