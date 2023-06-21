@@ -9,17 +9,19 @@ use Illuminate\Http\Request;
 
 class ApartmentController extends Controller
 {
-    public function index(){
-        $apartments=Apartment::with('services')->get();
+    public function index()
+    {
+        $apartments = Apartment::with('services')->get();
         return response()->json([
-            'success'=>true,
-            'results'=>$apartments
+            'success' => true,
+            'results' => $apartments
         ]);
     }
 
-    public function show ($id){
-        try{
-            $apartment=Apartment::where('id', $id)->with('services')->first();
+    public function show($id)
+    {
+        try {
+            $apartment = Apartment::where('id', $id)->with('services')->first();
 
             if ($apartment) {
                 return response()->json([
@@ -32,13 +34,33 @@ class ApartmentController extends Controller
                     'results' => null
                 ], 404);
             }
-           }catch (\Throwable $th) {
+        } catch (\Throwable $th) {
 
             return response()->json([
                 'success' => false,
                 'results' => null
             ], 500);
+        }
+    }
+    public function search(array $params)
+    {
+        $apartments = Apartment::all();
+        // $apartment = $apartments->filter(function ($apartment,$latitude,$longitude,$dist) {
+        //     $calc_dist = sqrt(pow(($apartment->latitude - $latitude), 2) + pow(($apartment->longitude - $longitude), 2));
+        //     if ($calc_dist < $dist) {
+        //         return $apartment;
+        //     }
+        // });
+        $filtered_apartment=[];
+        foreach($apartments as $apartment){
+            $calc_dist = sqrt(pow(($apartment->latitude - $latitude), 2) + pow(($apartment->longitude - $longitude), 2));
+            if ($calc_dist < $dist) {
+                array_push($filtered_apartment,$apartment);
             }
-
-}
+        }
+        return response()->json([
+            'success' => true,
+            'results' => $apartments
+        ]);
+    }
 }
