@@ -2,6 +2,6 @@
 
 @section('content')
 
-{{$getApartment->title}};
+{{$apartment->title}};
 
 @endsection

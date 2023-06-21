@@ -53,9 +53,9 @@ class SponsorshipController extends Controller
     {
         //dd(key($_REQUEST));
 
-        $getApartment = Apartment::where('id', key($_REQUEST))->first();
-        if ($getApartment->user_id == Auth::user()->id) {
-            return view('user.sponsorship.show', compact('getApartment', 'sponsorship'));
+        $apartment = Apartment::where('id', key($_REQUEST))->first();
+        if ($apartment->user_id == Auth::user()->id) {
+            return view('user.sponsorship.show', compact('apartment', 'sponsorship'));
         } else {
             return redirect()->route('user.sponsorship.index')->withErrors('Nessun appartamento');
         }
