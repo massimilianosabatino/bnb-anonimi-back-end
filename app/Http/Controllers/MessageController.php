@@ -8,9 +8,7 @@ use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Apartment;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Lang;
-use Locale;
+
 
 class MessageController extends Controller
 {
@@ -63,7 +61,7 @@ class MessageController extends Controller
     public function show(Message $message)
     {
         
-        return view('user.messages.show', compact('message'));
+        //
     }
 
     /**
