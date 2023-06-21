@@ -6,7 +6,9 @@ use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Apartment;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class MessageController extends Controller
 {
@@ -15,18 +17,27 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Apartment $apartment)
+    public function index()
     {
+        $getApartment = Apartment::where('id', key($_REQUEST))->first();
+        $messages = Message::where('apartment_id', key($_REQUEST))->get();
         
-        $apartmenId = array_keys($_REQUEST);
-        
-        $messages = Message::where('apartment_id', '=', $apartmenId[0])->get();
-        
-        if ($messages->contains($apartmenId[0])) {
+        if($getApartment->user_id === Auth::id()){
             return view('user.messages.index', compact('messages'));
         }else{
-            return redirect()->route('user.apartment.show', $apartmenId[0]);
+            'ciao';
         }
+        
+        
+        // $apartmenId = array_keys($_REQUEST);
+        
+        // $messages = Message::where('apartment_id', '=', $apartmenId[0])->get();
+        // dd($messages->contains($apartmenId));
+        // if ($messages->contains($apartmenId[0])) {
+        //     return view('user.messages.index', compact('messages'));
+        // }else{
+        //     return redirect()->route('user.apartment.show', $apartmenId[0]);
+        // }
     }
 
     /**
@@ -58,7 +69,8 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        
+        // return view('user.messages.index', compact('message'));
     }
 
     /**

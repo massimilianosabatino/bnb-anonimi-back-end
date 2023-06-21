@@ -2,7 +2,7 @@
 
 @section('content')
 <ul>
-    {{ $message }}
+    
     @foreach ($messages as $message)
     <li>
         {{ $message->name }}
