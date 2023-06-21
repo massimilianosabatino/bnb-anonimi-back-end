@@ -6,8 +6,11 @@ use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Apartment;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Lang;
+use Locale;
 
 class MessageController extends Controller
 {
@@ -20,7 +23,7 @@ class MessageController extends Controller
     {
         $getApartment = Apartment::where('id', key($_REQUEST))->first();
         $messages = Message::where('apartment_id', key($_REQUEST))->get();
-        
+
         if(!$getApartment){
             return back();
         }
