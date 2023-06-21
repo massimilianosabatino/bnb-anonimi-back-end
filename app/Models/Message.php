@@ -13,7 +13,7 @@ class Message extends Model
     protected function sendDate(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => Carbon::create($value)->toDateTimeLocalString(),
+            get: fn (string $value) => Carbon::create($value)->format('d-m-Y'),
         );
     }
 
