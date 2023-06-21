@@ -43,7 +43,7 @@
                                         <td class="w-25">
                                             <div class="p-2">
                                                 <img class="img-fluid rounded-3"
-                                                    src="{{ asset('storage/' . $apartment->cover_image) }}"
+                                                    src="{{ $apartment->cover_image }}"
                                                     alt="{{ $apartment->title }}">
                                             </div>
                                         </td>

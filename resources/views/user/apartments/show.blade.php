@@ -17,7 +17,7 @@
 
                 @if ($apartment->cover_image)
                     <div>
-                        <img class="img-fluid" src="{{ asset('storage/' . $apartment->cover_image) }}"
+                        <img class="img-fluid" src="{{ $apartment->cover_image }}"
                             alt="{{ $apartment->title }}">
                     </div>
                 @endif
