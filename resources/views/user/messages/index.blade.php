@@ -4,7 +4,7 @@
 <div class="container">
     {{-- Navigation bar --}}
     <div class="button-bar my-4 d-flex">
-        <a href="{{ url()->previous() }}" type="button" class="btn btn-secondary ms-auto">Back</a>
+        <a href="{{ route('user.apartment.show', $apartment_id) }}" type="button" class="btn btn-secondary ms-auto">Back</a>
     </div>
     {{-- /Navigation bar --}}
     <div class="row my-4">
