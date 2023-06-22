@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container p-4">
+        <div class="my-5">
+            <a href="{{ url()->previous() }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
+        </div>
         @if ($errors->any())
             <div>
                 @foreach ($errors->all() as $error)
@@ -36,8 +40,7 @@
                     <div class="mb-3">
                         <label for="bathrooms" class="form-label">Bagni</label>
                         <input type="text" class="form-control" id="bathrooms" name="bathrooms"
-                            placeholder="inserisci numero di bagni"
-                            value="{{ old('bathrooms', $apartment->bathrooms) }}">
+                            placeholder="inserisci numero di bagni" value="{{ old('bathrooms', $apartment->bathrooms) }}">
                     </div>
 
                     {{-- BEDS --}}
@@ -62,7 +65,8 @@
                         <label for="cover_image" class="form-label">Immagine</label>
                         <input class="form-control select_img" type="file" id="cover_image" name="cover_image">
                         <!-- anteprima immagine upload -->
-                        <img class="img-fluid my-3" id="preview" @if ($apartment->cover_image) src="{{ asset($apartment->cover_image) }}" @endif>
+                        <img class="img-fluid my-3" id="preview"
+                            @if ($apartment->cover_image) src="{{ asset($apartment->cover_image) }}" @endif>
                         <!-- /anteprima immagine upload -->
                     </div>
 
@@ -78,12 +82,12 @@
                     <div>
                         <p>Scegli la visibilità dell'appartamento</p>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="visible" id="visible" autocomplete="off" {{ old('visible', $apartment->visible)? 'checked' : null }}
-                                value="1">
+                            <input type="radio" class="btn-check" name="visible" id="visible" autocomplete="off"
+                                {{ old('visible', $apartment->visible) ? 'checked' : null }} value="1">
                             <label class="btn btn-outline-primary" for="visible">Visibile</label>
 
-                            <input type="radio" class="btn-check" name="visible" id="notVisible" autocomplete="off" {{ old('visible', $apartment->visible)== 0? 'checked' : null }}
-                                value="0">
+                            <input type="radio" class="btn-check" name="visible" id="notVisible" autocomplete="off"
+                                {{ old('visible', $apartment->visible) == 0 ? 'checked' : null }} value="0">
                             <label class="btn btn-outline-primary" for="notVisible">Not Visibile</label>
                         </div>
                     </div>

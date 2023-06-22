@@ -136,7 +136,7 @@ class ApartmentController extends Controller
             $apartment->services()->sync($request['service']);
         }
 
-        return redirect()->route('user.apartment.index')->with('message', "Il seguente appartamento: $apartment->title è stato modificato con successo");
+        return redirect()->route('user.apartment.show', $apartment->id)->with('message', "L' appartamento: $apartment->title è stato modificato con successo");
     }
 
     /**
