@@ -62,7 +62,7 @@
                         <label for="cover_image" class="form-label">Immagine</label>
                         <input class="form-control select_img" type="file" id="cover_image" name="cover_image">
                         <!-- anteprima immagine upload -->
-                        <img class="img-fluid my-3" id="preview" @if ($apartment->cover_image) src="{{ asset('storage/' . $apartment->cover_image) }}" @endif>
+                        <img class="img-fluid my-3" id="preview" @if ($apartment->cover_image) src="{{ asset($apartment->cover_image) }}" @endif>
                         <!-- /anteprima immagine upload -->
                     </div>
 

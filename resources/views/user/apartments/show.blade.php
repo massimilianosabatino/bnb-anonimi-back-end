@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pb-3">
+    <div class="container pb-3 apartment-show">
         <div class="row">
             <div class="col-12 col-md-8">
                 <h2 class="mt-3">{{ strtoupper($apartment->title ) }}</h2>
@@ -32,7 +32,6 @@
                             <div>
                                 {{ $service->name }}
                             </div>
-
                         </div>
                     @endforeach
 
