@@ -151,6 +151,7 @@
 
             nostro.forEach(element => {
                 element.setAttribute('name', 'address');
+                element.setAttribute('value', "{{old('address')}}");
             });
 
         </script>

@@ -4,6 +4,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisteredUser\ApartmentController;
 use App\Http\Controllers\RegisteredUser\DashboardController;
+use App\Http\Controllers\SponsorshipController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,7 @@ Route::middleware('auth')
         Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
         Route::resource('apartment', ApartmentController::class);
         Route::resource('message', MessageController::class);
+        Route::resource('sponsorship', SponsorshipController::class);
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

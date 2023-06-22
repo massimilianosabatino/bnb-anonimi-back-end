@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,12 @@ class Apartment extends Model
     //protected $fillable = ['*'];
 
     protected $guarded = ['service', 'user_id', 'slug', 'latitude', 'longitude', 'cover_image'];
+    protected function coverImage(): Attribute
+    {
+        return Attribute::make(
+            get: fn(string|null $value)=>$value?asset('storage/'.$value):null,
+        );
+    }
 
     public function user(){
         return $this->belongsTo(User::class);

@@ -17,7 +17,7 @@
 
                 @if ($apartment->cover_image)
                     <div>
-                        <img class="img-fluid" src="{{ asset('storage/' . $apartment->cover_image) }}"
+                        <img class="img-fluid" src="{{ $apartment->cover_image }}"
                             alt="{{ $apartment->title }}">
                     </div>
                 @endif
@@ -83,7 +83,7 @@
                 {{-- sponsorizzazioni --}}
                 <div class="me-2 mb-md-3">
                     {{-- <p class="text-center sponsor">Vuoi sponsorizzare il tuo appartamento?</p> --}}
-                    <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                    <a href="{{ route('user.sponsorship.index', $apartment) }}" role="button"
                         class="btn btn-info w-100">Sponsorizza</a>
                 </div>
 
