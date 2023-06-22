@@ -3,25 +3,21 @@
         padding: 50px 0;
         text-align: left;
     }
-
     .card{
         img{
             height: auto;
             width: 100%;
         }
-    }
+        &.bg-1 {
+            background-color: rgb(180, 180, 180); // Colore per la sponsorizzazione Standard
+        }
 
-    h2[data-type="Standard"] {
-        color: green;
-    }
-    
-    h2[data-type="Premium"] {
-        color: blue;
-    }
-    
-    h2[data-type="Deluxe"] {
-        color: purple;
-    }
-    
-    
+        &.bg-2 {
+            background-color: rgb(150, 150, 150); // Colore per la sponsorizzazione Premium
+        }
+
+        &.bg-3 {
+            background-color: rgb(110, 110, 110); // Colore per la sponsorizzazione Deluxe
+        }
+    }   
 }
