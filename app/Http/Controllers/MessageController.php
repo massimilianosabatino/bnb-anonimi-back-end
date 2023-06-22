@@ -95,6 +95,12 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        //
+        $old_message = $message->name;
+
+        $message->delete();
+
+        // session()->now('message', "Messaggio di {$old_message} eliminato.");
+
+        return back()->with('message', "Messaggio di {$old_message} eliminato.");
     }
 }
