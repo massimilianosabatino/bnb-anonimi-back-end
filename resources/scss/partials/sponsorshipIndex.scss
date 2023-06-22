@@ -1,14 +1,29 @@
 .sponsorshipIndex {
     .main-title{
-        padding: 50px 0;
+        
         text-align: left;
     }
-
     .card{
         img{
             height: auto;
             width: 100%;
         }
+        &.bg-1 {
+            background-color: rgb(180, 180, 180); // Colore per la sponsorizzazione Standard
+        }
+
+        &.bg-2 {
+            background-color: rgb(150, 150, 150); // Colore per la sponsorizzazione Premium
+        }
+
+        &.bg-3 {
+            background-color: rgb(110, 110, 110); // Colore per la sponsorizzazione Deluxe
+        }
+    } 
+    .cardhover:hover {
+        transform: scale(1.20);
+        transition: transform 0.3s ease;
+        z-index: 999;
     }
-    
+      
 }
