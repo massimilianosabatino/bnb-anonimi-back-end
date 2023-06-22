@@ -52,7 +52,7 @@ class ApartmentController extends Controller
         $R = 6372.795477598; //Raggio dell'equatore
 
 
-
+        $filtered_apartment = [];
         if (count($services) > 0) {
             $apartments_service = [];
             $servicesList = [];
