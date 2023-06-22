@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
+use App\Models\Apartment;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+
 
 class MessageController extends Controller
 {
@@ -15,7 +19,16 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $getApartment = Apartment::where('id', key($_REQUEST))->first();
+        $messages = Message::where('apartment_id', key($_REQUEST))->get();
+
+        if(!$getApartment){
+            return back();
+        }
+        if($getApartment->user_id === Auth::id() && $getApartment){
+            return view('user.messages.index', compact('messages'));
+        }
+        
     }
 
     /**
@@ -47,6 +60,7 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
+        
         //
     }
 
@@ -81,6 +95,10 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        //
+        $old_message = $message->name;
+        
+        $message->delete();
+
+        return back()->with('message', "Messaggio di {$old_message} eliminato.");
     }
 }
