@@ -19,5 +19,11 @@
         &.bg-3 {
             background-color: rgb(110, 110, 110); // Colore per la sponsorizzazione Deluxe
         }
-    }   
+    } 
+    .cardhover:hover {
+        transform: scale(1.20);
+        transition: transform 0.3s ease;
+        z-index: 999;
+    }
+      
 }

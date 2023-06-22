@@ -30,7 +30,7 @@
         <div class="row">
             @foreach ($apartments as $apartment)
                 <div class="col-12 col-md-6 col-lg-3 mb-4">
-                    <div class="card h-100">
+                    <div class="card h-100 cardhover">
                         <img src="{{$apartment->cover_image}}" class="card-img-top" alt="{{$apartment->title}}">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{$apartment->title}}</h5>
