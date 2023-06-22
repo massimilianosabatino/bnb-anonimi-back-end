@@ -7,15 +7,11 @@
                 <div class="alert alert-danger my-3 col-6 col-md-3" id="autorizzazione">{{ $error }}</div>
             @endforeach
         @endif
-        <div class="d-flex justify-content-between">
-            <a href="{{ url()->previous() }}" type="button" class="btn btn-secondary mb-3">Back</a>
-            <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Aggiungi appartamenti</a>
+        {{-- barra con back e aggiungi appartamento --}}
+        <div class="my-5">
+            <a href="{{ url()->previous() }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
         </div>
-        <div class="button-bar my-4 d-flex justify-content-between">
-            <a href="{{ url()->previous() }}" type="button" class="btn btn-secondary ms-auto">Back</a>
-            <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Aggiungi appartamenti</a>
 
-        </div>
         @if (session('message'))
             <div class="toast-container position-fixed bottom-0 end-0 p-3" id="message">
                 <div class="toast show align-items-center my-bg-success border-0" role="alert" aria-live="assertive"
@@ -30,6 +26,10 @@
                 </div>
             </div>
         @endif
+        <div class="my-2 d-flex justify-content-between">
+            <h1 class="fs-3 fw-bold mb-3">Gestisci i tuoi appartamenti</h1>
+            <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Aggiungi appartamento</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
