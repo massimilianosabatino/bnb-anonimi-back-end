@@ -11,7 +11,7 @@
             @endforeach
         @endif
 
-        <div class="row"> 
+        {{-- <div class="row"> 
             <div class="d-flex flex-wrap">
                 @foreach ($sponsorships as $sponsorship)
                 <div class="col-12 col-md-4 text-center mb-4">
@@ -20,9 +20,25 @@
                     <h4>Ore: {{$sponsorship->time}}</h4>
                 </div>
                 @endforeach
-               
             </div> 
+        </div> --}}
+
+        <div class="row">
+            <div class="d-flex flex-wrap">
+                @foreach ($sponsorships as $sponsorship)
+                <div class="col-12 col-md-4 text-center mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$sponsorship->name}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Prezzo: {{$sponsorship->price}} €</h6>
+                            <p class="card-text">Ore: {{$sponsorship->time}}</p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
+        
         
         <div class="row">
             @foreach ($apartments as $apartment)
@@ -33,9 +49,9 @@
                             <h5 class="card-title">{{$apartment->title}}</h5>
                             <p class="card-text">Indirizzo: {{$apartment->address}}</p>
                             <div class="d-grid">
-                                <a href="{{ route('user.sponsorship.show', [1, $apartment->id] ) }}" class="btn btn-primary mb-2" style="background-color: green">Standard!</a>
-                                <a href="{{ route('user.sponsorship.show', [2, $apartment->id] ) }}" class="btn btn-primary mb-2" style="background-color: blue">Premium!</a>
-                                <a href="{{ route('user.sponsorship.show', [3, $apartment->id] ) }}" class="btn btn-primary mb-2" style="background-color: purple">Deluxe!</a>
+                                <a href="{{ route('user.sponsorship.show', [1, $apartment->id] ) }}" class="btn btn-primary mb-2" style="background-color: rgb(193, 193, 193)">Standard!</a>
+                                <a href="{{ route('user.sponsorship.show', [2, $apartment->id] ) }}" class="btn btn-primary mb-2" style="background-color: rgb(150, 150, 150)">Premium!</a>
+                                <a href="{{ route('user.sponsorship.show', [3, $apartment->id] ) }}" class="btn btn-primary mb-2" style="background-color: rgb(110, 110, 110)">Deluxe!</a>
                             </div>
                             
                         </div>
