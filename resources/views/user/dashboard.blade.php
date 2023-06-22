@@ -42,19 +42,21 @@
                             @foreach ($apartments as $apartment)
                             <tr>
                                 <td class="w-25">
-                                    <div class="p-2">
-                                        <img class="img-fluid rounded-3" src="{{ $apartment->cover_image }}"
+                                    <a href="{{ route('user.apartment.show', $apartment->id) }}">
+                                        <div class="p-2">
+                                            <img class="img-fluid rounded-3" src="{{ $apartment->cover_image }}"
                                             alt="{{ $apartment->title }}">
-                                    </div>
+                                        </div>
+                                    </a>
                                 </td>
-                                <td>{{ $apartment->title }}</td>
-                                <td class="card-text">{{ substr($apartment->address, 0, 50) . '...' }}</td>
-                                <td>{{ $apartment->price }} €</td>
-                                @if ($apartment->visible == true)
-                                <td class="text-center"><i class="fa-solid fa-eye"></i></td>
-                                @elseif ($apartment->visible == false)
-                                <td class="text-center"><i class="fa-solid fa-eye-slash"></i></td>
-                                @endif
+                                    <td>{{ $apartment->title }}</td>
+                                    <td class="card-text">{{ substr($apartment->address, 0, 50) . '...' }}</td>
+                                    <td>{{ $apartment->price }} €</td>
+                                    @if ($apartment->visible == true)
+                                    <td class="text-center"><i class="fa-solid fa-eye"></i></td>
+                                    @elseif ($apartment->visible == false)
+                                    <td class="text-center"><i class="fa-solid fa-eye-slash"></i></td>
+                                    @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -66,7 +68,9 @@
                     <!--Mobile layout-->
                     @foreach ($apartments as $apartment)
                     <div class="card d-lg-none my-2">
-                        <img class="card-img-top" src="{{ $apartment->cover_image }}" alt=" {{ $apartment->title }}">
+                        <a href="{{ route('user.apartment.show', $apartment->id) }}">
+                            <img class="card-img-top" src="{{ $apartment->cover_image }}" alt=" {{ $apartment->title }}">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title fs-3">{{ $apartment->title }}</h5>
                             <p class="card-text fs-4">Indirizzo: {{ $apartment->address }}.</p>
