@@ -58,8 +58,7 @@
                             {{-- Pulsante per la pagina di appartamenti --}}
                             <div class="my-4">
                                 <a class="my-btn " href="{{ route('user.apartment.index') }}"><i
-                                        class="fa-solid fa-building-user fs-4 me-2"></i><span class="fw-bold">I tuoi
-                                        appartamenti</span></a>
+                                        class="fa-solid fa-building-user fs-4 me-2"></i><span class="fw-bold">Appartamenti</span></a>
                             </div>
                             
                             {{-- Pulsante della pagina delle statistiche --}}
@@ -112,7 +111,7 @@
                         <li class="my-4">
                             <a class="my-btn " href="{{ route('user.apartment.index') }}"><i
                                     class="fa-solid fa-building-user fs-4 me-2"></i><span
-                                    class="fw-bold d-none d-xxl-inline-block">I tuoi appartamenti</span></a>
+                                    class="fw-bold d-none d-xxl-inline-block">Appartamenti</span></a>
                         </li>
 
                         {{-- Pulsante per la pagina delle statistiche --}}
@@ -126,6 +125,13 @@
                             <a class="my-btn" href="{{ url('user/profile') }}"><i
                                     class="fa-solid fa-user fs-4 me-2"></i><span
                                     class="fw-bold d-none d-xxl-inline-block">Profilo</span></a>
+                        </li>
+
+                        {{-- Pulsante per la pagina della sponsorship --}}
+                        <li class="my-4">
+                            <a class="my-btn" href="{{ route('user.sponsorship.index') }}"><i
+                                    class="fa-solid fa-star fs-4 me-2"></i><span
+                                    class="fw-bold d-none d-xxl-inline-block">Sponsorship</span></a>
                         </li>
 
                     </ul>

@@ -7,7 +7,15 @@
                 <div class="alert alert-danger my-3 col-6 col-md-3" id="autorizzazione">{{ $error }}</div>
             @endforeach
         @endif
-        <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Aggiungi appartamenti</a>
+        <div class="d-flex justify-content-between">
+            <a href="{{ url()->previous() }}" type="button" class="btn btn-secondary mb-3">Back</a>
+            <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Aggiungi appartamenti</a>
+        </div>
+        <div class="button-bar my-4 d-flex justify-content-between">
+            <a href="{{ url()->previous() }}" type="button" class="btn btn-secondary ms-auto">Back</a>
+            <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Aggiungi appartamenti</a>
+
+        </div>
         @if (session('message'))
             <div class="toast-container position-fixed bottom-0 end-0 p-3" id="message">
                 <div class="toast show align-items-center my-bg-success border-0" role="alert" aria-live="assertive"
@@ -22,82 +30,82 @@
                 </div>
             </div>
         @endif
-            <table class="table">
-                <thead>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th class="d-none d-lg-none d-xl-table-cell" scope="col">Stanze</th>
+                    <th class="d-none d-lg-none d-xl-table-cell" scope="col">Bagni</th>
+                    <th class="d-none d-lg-none d-xl-table-cell" scope="col">Letti</th>
+                    <th class="d-none d-lg-none d-xl-table-cell" scope="col">Metri quadri</th>
+                    <th class="d-none d-lg-none d-xl-table-cell" scope="col">Indirizzo</th>
+                    <th scope="col">Visibilità</th>
+                    <th scope="col">Prezzo</th>
+                    <th class="text-center" scope="col" colspan="4">Funzioni</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+                @foreach ($apartments as $apartment)
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Stanze</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Bagni</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Letti</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Metri quadri</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Indirizzo</th>
-                        <th scope="col">Visibilità</th>
-                        <th scope="col">Prezzo</th>
-                        <th class="text-center" scope="col" colspan="4">Funzioni</th>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $apartment->title }}</td>
+                        <td class="d-none d-xl-table-cell">{{ $apartment->rooms }}</td>
+                        <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->bathrooms }}</td>
+                        <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->beds }}</td>
+                        <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->square_meters }} &#13217</td>
+                        <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->address }}</td>
+                        @if ($apartment->visible == true)
+                            <td class="text-center"><i class="fa-solid fa-eye"></i></td>
+                        @elseif ($apartment->visible == false)
+                            <td class="text-center"><i class="fa-solid fa-eye-slash"></i></td>
+                        @endif
+                        <td>{{ $apartment->price }}€</td>
+                        <td class="text-center">
+                            <a href="{{ route('user.apartment.show', $apartment->id) }}" role="button"
+                                class="btn btn-success"><i class="fa-solid fa-circle-info"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
+                                class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#delete{{ $apartment->id }}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                        <td>
                     </tr>
-                </thead>
-
-
-                <tbody>
-                    @foreach ($apartments as $apartment)
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td >{{ $apartment->title }}</td>
-                            <td class="d-none d-xl-table-cell">{{ $apartment->rooms }}</td>
-                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->bathrooms }}</td>
-                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->beds }}</td>
-                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->square_meters }} &#13217</td>
-                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->address }}</td>
-                            @if ($apartment->visible == true)
-                                <td class="text-center"><i class="fa-solid fa-eye"></i></td>
-                            @elseif ($apartment->visible == false)
-                                <td class="text-center"><i class="fa-solid fa-eye-slash"></i></td>
-                            @endif
-                            <td>{{ $apartment->price }}€</td>
-                            <td class="text-center">
-                                <a href="{{ route('user.apartment.show', $apartment->id) }}" role="button"
-                                    class="btn btn-success"><i class="fa-solid fa-circle-info"></i></a>
-                            </td>
-                            <td class="text-center">
-                                <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
-                                    class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#delete{{ $apartment->id }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </td>
-                            <td>
-                        </tr>
-                        {{-- Modale delete --}}
-                        <div class="modal fade" id="delete{{ $apartment->id }}" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div>Cancella appartmento n°{{ $apartment->id }}: {{ $apartment->title }} ?</div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Annulla</button>
-                                            <button type="submit" class="btn btn-danger">Cancella</button>
-                                        </form>
-                                    </div>
+                    {{-- Modale delete --}}
+                    <div class="modal fade" id="delete{{ $apartment->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>Cancella appartmento n°{{ $apartment->id }}: {{ $apartment->title }} ?</div>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Annulla</button>
+                                        <button type="submit" class="btn btn-danger">Cancella</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </tbody>
-            </table>
+                    </div>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection
