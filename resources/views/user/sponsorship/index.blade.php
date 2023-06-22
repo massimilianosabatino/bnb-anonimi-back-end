@@ -11,6 +11,8 @@
             @endforeach
         @endif
 
+        {{-- Banner delle sponsorizzazioni generati dinamicamente sulla base dei dati salvati nel database --}}
+
         <div class="row">
             <div class="d-flex flex-wrap">
                 @foreach ($sponsorships as $key => $sponsorship)
@@ -26,6 +28,8 @@
                 @endforeach
             </div>
         </div>
+
+        {{-- Cards degli appartamenti dell'utente registrato con relativi bottoni per scegliere la sponsorizzazione --}}
         
         <div class="row">
             @foreach ($apartments as $apartment)
