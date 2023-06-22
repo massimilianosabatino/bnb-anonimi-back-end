@@ -13,6 +13,10 @@
         }
         #nav-link{
             margin-bottom: auto;
+            li .fa-solid{
+                width: 30px;
+                text-align: center;
+            }
         }
     }
 }
@@ -26,7 +30,7 @@
     }
 }
 .logout{
-    color: black;
+    color: gray;
     text-decoration: none;
     padding: .625rem;
     &:hover{

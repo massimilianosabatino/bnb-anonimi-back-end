@@ -1,0 +1,28 @@
+.apartment-show {
+
+    .show-img-container {
+        width: 600px;
+    }
+    .apart-services {
+        text-align: center;
+        margin-top: 3.9375rem;
+        // width: 60rem;
+        padding-bottom: 20px;
+
+        .single-service {
+            background-color: rgb(96, 96, 122);
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 11px;
+        }
+    }
+
+
+
+    @media screen and (min-width:768px) {
+        .extra {
+            margin-top: 145px;
+        }
+
+    }
+}

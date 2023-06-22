@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container pb-3">
+    <div class="container pb-3 apartment-show">
+        <div class="my-5">
+            <a href="{{ url()->previous() }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
+        </div>
         <div class="row">
             <div class="col-12 col-md-8">
-                <h2 class="mt-3">{{ strtoupper($apartment->title ) }}</h2>
+                <h2 class="fs-3 fw-bold mb-3">{{ strtoupper($apartment->title) }}</h2>
 
 
                 {{-- visibilita' --}}
@@ -16,23 +19,22 @@
                 </p>
 
                 @if ($apartment->cover_image)
-                    <div>
-                        <img class="img-fluid" src="{{ $apartment->cover_image }}"
-                            alt="{{ $apartment->title }}">
+                    <div class="show-img-container">
+                        <img class="img-fluid" src="{{ $apartment->cover_image }}" alt="{{ $apartment->title }}">
                     </div>
                 @endif
 
                 <div class="apart-services row m-0 my-3">
 
                     @foreach ($apartment->services as $service)
-                        <div class="col-2 single-service d-flex flex-column justify-content-center align-items-center p-2 text-light">
+                        <div
+                            class="col-2 single-service d-flex flex-column justify-content-center align-items-center p-2 text-light">
                             <div>
                                 {!! $service->icon !!}
                             </div>
                             <div>
                                 {{ $service->name }}
                             </div>
-
                         </div>
                     @endforeach
 

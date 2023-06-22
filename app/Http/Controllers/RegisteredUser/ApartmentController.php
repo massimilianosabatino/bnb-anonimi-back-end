@@ -103,7 +103,7 @@ class ApartmentController extends Controller
         if ($apartment->user_id == Auth::user()->id) {
             $services = Service::all();
             return view('user.apartments.edit', compact('apartment', 'services'));
-        }else{
+        } else {
             return redirect()->route('user.apartment.index')->withErrors('Nessun appartamento');
         }
     }
@@ -117,34 +117,26 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-
         $data = $request->validated();
         $apartment->slug = Str::slug($data['title']);
 
-        $old_image = $apartment->cover_image;
 
+        if (isset($data['cover_image'])) {
 
-        if (empty($data['cover_image'])) {
             if ($apartment->cover_image) {
-                $apartment->cover_image = $old_image;
+                Storage::delete($apartment->cover_image);
             }
-        } else {
-            if (isset($data['cover_image'])) {
 
-                if ($apartment->cover_image) {
-                    Storage::delete($apartment->cover_image);
-                }
-
-                $apartment->cover_image = Storage::put('uploads', $data['cover_image']);
-            }
+            $apartment->cover_image = Storage::put('uploads', $data['cover_image']);
         }
+
 
         $apartment->update($data);
         if ($request['service']) {
             $apartment->services()->sync($request['service']);
         }
 
-        return redirect()->route('user.apartment.index')->with('message', "Il seguente appartamento: $apartment->title è stato modificato con successo");
+        return redirect()->route('user.apartment.show', $apartment->id)->with('message', "L' appartamento: $apartment->title è stato modificato con successo");
     }
 
     /**
