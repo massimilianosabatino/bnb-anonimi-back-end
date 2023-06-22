@@ -21,12 +21,13 @@ class MessageController extends Controller
     {
         $getApartment = Apartment::where('id', key($_REQUEST))->first();
         $messages = Message::where('apartment_id', key($_REQUEST))->get();
+        $apartment_id = key($_REQUEST);
 
         if(!$getApartment){
             return back();
         }
         if($getApartment->user_id === Auth::id() && $getApartment){
-            return view('user.messages.index', compact('messages'));
+            return view('user.messages.index', compact('messages', 'apartment_id'));
         }
         
     }
