@@ -74,7 +74,7 @@ class ApartmentController extends Controller
             $newApartments->services()->attach($request['service']);
         }
 
-        return redirect()->route('user.apartment.index')->with('message', 'Appartamento creato con successo!!!');
+        return redirect()->route('user.apartment.show', $newApartments->id)->with('message', 'Appartamento creato con successo!!!');
     }
 
     /**
