@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    {{-- Navigation bar --}}
+    <div class="button-bar my-4 d-flex">
+        <a href="{{ url()->previous() }}" type="button" class="btn btn-secondary ms-auto">Back</a>
+    </div>
+    {{-- /Navigation bar --}}
     <div class="row my-4">
         <div class="col">
             <h1>Messaggi ricevuti</h1>
