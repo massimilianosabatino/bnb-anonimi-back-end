@@ -3,7 +3,11 @@
 @section('content')
     <div class="sponsorshipIndex container">
 
-        <h1 class="main-title">Acquista una sponsorizzazione in un appartamento per metterlo in evidenza!</h1>
+        <div class="my-5">
+            <a href="{{ url()->previous() }}" type="button" class="btn btn-outline-secondary mb-1">Back</a>
+        </div>
+
+        <h1 class="main-title fs-3 fw-bold mb-3">Acquista una sponsorizzazione in un appartamento per metterlo in evidenza!</h1>
 
         @if ($errors->any())
             @foreach ($errors->all() as $error)
