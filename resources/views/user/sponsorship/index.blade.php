@@ -3,7 +3,7 @@
 @section('content')
     <div class="sponsorshipIndex container">
 
-        <h1 class="main-title">Acquista una sponsorizzazione per un appartamento per metterlo in evidenza!</h1>
+        <h1 class="main-title">Acquista una sponsorizzazione in un appartamento per metterlo in evidenza!</h1>
 
         @if ($errors->any())
             @foreach ($errors->all() as $error)
