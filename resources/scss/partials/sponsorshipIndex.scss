@@ -10,5 +10,18 @@
             width: 100%;
         }
     }
+
+    h2[data-type="Standard"] {
+        color: green;
+    }
+    
+    h2[data-type="Premium"] {
+        color: blue;
+    }
+    
+    h2[data-type="Deluxe"] {
+        color: purple;
+    }
+    
     
 }
