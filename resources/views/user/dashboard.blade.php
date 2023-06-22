@@ -19,7 +19,7 @@
     {{-- Welcome User --}}
     <div class="container p-4">
         <h2 class="d-none d-lg-block">Ciao {{ Auth::user()->name }}</h2>
-        <div class="rounded-2 border bg-white p-4 my-4">
+        <div class="rounded-2 border bg-white shadow p-4 my-4">
             <div class="w-100 text-end">
                 <a class="btn btn-primary my-3" href="{{ route('user.apartment.index') }}">Vai alla lista degli
                     appartamenti</a>
