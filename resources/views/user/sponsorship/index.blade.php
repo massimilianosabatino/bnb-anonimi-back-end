@@ -26,7 +26,7 @@
                             <div class="card-body">
                                 <p class="card-subtitle mb-2 card-price" style="color: white">{{ $sponsorship->price }} €</p>
                                 <p class="card-subtitle mb-2" style="color: white">Offerta BnB Anonimi della durata di {{ $sponsorship->time }} ore</p>
-                                <a href="{{ route('user.sponsorship.show', [$sponsorship, $apartment] ) }}" class="btn btn-outline-light btn-tier">{{ $sponsorship->name }}</a>
+                                <a href="{{ route('user.sponsorship.checkout', [$sponsorship, $apartment] ) }}" class="btn btn-outline-light btn-tier">{{ $sponsorship->name }}</a>
                             </div>
                         </div>
                     </div>
