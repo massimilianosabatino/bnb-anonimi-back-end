@@ -28,7 +28,7 @@
                       // encrypted payment information in a variable called a payment method nonce
                       $.ajax({
                         type: 'POST',
-                        url: 'api/checkout',
+                        url: 'user/sponsorship/checkout/{sponsor}/{apartment}',
                         data: {'paymentMethodNonce': payload.nonce}
                       }).done(function(result) {
                         console.log(result);
