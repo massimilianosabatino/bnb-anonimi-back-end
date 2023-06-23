@@ -67,13 +67,7 @@
                                         class="fa-solid fa-chart-simple fs-4 me-2"></i></i><span
                                         class="fw-bold">Statistiche</span></a>
                             </div>
-                            
-                            {{-- Pulsante per la visualizzazione del profilo --}}
-                            <div class="m">
-                                <a class="my-btn" href="{{ route('user.profile.index') }}"><i
-                                        class="fa-solid fa-user fs-4 me-2"></i><span class="fw-bold">Profilo</span></a>
-                            </div>
-
+                           
                             {{-- Pulsante dell logout con form --}}
                             <div class="my-5">
                                 <a class="logout" href="{{ route('logout') }}"
@@ -120,18 +114,19 @@
                                     class="fw-bold d-none d-xxl-inline-block">Statistiche</span></a>
                         </li>
 
-                        {{-- Pulsante per la pagina del profilo --}}
-                        <li class="my-4">
-                            <a class="my-btn" href="{{ url('user/profile') }}"><i
-                                    class="fa-solid fa-user fs-4 me-2"></i><span
-                                    class="fw-bold d-none d-xxl-inline-block">Profilo</span></a>
-                        </li>
-
+                        
                         {{-- Pulsante per la pagina della sponsorship --}}
                         <li class="my-4">
                             <a class="my-btn" href="{{ route('user.sponsorship.index') }}"><i
                                     class="fa-solid fa-star fs-4 me-2"></i><span
                                     class="fw-bold d-none d-xxl-inline-block">Sponsorship</span></a>
+                        </li>
+
+                        {{-- Pulsante per la pagina del profilo --}}
+                        <li class="my-4">
+                            <a class="my-btn" href="{{ url('user/profile') }}"><i
+                                    class="fa-solid fa-user fs-4 me-2"></i><span
+                                    class="fw-bold d-none d-xxl-inline-block">Profilo</span></a>
                         </li>
 
                     </ul>
