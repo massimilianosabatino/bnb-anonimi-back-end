@@ -24,6 +24,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
+        
         $apartments = Apartment::where('user_id', '=', Auth::id())->get();
         return view('user.apartments.index', compact('apartments'));
     }
@@ -157,4 +158,5 @@ class ApartmentController extends Controller
 
         return redirect()->route('user.apartment.index')->with('message', "Appartamento $old_id eliminato con successo");
     }
+
 }
