@@ -19,7 +19,7 @@
               
                 braintree.dropin.create({
                   // Insert your tokenization key here
-                  authorization: 'sandbox_d55sdpps_4rgx3r8jm856c3sc',
+                  authorization: {{ env('AUTHORIZATION') }},
                   container: '#dropin-container'
                 }, function (createErr, instance) {
                   button.addEventListener('click', function () {
