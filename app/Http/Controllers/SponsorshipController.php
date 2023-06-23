@@ -16,10 +16,11 @@ class SponsorshipController extends Controller
      */
     public function index()
     {
+        
         $sponsorships = Sponsorship::all();
-        $apartments = Apartment::where('user_id', '=', Auth::id())->get();
-
-        return view('user.sponsorship.index', compact('apartments', 'sponsorships'));
+        $apartment = Apartment::where('user_id', '=', Auth::id())->where('id', '=', key($_REQUEST))->first();
+       
+        return view('user.sponsorship.index', compact('apartment', 'sponsorships'));
     }
 
     /**
