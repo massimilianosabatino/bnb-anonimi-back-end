@@ -6,6 +6,7 @@ use App\Models\Apartment;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Braintree\Gateway as BraintreeGateway;
 
 class SponsorshipController extends Controller
 {
@@ -53,13 +54,37 @@ class SponsorshipController extends Controller
     public function show(Sponsorship $sponsorship)
     {
         //dd(key($_REQUEST));
+        $gateway = new BraintreeGateway([
+            'environment' => env('ENVIRONMENT'),
+            'merchantId' => env('MERCHANTID'),
+            'publicKey' => env('PUBLICKEY'),
+            'privateKey' => env('PRIVATEKEY')
+          ]);
+        //   dd($gateway);
+          $nonceFromTheClient = $_POST["paymentMethodNonce"];
 
-        $apartment = Apartment::where('id', key($_REQUEST))->first();
-        if ($apartment->user_id == Auth::user()->id) {
-            return view('user.sponsorship.show', compact('apartment', 'sponsorship'));
-        } else {
-            return redirect()->route('user.sponsorship.index')->withErrors('Nessun appartamento');
-        }
+          $result = $gateway->transaction()->sale([
+            'amount' => '5001.00',
+            'paymentMethodNonce' => $nonceFromTheClient,
+            // 'deviceData' => $deviceDataFromTheClient,
+            'options' => [
+              'submitForSettlement' => True
+            ]
+          ]);
+          if($result->success){
+              return $result;
+          }else{
+            return response()->json([
+                'success' => false,
+                'results' => $result
+            ]);
+          }
+        // $apartment = Apartment::where('id', key($_REQUEST))->first();
+        // if ($apartment->user_id == Auth::user()->id) {
+        //     return view('user.sponsorship.show', compact('apartment', 'sponsorship'));
+        // } else {
+        //     return redirect()->route('user.sponsorship.index')->withErrors('Nessun appartamento');
+        // }
         
     }
 
