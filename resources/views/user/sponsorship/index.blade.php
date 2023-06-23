@@ -26,7 +26,7 @@
                             <div class="card-body">
                                 <p class="card-subtitle mb-2 card-price" style="color: white">{{ $sponsorship->price }} €</p>
                                 <p class="card-subtitle mb-2" style="color: white">Offerta BnB Anonimi della durata di {{ $sponsorship->time }} ore</p>
-                                <a href="{{ route('user.sponsorship.show', $sponsorship, $apartment ) }}" class="btn btn-outline-light btn-tier">{{ $sponsorship->name }}</a>
+                                <a href="{{ route('user.sponsorship.show', [$sponsorship, $apartment] ) }}" class="btn btn-outline-light btn-tier">{{ $sponsorship->name }}</a>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
 
         {{-- Cards degli appartamenti dell'utente registrato con relativi bottoni per scegliere la sponsorizzazione --}}
 
-        <div class="row">
+        {{-- <div class="row">
 
             <div class="col-12 col-md-6 col-lg-3 mb-4">
                 <div class="card h-100 cardhover">
@@ -56,6 +56,6 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
     </div>
 @endsection
