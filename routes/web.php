@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\RegisteredUser\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisteredUser\ApartmentController;
 use App\Http\Controllers\RegisteredUser\DashboardController;
-use App\Http\Controllers\SponsorshipController;
+use App\Http\Controllers\RegisteredUser\SponsorshipController;
 use Illuminate\Support\Facades\Route;
 
 /*
