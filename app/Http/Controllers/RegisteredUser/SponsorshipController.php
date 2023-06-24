@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\RegisteredUser;
 
+use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;

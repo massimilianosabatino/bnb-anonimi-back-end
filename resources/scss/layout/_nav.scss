@@ -1,18 +1,23 @@
 #nav{
     height: 6.25rem;
     width: 100%;
+
     #header{
         height: 100%;
     }
+
     #left-nav{
         background-color: white;
         height: 100vh;
         padding: 1.875rem 1.25rem;
+
         #logo{
             margin-bottom: 6.25rem;
         }
+
         #nav-link{
             margin-bottom: auto;
+
             li .fa-solid{
                 width: 30px;
                 text-align: center;
@@ -20,24 +25,29 @@
         }
     }
 }
+
 .my-btn{
     color: gray;
     text-decoration: none;
     padding: 10px;
+
     &:hover{
         cursor: pointer;
         color: #69d1c3;
     }
 }
+
 .logout{
     color: gray;
     text-decoration: none;
     padding: .625rem;
+    
     &:hover{
         cursor: pointer;
         color: red;
     }
 }
+
 #content{
     overflow-y: auto;
     height: calc(100vh - 100px);
@@ -48,7 +58,6 @@
         overflow-y: auto;
         height: 100vh;
     }
-    
 }
 
 
