@@ -56,7 +56,6 @@
             </div>
             @endforeach
         </div>
-        <button onclick="getValue()">test</button>
     </div>
 
     <div class="row payment">
