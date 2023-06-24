@@ -53,8 +53,9 @@ class SponsorshipController extends Controller
      */
     public function show()
     {
-        dd($_POST);
-        //dd(key($_REQUEST));
+        $plan = $_POST['planSelected'];
+        $apartment = $_POST['apartmentSelected'];
+        
         $gateway = new BraintreeGateway([
             'environment' => env('ENVIRONMENT'),
             'merchantId' => env('MERCHANTID'),
@@ -65,7 +66,7 @@ class SponsorshipController extends Controller
           $nonceFromTheClient = $_POST["paymentMethodNonce"];
 
           $result = $gateway->transaction()->sale([
-            'amount' => '5001.00',
+            'amount' => '10.00',
             'paymentMethodNonce' => $nonceFromTheClient,
             // 'deviceData' => $deviceDataFromTheClient,
             'options' => [
