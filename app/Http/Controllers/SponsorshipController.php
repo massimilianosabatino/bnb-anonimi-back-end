@@ -53,16 +53,21 @@ class SponsorshipController extends Controller
      */
     public function show()
     {
+        // Get data from request
         $plan = $_POST['planSelected'];
-        $apartment = $_POST['apartmentSelected'];
-        
+        $apartmentID = $_POST['apartmentSelected'];
+        $apartment = Apartment::where('id', $apartmentID)->first();
+        $sponsorship = Sponsorship::where('id', $plan)->first();
+
+
+        // Braintree operations
         $gateway = new BraintreeGateway([
             'environment' => env('ENVIRONMENT'),
             'merchantId' => env('MERCHANTID'),
             'publicKey' => env('PUBLICKEY'),
             'privateKey' => env('PRIVATEKEY')
           ]);
-        //   dd($gateway);
+
           $nonceFromTheClient = $_POST["paymentMethodNonce"];
 
           $result = $gateway->transaction()->sale([
@@ -73,8 +78,17 @@ class SponsorshipController extends Controller
               'submitForSettlement' => True
             ]
           ]);
+
+          // Results
           if($result->success){
-              return $result;
+            if ($apartment->user_id == Auth::user()->id) {
+                // Set start and finish date
+                $start = now();
+                $end = $start->copy()->addHours($sponsorship->time);
+                // Write plan purchased on pivot
+                $apartment->sponsorships()->attach($plan, ['start_date' => $start, 'finish_date' => $end]);
+            }
+            return $result;
           }else{
             return response()->json([
                 'success' => false,

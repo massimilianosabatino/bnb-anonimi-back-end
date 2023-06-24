@@ -36,7 +36,7 @@ Route::middleware('auth')
         Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
         Route::resource('apartment', ApartmentController::class);
         Route::resource('message', MessageController::class);
-        Route::resource('sponsorship', SponsorshipController::class)->except(['show']);
+        Route::resource('sponsorship', SponsorshipController::class)->only(['index']);
         Route::post('sponsorship/checkout', [SponsorshipController::class, 'show'])->name('sponsorship.checkout');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
