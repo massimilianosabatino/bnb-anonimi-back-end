@@ -16,15 +16,26 @@
     <h1 class="main-title fs-3 fw-bold mb-4 text-center">Acquista una sponsorizzazione e metti il tuo appartamento in
         evidenza!
     </h1>
-
+    
+    {{-- Error list --}}
     @if ($errors->any())
     @foreach ($errors->all() as $error)
     <div class="alert alert-danger my-3 col-6 col-md-3" id="autorizzazione">{{ $error }}</div>
     @endforeach
     @endif
+    {{-- /Error list --}}
+
+    {{-- Check if has sponsor --}}
+    @if(count($apartment->sponsorships) > 0)
+    <div class="row">
+        <div class="col">
+            ATTENZIONE - Già sponsorizzato
+        </div>
+    </div>
+    @endif
+    {{-- /Check if has sponsor --}}
 
     {{-- Banner delle sponsorizzazioni generati dinamicamente sulla base dei dati salvati nel database --}}
-
     <div class="row">
         <div class="d-flex flex-wrap">
             @foreach ($sponsorships as $key => $sponsorship)
