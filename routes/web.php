@@ -37,7 +37,7 @@ Route::middleware('auth')
         Route::resource('apartment', ApartmentController::class);
         Route::resource('message', MessageController::class);
         Route::resource('sponsorship', SponsorshipController::class)->except(['show']);
-        Route::post('sponsorship/checkout/{sponsor}/{apartment}', [SponsorshipController::class, 'show'])->name('sponsorship.checkout');
+        Route::post('sponsorship/checkout', [SponsorshipController::class, 'show'])->name('sponsorship.checkout');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

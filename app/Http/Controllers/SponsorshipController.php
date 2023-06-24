@@ -51,8 +51,9 @@ class SponsorshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Sponsorship $sponsorship, Apartment $apartment)
+    public function show()
     {
+        dd($_POST);
         //dd(key($_REQUEST));
         $gateway = new BraintreeGateway([
             'environment' => env('ENVIRONMENT'),
