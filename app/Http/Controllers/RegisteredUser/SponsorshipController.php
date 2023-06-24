@@ -18,10 +18,10 @@ class SponsorshipController extends Controller
      */
     public function index()
     {
-        
+
         $sponsorships = Sponsorship::all();
         $apartment = Apartment::where('user_id', '=', Auth::id())->where('id', '=', key($_REQUEST))->first();
-       
+
         return view('user.sponsorship.index', compact('apartment', 'sponsorships'));
     }
 
@@ -67,21 +67,21 @@ class SponsorshipController extends Controller
             'merchantId' => env('MERCHANTID'),
             'publicKey' => env('PUBLICKEY'),
             'privateKey' => env('PRIVATEKEY')
-          ]);
+        ]);
 
-          $nonceFromTheClient = $_POST["paymentMethodNonce"];
+        $nonceFromTheClient = $_POST["paymentMethodNonce"];
 
-          $result = $gateway->transaction()->sale([
-            'amount' => '10.00',
+        $result = $gateway->transaction()->sale([
+            'amount' => $sponsorship->price,
             'paymentMethodNonce' => $nonceFromTheClient,
             // 'deviceData' => $deviceDataFromTheClient,
             'options' => [
-              'submitForSettlement' => True
+                'submitForSettlement' => True
             ]
-          ]);
+        ]);
 
-          // Results
-          if($result->success){
+        // Results
+        if ($result->success) {
             if ($apartment->user_id == Auth::user()->id) {
                 // Set start and finish date
                 $start = now();
@@ -90,19 +90,19 @@ class SponsorshipController extends Controller
                 $apartment->sponsorships()->attach($plan, ['start_date' => $start, 'finish_date' => $end]);
             }
             return $result;
-          }else{
+        } else {
             return response()->json([
                 'success' => false,
                 'results' => $result
             ]);
-          }
+        }
         // $apartment = Apartment::where('id', key($_REQUEST))->first();
         // if ($apartment->user_id == Auth::user()->id) {
         //     return view('user.sponsorship.show', compact('apartment', 'sponsorship'));
         // } else {
         //     return redirect()->route('user.sponsorship.index')->withErrors('Nessun appartamento');
         // }
-        
+
     }
 
     /**
