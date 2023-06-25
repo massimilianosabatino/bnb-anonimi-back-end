@@ -117,10 +117,10 @@
                         });
                 
                         if (result.success) {
-                            $('#checkout-message').html('<h1>Success</h1><p>Your Drop-in UI is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>');
+                            $('#checkout-message').html('<h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p>');
                         } else {
                             console.log(result);
-                            $('#checkout-message').html('<h1>Error</h1><p>Check your console.</p>');
+                            $('#checkout-message').html('<h1>Qualcosa è andato storto</h1><p>Controlla di aver inserito correttamente i dati della carta.</p><p>Se hai inserito correttamente i dati e il credito sulla carta è sufficiente (ad esempio se stai utilizzando una ricaricabile) allora puoi provare a contattare il servizio clienti.</p>');
                         }
                         });
                     });
