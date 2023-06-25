@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('script')
-    <link rel="stylesheet" type="text/css"
-        href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css" />
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css" />
         <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js"></script>
         <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
 @endsection
 
 @section('content')
     <div class="container p-4">
+        {{-- Error list --}}
         @if ($errors->any())
             <div>
                 @foreach ($errors->all() as $error)
@@ -18,6 +18,7 @@
                 @endforeach
             </div>
         @endif
+        {{-- /Error list --}}
         <form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data"
             class="form-input-image">
             @csrf
@@ -61,21 +62,18 @@
 
                     {{-- COVER IMAGE --}}
 
-                    <div class="mb-3">
+                    <div class="mb-3 cover-image-field">
                         <label for="cover_image" class="form-label">Immagine</label>
                         <input class="form-control select_img" type="file" id="cover_image" name="cover_image">
                         <!-- anteprima immagine upload -->
-                        <img id="preview" class="img-fluid my-3">
+                        <img id="preview" class="img-fluid my-3 preview">
                         <!-- /anteprima immagine upload -->
                     </div>
 
                     {{-- ADDRESS --}}
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>
-                        <div id="address"></div>
-
-                        {{-- <input type="text" class="form-control" id="address" name="address"
-                            placeholder="Esempio: Via del Corso,9,Roma" value="{{ old('address') }}"> --}}
+                        <div id="address" class="tom-tom"></div>
                     </div>
 
 

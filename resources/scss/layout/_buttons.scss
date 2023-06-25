@@ -1,0 +1,13 @@
+.btn-primary{
+    background-color: $primary;
+}
+
+.btn-sponsor{
+    background-image: $primary-gradient;
+    color: white;
+}
+@media screen and (max-width: 992px){
+    .btn{
+        font-size: 12px;
+    }
+}

@@ -7,11 +7,8 @@ use App\Models\Apartment;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Str;
-use App\Model\User;
 use App\Models\Service;
-use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 

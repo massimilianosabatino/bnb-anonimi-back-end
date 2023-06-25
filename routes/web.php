@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\RegisteredUser\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisteredUser\ApartmentController;
 use App\Http\Controllers\RegisteredUser\DashboardController;
-use App\Http\Controllers\SponsorshipController;
+use App\Http\Controllers\RegisteredUser\SponsorshipController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +36,8 @@ Route::middleware('auth')
         Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
         Route::resource('apartment', ApartmentController::class);
         Route::resource('message', MessageController::class);
-        Route::resource('sponsorship', SponsorshipController::class);
+        Route::resource('sponsorship', SponsorshipController::class)->only(['index']);
+        Route::post('sponsorship/checkout', [SponsorshipController::class, 'show'])->name('sponsorship.checkout');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
