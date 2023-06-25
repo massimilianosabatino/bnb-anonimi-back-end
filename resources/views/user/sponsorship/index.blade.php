@@ -16,7 +16,7 @@
     <h1 class="main-title fs-3 fw-bold mb-4 text-center">Acquista una sponsorizzazione e metti il tuo appartamento in
         evidenza!
     </h1>
-    
+
     {{-- Error list --}}
     @if ($errors->any())
     @foreach ($errors->all() as $error)
@@ -43,12 +43,11 @@
                 <div class="card tier-card bg-{{ $key + 1 }} m-2">
                     <div class="card-body">
                         <p class="card-subtitle mb-2 card-price" style="color: white">{{ $sponsorship->price }} €</p>
-                        <p class="card-subtitle mb-2" style="color: white">Offerta BnB Anonimi della durata di {{ $sponsorship->time }} ore</p>
-                        {{-- <a href="{{ route('user.sponsorship.checkout', [$sponsorship, $apartment] ) }}"
-                            class="btn btn-outline-light btn-tier">{{ $sponsorship->name }}</a> --}}
-
+                        <p class="card-subtitle mb-2" style="color: white">Offerta BnB Anonimi della durata di {{
+                            $sponsorship->time }} ore</p>
                         <input type="radio" class="btn-check" name="tier" id="tier-{{ $sponsorship->id }}"
-                            autocomplete="off" value="{{ $sponsorship->id }}" @checked($sponsorship->name === 'Premium')>
+                            autocomplete="off" value="{{ $sponsorship->id }}" @checked($sponsorship->name ===
+                        'Premium')>
                         <label class="btn btn-secondary" for="tier-{{ $sponsorship->id }}">{{ $sponsorship->name
                             }}</label>
                     </div>
