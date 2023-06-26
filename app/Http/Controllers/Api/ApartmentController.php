@@ -22,7 +22,7 @@ class ApartmentController extends Controller
     public function show($id)
     {
         try {
-            $apartment = Apartment::where('id', $id)->with(['services','user'])->first();
+            $apartment = Apartment::where('id', $id)->with(['services', 'user'])->first();
 
             if ($apartment) {
                 return response()->json([
@@ -45,52 +45,108 @@ class ApartmentController extends Controller
     }
     public function search(Request $request)
     {
+        $visible_ap = Apartment::where('visible', '=', 1)->with(['services', 'user'])->get();
+
         $services = $request['service'];
         $latA = $request['lat'] * 3.14 / 180; //Conversione in radianti della lat della ricerca
         $lonA = $request['lon'] * 3.14 / 180; //Conversione in radianti della lon della ricerca
         $dist = $request['dist'];
         $R = 6372.795477598; //Raggio dell'equatore
-
-
+        //Array Filtrato
         $filtered_apartment = [];
-        if (count($services) > 0) {
-            $apartments_service = [];
-            $servicesList = [];
-            foreach ($services as $service) {
-                $servicesList[] = Service::where('id', '=', $service)->with(['apartments'])->get();
-            }
-            foreach ($servicesList as $apartment) {
-                foreach ($apartment as $element)
-                    $apartments_service[] = $element['apartments'];
-            }
-            // return response()->json([
-            //     'success' => true,
-            //     'results' => $apartments_service,
-            // ]);
-            // dd($apartments_service);
-            foreach ($apartments_service as $element) {
-                foreach ($element as $apartment) {
-                    $latB = $apartment->latitude * 3.14 / 180; // Conversione in radianti della lat dell'appartamento
-                    $lonB = $apartment->longitude * 3.14 / 180; //Conversione in radianti della lon dell'appartamento 
-                    $calc_dist = $R * acos((sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonA - $lonB))); //Formula trigonometrica per il calcolo della distanza 
-                    if ($calc_dist < $dist) {
-                        $filtered_apartment[]= $apartment;
+
+
+        //Filtri
+        $rooms_rq = $request['rooms'];
+        $bath_rq = $request['bathrooms'];
+        $beds_rq = $request['beds'];
+        $price_rq = $request['price'];
+
+
+
+        if ($latA && $lonA) {
+            $filtered_apartment = [];
+            foreach ($visible_ap as $apartment) {
+                $latB = $apartment->latitude * 3.14 / 180; // Conversione in radianti della lat dell'appartamento
+                $lonB = $apartment->longitude * 3.14 / 180; //Conversione in radianti della lon dell'appartamento 
+                $calc_dist = $R * acos((sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonA - $lonB))); //Formula trigonometrica per il calcolo della distanza 
+                if ($calc_dist < $dist) {
+                    if ($apartment->rooms >= $rooms_rq && $apartment->beds >= $beds_rq && $apartment->bathrooms >= $bath_rq && $apartment->price <= $price_rq) {
+                        if (count($services) > 0) {
+                            foreach ($services as $service) {
+                                foreach ($apartment->services as $service_ap){
+                                    if ($service_ap->id == $service && !in_array($apartment,$filtered_apartment)) {
+                                        $filtered_apartment[] = $apartment;
+                                    }
+                                }
+                            }
+                        } else {
+                            $filtered_apartment[] = $apartment;
+                        }
                     }
                 }
             }
         } else {
             $filtered_apartment = [];
-            $apartments = Apartment::with('services')->get();
-            foreach ($apartments as $apartment) {
-
-                $latB = $apartment->latitude * 3.14 / 180; // Conversione in radianti della lat dell'appartamento
-                $lonB = $apartment->longitude * 3.14 / 180; //Conversione in radianti della lon dell'appartamento 
-                $calc_dist = $R * acos((sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonA - $lonB))); //Formula trigonometrica per il calcolo della distanza 
-                if ($calc_dist < $dist) {
-                    array_push($filtered_apartment, $apartment);
+            if (count($services) > 0) {
+                foreach ($visible_ap as $apartment) {
+                    foreach ($services as $service) {
+                        foreach ($apartment->services as $service_ap) {
+                            if ($service_ap->id == $service && !in_array($apartment,$filtered_apartment)) {
+                                $filtered_apartment[] = $apartment;
+                            }
+                        }
+                    }
+                }
+            } else {
+                $filtered_apartment = [];
+                foreach ($visible_ap as $apartment) {
+                    if ($apartment->rooms >= $rooms_rq && $apartment->beds >= $beds_rq && $apartment->bathrooms >= $bath_rq && $apartment->price <= $price_rq) {
+                        $filtered_apartment[] = $apartment;
+                    }
                 }
             }
         }
+
+
+
+
+
+        // //Geolocalizzazione
+
+        // if (count($services) > 0) {
+        //     $apartments_service = [];
+        //     $servicesList = [];
+        //     foreach ($services as $service) {
+        //         $servicesList[] = Service::where('id', '=', $service)->with(['apartments'])->get();
+        //     }
+        //     foreach ($servicesList as $apartment) {
+        //         foreach ($apartment as $element)
+        //             $apartments_service[] = $element['apartments'];
+        //     }
+        //     foreach ($apartments_service as $element) {
+        //         foreach ($element as $apartment) {
+        //             $latB = $apartment->latitude * 3.14 / 180; // Conversione in radianti della lat dell'appartamento
+        //             $lonB = $apartment->longitude * 3.14 / 180; //Conversione in radianti della lon dell'appartamento 
+        //             $calc_dist = $R * acos((sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonA - $lonB))); //Formula trigonometrica per il calcolo della distanza 
+        //             if ($calc_dist < $dist) {
+        //                 $filtered_apartment[] = $apartment;
+        //             }
+        //         }
+        //     }
+        // } else {
+        //     $filtered_apartment = [];
+        //     $apartments = Apartment::with('services')->get();
+        //     foreach ($apartments as $apartment) {
+
+        //         $latB = $apartment->latitude * 3.14 / 180; // Conversione in radianti della lat dell'appartamento
+        //         $lonB = $apartment->longitude * 3.14 / 180; //Conversione in radianti della lon dell'appartamento 
+        //         $calc_dist = $R * acos((sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonA - $lonB))); //Formula trigonometrica per il calcolo della distanza 
+        //         if ($calc_dist < $dist) {
+        //             array_push($filtered_apartment, $apartment);
+        //         }
+        //     }
+        // }
 
         if (count($filtered_apartment) > 0) {
             return response()->json([
