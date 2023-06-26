@@ -41,7 +41,7 @@
             @foreach ($sponsorships as $key => $sponsorship)
             <div class="col-12 col-md-4 text-center mb-4">
                 <div class="card tier-card bg-{{ $key + 1 }} m-2">
-                    <div class="car-header sponsor-title">
+                    <div class="car-header sponsor-title-{{ $key + 1 }}">
                         {{ $sponsorship->name }}
                     </div>
                     <div class="card-body">
