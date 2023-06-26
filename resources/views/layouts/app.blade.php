@@ -52,22 +52,25 @@
 
                             {{-- Pulsante per la dashboard generale --}}
                             <div class="my-4">
-                                <a class="my-btn" href="{{ route('user.dashboard')}}"><i class="fa-solid fa-chalkboard-user fs-4 me-2"></i><span class="fw-bold">Dashboard</span></a>
+                                <a class="my-btn" href="{{ route('user.dashboard') }}"><i
+                                        class="fa-solid fa-chalkboard-user fs-4 me-2"></i><span
+                                        class="fw-bold">Dashboard</span></a>
                             </div>
 
                             {{-- Pulsante per la pagina di appartamenti --}}
                             <div class="my-4">
                                 <a class="my-btn " href="{{ route('user.apartment.index') }}"><i
-                                        class="fa-solid fa-building-user fs-4 me-2"></i><span class="fw-bold">Appartamenti</span></a>
+                                        class="fa-solid fa-building-user fs-4 me-2"></i><span
+                                        class="fw-bold">Appartamenti</span></a>
                             </div>
-                            
+
                             {{-- Pulsante della pagina delle statistiche --}}
                             <div class="my-4">
                                 <a class="my-btn" href=""><i
                                         class="fa-solid fa-chart-simple fs-4 me-2"></i></i><span
                                         class="fw-bold">Statistiche</span></a>
                             </div>
-                           
+
                             {{-- Pulsante dell logout con form --}}
                             <div class="my-5">
                                 <a class="logout" href="{{ route('logout') }}"
@@ -91,14 +94,18 @@
             <div class="col-lg-1 col-xxl-2 d-none d-lg-block p-0 border-end">
                 <div class="d-flex flex-column justify-content-between align-items-center" id="left-nav">
                     <div id="logo">
-                        <img class="img-fluid" src="{{ url('logo.png') }}" alt="" srcset="">
+                        <a href="{{ route('user.dashboard') }}">
+                            <img class="img-fluid" src="{{ url('logo.png') }}" alt="logo" srcset="">
+                        </a>
                     </div>
                     {{-- Contenitore per la gestione delle pagine --}}
                     <ul class="border-bottom w-100 text-center text-xxl-start pb-2 list-unstyled" id="nav-link">
-                        
+
                         {{-- Pulsante della dashboard generale --}}
                         <li class="my-4">
-                            <a class="my-btn" href="{{ route('user.dashboard')}}"><i class="fa-solid fa-house fs-4 me-2"></i><span class="fw-bold d-none d-xxl-inline-block">Dashboard</span></a>
+                            <a class="my-btn" href="{{ route('user.dashboard') }}"><i
+                                    class="fa-solid fa-house fs-4 me-2"></i><span
+                                    class="fw-bold d-none d-xxl-inline-block">Dashboard</span></a>
                         </li>
 
                         {{-- Pulsante per la pagina degli appartamenti --}}
@@ -114,7 +121,7 @@
                                     class="fw-bold d-none d-xxl-inline-block">Statistiche</span></a>
                         </li>
 
-                        
+
                         {{-- Pulsante per la pagina della sponsorship --}}
                         <li class="my-4">
                             <a class="my-btn" href="{{ route('user.sponsorship.index') }}"><i
@@ -146,7 +153,7 @@
                     </div>
                 </div>
             </div>
-            
+
             {{-- Conteiner adattivo per il contenuto della pagina --}}
             <div class="col-12 col-lg-11 col-xxl-10 p-0 m-0" id="content">
                 @yield('content')
