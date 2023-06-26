@@ -26,10 +26,10 @@
     {{-- /Error list --}}
 
     {{-- Check if has sponsor --}}
-    @if(count($apartment->sponsorships) > 0)
+    @if($activeSponsor)
     <div class="row">
         <div class="col">
-            ATTENZIONE - Già sponsorizzato
+            ATTENZIONE - Già sponsorizzato fino al {{ $activeSponsor->finish_date }}
         </div>
     </div>
     @endif

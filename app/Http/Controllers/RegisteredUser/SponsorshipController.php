@@ -22,11 +22,11 @@ class SponsorshipController extends Controller
         $sponsorships = Sponsorship::all();
         $apartment = Apartment::where('user_id', '=', Auth::id())->where('id', '=', key($_REQUEST))->first();
         
-        $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->get()->orderBy('pivot.finish_date', 'desc');
-        dd($activeSponsor);
-        dd($apartment->sponsorships->where('title', 'BorgoAppartamento 33'));
+        // Get last active sponsorship for this apartment
+        $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
 
-        return view('user.sponsorship.index', compact('apartment', 'sponsorships'));
+
+        return view('user.sponsorship.index', compact('apartment', 'sponsorships', 'activeSponsor'));
     }
 
     /**
