@@ -8,6 +8,7 @@ use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Braintree\Gateway as BraintreeGateway;
+use Carbon\Carbon;
 
 class SponsorshipController extends Controller
 {
@@ -24,9 +25,15 @@ class SponsorshipController extends Controller
         
         // Get last active sponsorship for this apartment
         $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
+        $sponsorEndDate = Carbon::create($activeSponsor->pivot->finish_date)->format('d-m-Y');
+        $sponsorEndTime = Carbon::create($activeSponsor->pivot->finish_date)->format('h:i');
 
+        $sponsorEnd = [
+            'date' => $sponsorEndDate,
+            'time' => $sponsorEndTime
+        ];
 
-        return view('user.sponsorship.index', compact('apartment', 'sponsorships', 'activeSponsor'));
+        return view('user.sponsorship.index', compact('apartment', 'sponsorships', 'activeSponsor', 'sponsorEnd'));
     }
 
     /**

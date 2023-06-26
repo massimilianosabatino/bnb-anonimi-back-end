@@ -29,7 +29,7 @@
     @if($activeSponsor)
     <div class="row">
         <div class="col">
-            ATTENZIONE - Già sponsorizzato fino al {{ $activeSponsor->finish_date }}
+            ATTENZIONE - Già sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}
         </div>
     </div>
     @endif
