@@ -8,6 +8,7 @@ use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Braintree\Gateway as BraintreeGateway;
+use Carbon\Carbon;
 
 class SponsorshipController extends Controller
 {
@@ -22,7 +23,17 @@ class SponsorshipController extends Controller
         $sponsorships = Sponsorship::all();
         $apartment = Apartment::where('user_id', '=', Auth::id())->where('id', '=', key($_REQUEST))->first();
 
-        return view('user.sponsorship.index', compact('apartment', 'sponsorships'));
+        // Get last active sponsorship for this apartment
+        $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
+        $sponsorEndDate = Carbon::create($activeSponsor->pivot->finish_date)->format('d-m-Y');
+        $sponsorEndTime = Carbon::create($activeSponsor->pivot->finish_date)->format('h:i');
+
+        $sponsorEnd = [
+            'date' => $sponsorEndDate,
+            'time' => $sponsorEndTime
+        ];
+
+        return view('user.sponsorship.index', compact('apartment', 'sponsorships', 'activeSponsor', 'sponsorEnd'));
     }
 
     /**
@@ -59,6 +70,7 @@ class SponsorshipController extends Controller
         $apartmentID = $_POST['apartmentSelected'];
         $apartment = Apartment::where('id', $apartmentID)->first();
         $sponsorship = Sponsorship::where('id', $plan)->first();
+        $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
 
 
         // Braintree operations
@@ -81,11 +93,18 @@ class SponsorshipController extends Controller
         ]);
 
         // Results
+
         if ($result->success) {
             if ($apartment->user_id == Auth::user()->id) {
-                // Set start and finish date
-                $start = now();
-                $end = $start->copy()->addHours($sponsorship->time);
+
+                if ($activeSponsor) {
+                    $start = $activeSponsor->pivot->finish_date;
+                    $end = Carbon::create($start)->addHours($sponsorship->time);
+                } else {
+                    // Set start and finish date
+                    $start = now();
+                    $end = $start->copy()->addHours($sponsorship->time);  
+                }
                 // Write plan purchased on pivot
                 $apartment->sponsorships()->attach($plan, ['start_date' => $start, 'finish_date' => $end]);
             }

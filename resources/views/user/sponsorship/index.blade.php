@@ -26,10 +26,10 @@
     {{-- /Error list --}}
 
     {{-- Check if has sponsor --}}
-    @if(count($apartment->sponsorships) > 0)
+    @if($activeSponsor)
     <div class="row">
         <div class="col">
-            ATTENZIONE - Già sponsorizzato
+            ATTENZIONE - Già sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}
         </div>
     </div>
     @endif
@@ -41,6 +41,9 @@
             @foreach ($sponsorships as $key => $sponsorship)
             <div class="col-12 col-md-4 text-center mb-4">
                 <div class="card tier-card bg-{{ $key + 1 }} m-2">
+                    <div class="car-header sponsor-title">
+                        {{ $sponsorship->name }}
+                    </div>
                     <div class="card-body">
                         <p class="card-subtitle mb-2 card-price" style="color: white">{{ $sponsorship->price }} €</p>
                         <p class="card-subtitle mb-2" style="color: white">Offerta BnB Anonimi della durata di {{
