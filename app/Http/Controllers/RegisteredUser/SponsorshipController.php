@@ -25,13 +25,16 @@ class SponsorshipController extends Controller
 
         // Get last active sponsorship for this apartment
         $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
-        $sponsorEndDate = Carbon::create($activeSponsor->pivot->finish_date)->format('d-m-Y');
-        $sponsorEndTime = Carbon::create($activeSponsor->pivot->finish_date)->format('h:i');
+        $sponsorEnd = null;
+        if ($activeSponsor) {
+            $sponsorEndDate = Carbon::create($activeSponsor->pivot->finish_date)->format('d-m-Y');
+            $sponsorEndTime = Carbon::create($activeSponsor->pivot->finish_date)->format('h:i');
 
-        $sponsorEnd = [
-            'date' => $sponsorEndDate,
-            'time' => $sponsorEndTime
-        ];
+            $sponsorEnd = [
+                'date' => $sponsorEndDate,
+                'time' => $sponsorEndTime
+            ];
+        }
 
         return view('user.sponsorship.index', compact('apartment', 'sponsorships', 'activeSponsor', 'sponsorEnd'));
     }
@@ -103,7 +106,7 @@ class SponsorshipController extends Controller
                 } else {
                     // Set start and finish date
                     $start = now();
-                    $end = $start->copy()->addHours($sponsorship->time);  
+                    $end = $start->copy()->addHours($sponsorship->time);
                 }
                 // Write plan purchased on pivot
                 $apartment->sponsorships()->attach($plan, ['start_date' => $start, 'finish_date' => $end]);
