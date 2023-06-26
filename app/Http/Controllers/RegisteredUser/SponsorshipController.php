@@ -21,6 +21,10 @@ class SponsorshipController extends Controller
 
         $sponsorships = Sponsorship::all();
         $apartment = Apartment::where('user_id', '=', Auth::id())->where('id', '=', key($_REQUEST))->first();
+        
+        $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->get()->orderBy('pivot.finish_date', 'desc');
+        dd($activeSponsor);
+        dd($apartment->sponsorships->where('title', 'BorgoAppartamento 33'));
 
         return view('user.sponsorship.index', compact('apartment', 'sponsorships'));
     }
@@ -79,7 +83,7 @@ class SponsorshipController extends Controller
                 'submitForSettlement' => True
             ]
         ]);
-
+        
         // Results
         if ($result->success) {
             if ($apartment->user_id == Auth::user()->id) {
