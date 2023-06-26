@@ -45,13 +45,13 @@
                         {{ $sponsorship->name }}
                     </div>
                     <div class="card-body">
-                        <p class="card-subtitle mb-2 card-price" style="color: white">{{ $sponsorship->price }} €</p>
-                        <p class="card-subtitle mb-2" style="color: white">Offerta BnB Anonimi della durata di {{
+                        <p class="card-subtitle mb-2 card-price" >{{ $sponsorship->price }} €</p>
+                        <p class="card-subtitle mb-2">Offerta BnB Anonimi della durata di {{
                             $sponsorship->time }} ore</p>
                         <input type="radio" class="btn-check" name="tier" id="tier-{{ $sponsorship->id }}"
                             autocomplete="off" value="{{ $sponsorship->id }}" @checked($sponsorship->name ===
                         'Premium')>
-                        <label class="btn btn-secondary" for="tier-{{ $sponsorship->id }}">{{ $sponsorship->name
+                        <label class="btn btn-light" for="tier-{{ $sponsorship->id }}">{{ $sponsorship->name
                             }}</label>
                     </div>
                 </div>
