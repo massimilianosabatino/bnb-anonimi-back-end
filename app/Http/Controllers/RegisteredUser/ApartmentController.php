@@ -24,7 +24,10 @@ class ApartmentController extends Controller
     {
 
         $apartments = Apartment::where('user_id', '=', Auth::id())->get();
-        return view('user.apartments.index', compact('apartments'));
+        dd($apartments);
+        $activeSponsor = $apartments->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
+
+        return view('user.apartments.index', compact('apartments'), 'activeSponsor');
     }
 
     /**
