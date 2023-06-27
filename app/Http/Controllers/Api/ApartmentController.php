@@ -53,6 +53,7 @@ class ApartmentController extends Controller
         $lonA = $request['lon'] * 3.14 / 180; //Conversione in radianti della lon della ricerca
         $dist = $request['dist'];
         $R = 6372.795477598; //Raggio dell'equatore
+
         //Array Filtrato
         $filtered_apartment = [];
 
@@ -64,19 +65,76 @@ class ApartmentController extends Controller
         $price_rq = $request['price'];
 
 
+
         $activeSponsor = [];
-        $apartments = Apartment::where('visible', '=', 1)->with(['sponsorships'])->get();
+        $apartments = Apartment::where('visible', '=', 1)->with(['sponsorships','services'])->get();
         foreach ($apartments as $apartment) {
-            if(count($apartment->sponsorships) > 0){
-                if($apartment->sponsorships->sortByDesc('pivot.finish_date')->first()->pivot->finish_date > now()){
-                   $activeSponsor[] = $apartment; 
+            if (count($apartment->sponsorships) > 0) {
+                if ($apartment->sponsorships->sortByDesc('pivot.finish_date')->first()->pivot->finish_date > now()) {
+                    $activeSponsor[] = $apartment;
                 }
             }
         }
 
 
+        $unique = collect();
+        foreach ($activeSponsor as $sponsor) {
+            $unique->push($sponsor);
+        }
+        foreach ($visible_ap as $apartment) {
+            $unique->push($apartment);
+        }
+
+        $all = $unique->unique('id');
+        // return response()->json([
+        //     'success' => true,
+        //     'results' => $all,
+        // ]);
+
+
+        // if ($latA && $lonA) {
+        //     foreach ($activeSponsor as $apartment) {
+        //         $latB = $apartment->latitude * 3.14 / 180; // Conversione in radianti della lat dell'appartamento
+        //         $lonB = $apartment->longitude * 3.14 / 180; //Conversione in radianti della lon dell'appartamento 
+        //         $calc_dist = $R * acos((sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonA - $lonB))); //Formula trigonometrica per il calcolo della distanza 
+        //         if ($calc_dist < $dist) {
+        //             if ($apartment->rooms >= $rooms_rq && $apartment->beds >= $beds_rq && $apartment->bathrooms >= $bath_rq && $apartment->price <= $price_rq) {
+        //                 if (count($services) > 0) {
+        //                     foreach ($services as $service) {
+        //                         foreach ($apartment->services as $service_ap) {
+        //                             if ($service_ap->id == $service && !in_array($apartment, $filtered_apartment)) {
+        //                                 $filtered_apartment[] = $apartment;
+        //                             }
+        //                         }
+        //                     }
+        //                 } else {
+        //                     $filtered_apartment[] = $apartment;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // } else {
+        //     if (count($services) > 0) {
+        //         foreach ($activeSponsor as $apartment) {
+        //             foreach ($services as $service) {
+        //                 foreach ($apartment->services as $service_ap) {
+        //                     if ($service_ap->id == $service && !in_array($apartment, $filtered_apartment)) {
+        //                         $filtered_apartment[] = $apartment;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     } else {
+        //         foreach ($activeSponsor as $apartment) {
+        //             if ($apartment->rooms >= $rooms_rq && $apartment->beds >= $beds_rq && $apartment->bathrooms >= $bath_rq && $apartment->price <= $price_rq) {
+        //                 $filtered_apartment[] = $apartment;
+        //             }
+        //         }
+        //     }
+        // }
+
         if ($latA && $lonA) {
-            foreach ($activeSponsor as $apartment) {
+            foreach ($all as $apartment) {
                 $latB = $apartment->latitude * 3.14 / 180; // Conversione in radianti della lat dell'appartamento
                 $lonB = $apartment->longitude * 3.14 / 180; //Conversione in radianti della lon dell'appartamento 
                 $calc_dist = $R * acos((sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonA - $lonB))); //Formula trigonometrica per il calcolo della distanza 
@@ -84,8 +142,8 @@ class ApartmentController extends Controller
                     if ($apartment->rooms >= $rooms_rq && $apartment->beds >= $beds_rq && $apartment->bathrooms >= $bath_rq && $apartment->price <= $price_rq) {
                         if (count($services) > 0) {
                             foreach ($services as $service) {
-                                foreach ($apartment->services as $service_ap){
-                                    if ($service_ap->id == $service && !in_array($apartment,$filtered_apartment)) {
+                                foreach ($apartment->services as $service_ap) {
+                                    if ($service_ap->id == $service && !in_array($apartment, $filtered_apartment)) {
                                         $filtered_apartment[] = $apartment;
                                     }
                                 }
@@ -98,17 +156,17 @@ class ApartmentController extends Controller
             }
         } else {
             if (count($services) > 0) {
-                foreach ($activeSponsor as $apartment) {
+                foreach ($all as $apartment) {
                     foreach ($services as $service) {
                         foreach ($apartment->services as $service_ap) {
-                            if ($service_ap->id == $service && !in_array($apartment,$filtered_apartment)) {
+                            if ($service_ap->id == $service && !in_array($apartment, $filtered_apartment)) {
                                 $filtered_apartment[] = $apartment;
                             }
                         }
                     }
                 }
             } else {
-                foreach ($activeSponsor as $apartment) {
+                foreach ($all as $apartment) {
                     if ($apartment->rooms >= $rooms_rq && $apartment->beds >= $beds_rq && $apartment->bathrooms >= $bath_rq && $apartment->price <= $price_rq) {
                         $filtered_apartment[] = $apartment;
                     }
@@ -116,48 +174,7 @@ class ApartmentController extends Controller
             }
         }
 
-        if ($latA && $lonA) {
-            foreach ($visible_ap as $apartment) {
-                $latB = $apartment->latitude * 3.14 / 180; // Conversione in radianti della lat dell'appartamento
-                $lonB = $apartment->longitude * 3.14 / 180; //Conversione in radianti della lon dell'appartamento 
-                $calc_dist = $R * acos((sin($latA) * sin($latB) + cos($latA) * cos($latB) * cos($lonA - $lonB))); //Formula trigonometrica per il calcolo della distanza 
-                if ($calc_dist < $dist) {
-                    if ($apartment->rooms >= $rooms_rq && $apartment->beds >= $beds_rq && $apartment->bathrooms >= $bath_rq && $apartment->price <= $price_rq) {
-                        if (count($services) > 0) {
-                            foreach ($services as $service) {
-                                foreach ($apartment->services as $service_ap){
-                                    if ($service_ap->id == $service && !in_array($apartment,$filtered_apartment)) {
-                                        $filtered_apartment[] = $apartment;
-                                    }
-                                }
-                            }
-                        } else {
-                            $filtered_apartment[] = $apartment;
-                        }
-                    }
-                }
-            }
-        } else {
-            if (count($services) > 0) {
-                foreach ($visible_ap as $apartment) {
-                    foreach ($services as $service) {
-                        foreach ($apartment->services as $service_ap) {
-                            if ($service_ap->id == $service && !in_array($apartment,$filtered_apartment)) {
-                                $filtered_apartment[] = $apartment;
-                            }
-                        }
-                    }
-                }
-            } else {
-                foreach ($visible_ap as $apartment) {
-                    if ($apartment->rooms >= $rooms_rq && $apartment->beds >= $beds_rq && $apartment->bathrooms >= $bath_rq && $apartment->price <= $price_rq) {
-                        $filtered_apartment[] = $apartment;
-                    }
-                }
-            }
-        }
 
-        
 
         if (count($filtered_apartment) > 0) {
             return response()->json([
