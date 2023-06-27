@@ -65,7 +65,7 @@
 
                             {{-- Pulsante della pagina delle statistiche --}}
                             <div class="my-4">
-                                <a class="my-btn" href=""><i class="fa-solid fa-chart-simple fs-4 me-2"></i></i><span
+                                <a class="my-btn" href=""><i class="fa-solid fa-chart-simple fs-4 me-2"></i><span
                                         class="fw-bold">Statistiche</span></a>
                             </div>
 
