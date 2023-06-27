@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\ViewController;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,6 @@ Route::post('search',[ApartmentController::class,'search']);
 // API Services
 Route::get('services', [ServiceController::class,'index']);
 Route::get('service/{id}', [ServiceController::class,'show']);
+
+//API Views
+Route::post('views', [ViewController::class,'views']);
