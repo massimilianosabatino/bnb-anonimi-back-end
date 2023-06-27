@@ -29,7 +29,7 @@ class UpdateApartmentRequest extends FormRequest
             "bathrooms" => 'required|numeric|min:1',
             "beds" => 'required|numeric|min:1',
             "square_meters" => 'required|numeric|min:28',
-            "cover_image" => 'nullable|dimensions:min_width=800,min_height=450',
+            "cover_image" => 'nullable|dimensions:min_width=400,min_height=300',
             "address" => 'required',
             "visible" => 'required',
             "price" => 'required|numeric|min:20',
