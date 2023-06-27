@@ -44,7 +44,7 @@
     color: white;
     font-size: 24px;
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 600;
     min-height: 5rem;
     display: flex;
     justify-content: center;
@@ -52,13 +52,13 @@
 }
 
 .sponsor-title-1{
-    background-color: #0bb2dc;
+    background-color: $standard-color;
 }
 
 .sponsor-title-2{
-    background-color: #0bdc85;
+    background-color: $premium-color;
 }
 
 .sponsor-title-3{
-    background-color: #fbb14a;
+    background-color: $deluxe-color;
 }

@@ -11,3 +11,49 @@
         font-size: 12px;
     }
 }
+
+.sponsorshipIndex{
+    .btn-light{
+        background-color: transparent;
+        border-color: grey;
+    }
+
+   .sponsor-title-1~.card-body{
+        .btn-check:checked + .btn{
+            background-color: $standard-color;
+            color: white;
+            font-weight: 600;
+        }
+    }
+
+    .sponsor-title-2~.card-body{
+        .btn-check:checked + .btn{
+            background-color: $premium-color;
+            color: white;
+            font-weight: 600;
+        }
+    }
+    .sponsor-title-3~.card-body{
+        .btn-check:checked + .btn{
+            background-color: $deluxe-color;
+            color: white;
+            font-weight: 600;
+        }
+    }
+    #dropin-wrapper{
+        // >*{
+        //     font-family: "Quicksand", Arial, sans-serif !important;
+        // }
+        .braintree-sheet{
+            border-radius: 0.375rem;
+        }
+    #submit-button{
+        background-color: #fff;
+        border: 1px solid grey;
+        border-radius: 0.375rem;
+        &:hover{
+            background-color: #f8f9fa;
+        }
+    }
+    }
+}

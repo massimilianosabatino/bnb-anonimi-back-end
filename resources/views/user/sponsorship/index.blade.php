@@ -28,7 +28,7 @@
     {{-- Check if has sponsor --}}
     @if($activeSponsor)
     <div class="row">
-        <div class="col">
+        <div class="col-auto alert alert-success">
             ATTENZIONE - Già sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}
         </div>
     </div>
