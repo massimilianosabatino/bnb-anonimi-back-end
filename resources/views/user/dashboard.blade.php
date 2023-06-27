@@ -59,6 +59,8 @@
                                     @endif
                             </tr>
                             @endforeach
+
+                            <caption class="text-center mt-3">Al momento ci sono {{ $totalApartments }} appartamenti registrati sul tuo account.</caption>
                         </tbody>
                     </table>
                 </div>

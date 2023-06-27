@@ -11,7 +11,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $apartments = Apartment::where('user_id' , '=', Auth::id())->take(2)->get();
-        return view('user.dashboard',compact('apartments'));
+        $apartments = Apartment::where('user_id' , '=', Auth::id())->get();
+        $totalApartments = count($apartments);
+        $apartments = $apartments->take(2);
+        return view('user.dashboard',compact('apartments', 'totalApartments'));
     }
 }

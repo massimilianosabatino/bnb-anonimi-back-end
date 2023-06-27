@@ -46,8 +46,13 @@
                     </div>
                     <div class="card-body">
                         <p class="card-subtitle mb-2 card-price" >{{ $sponsorship->price }} €</p>
-                        <p class="card-subtitle mb-2">Offerta BnB Anonimi della durata di {{
-                            $sponsorship->time }} ore</p>
+                        <p class="card-subtitle mb-2">
+                            Offerta BnB Anonimi della durata di {{
+                            $sponsorship->time }} ore
+                        </p>
+                        <p class="card-text mx-2">
+                            Acquistando questo pacchetto il tuo appartamento verra' visualizzato nella pagina principale del nostro sito per una durata di {{ $sponsorship->time }} ore, inoltre sara' tra i primi risultati nelle ricerche degli utenti.
+                        </p>
                         <input type="radio" class="btn-check" name="tier" id="tier-{{ $sponsorship->id }}"
                             autocomplete="off" value="{{ $sponsorship->id }}" @checked($sponsorship->name ===
                         'Premium')>
