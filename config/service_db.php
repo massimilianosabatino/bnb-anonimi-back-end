@@ -9,7 +9,7 @@ return [
         'icon' => '<i class="fa-solid fa-fan"></i>'
     ],
     [
-        'name' => 'Parcheggio gratuito in strada',
+        'name' => 'Parcheggio',
         'icon' => '<i class="fa-solid fa-square-parking"></i>'
     ],
     [
@@ -17,11 +17,11 @@ return [
         'icon' => '<i class="fa-solid fa-kitchen-set"></i>'
     ],
     [
-        'name' => 'Accesso alla spiaggia',
+        'name' => 'Spiaggia',
         'icon' => '<i class="fa-solid fa-umbrella-beach"></i>'
     ],
     [
-        'name' => 'Spazio di lavoro dedicato',
+        'name' => 'Workspace',
         'icon' => '<i class="fa-solid fa-house-laptop"></i>'
     ],
     [
@@ -29,7 +29,7 @@ return [
         'icon' => '<i class="fa-solid fa-soap"></i>'
     ],
     [
-        'name' => 'Forno a microonde',
+        'name' => 'Microonde',
         'icon' => '<i class="fa-solid fa-water"></i>'
     ],
     [
@@ -37,7 +37,7 @@ return [
         'icon' => '<i class="fa-solid fa-tv"></i>'
     ],
     [
-        'name' => 'Allarme Antincendio',
+        'name' => 'Antincendio',
         'icon' => '<i class="fa-solid fa-fire"></i>'
     ],
     [
@@ -57,7 +57,7 @@ return [
         'icon' => '<i class="fa-solid fa-warehouse"></i>'
     ],
     [
-        'name' => 'Prodotti per la pulizia',
+        'name' => 'Pulizia',
         'icon' => '<i class="fa-solid fa-bucket"></i>'
     ],
     [
@@ -65,7 +65,7 @@ return [
         'icon' => '<i class="fa-solid fa-shower"></i>'
     ],
     [
-        'name' => 'Cuscini e coperte extra',
+        'name' => 'Biancheria',
         'icon' => '<i class="fa-solid fa-mattress-pillow"></i>'
     ],
     [
@@ -93,7 +93,7 @@ return [
         'icon' => '<i class="fa-solid fa-vault"></i>'
     ],
     [
-        'name' => 'Tavolo da ping pong',
+        'name' => 'Ping pong',
         'icon' => '<i class="fa-solid fa-table-tennis-paddle-ball"></i>'
     ],
     [
@@ -105,7 +105,7 @@ return [
         'icon' => '<i class="fa-solid fa-fire-extinguisher"></i>'
     ],
     [
-        'name' => 'Kit di pronto soccorso',
+        'name' => 'Kit medico',
         'icon' => '<i class="fa-solid fa-kit-medical"></i>'
     ]
 ];
