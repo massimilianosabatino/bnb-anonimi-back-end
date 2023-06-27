@@ -1,13 +1,20 @@
 @extends('layouts.app')
 
 @section('script')
-    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css" />
-        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js"></script>
-        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css" />
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js">
+    </script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox-web.js">
+    </script>
 @endsection
 
 @section('content')
+
     <div class="container p-4">
+        <div class="my-5">
+            <a href="{{ url()->previous() }}" type="button" class="btn btn-outline-secondary mb-1">Back</a>
+        </div>
         {{-- Error list --}}
         @if ($errors->any())
             <div>
@@ -149,9 +156,8 @@
 
             nostro.forEach(element => {
                 element.setAttribute('name', 'address');
-                element.setAttribute('value', "{{old('address')}}");
+                element.setAttribute('value', "{{ old('address') }}");
             });
-
         </script>
     </div>
 

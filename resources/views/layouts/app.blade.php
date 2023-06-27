@@ -123,11 +123,11 @@
 
 
                         {{-- Pulsante per la pagina della sponsorship --}}
-                        <li class="my-4">
+                        {{-- <li class="my-4">
                             <a class="my-btn" href="{{ route('user.sponsorship.index') }}"><i
                                     class="fa-solid fa-star fs-4 me-2"></i><span
                                     class="fw-bold d-none d-xxl-inline-block">Sponsorship</span></a>
-                        </li>
+                        </li> --}}
 
                         {{-- Pulsante per la pagina del profilo --}}
                         <li class="my-4">
