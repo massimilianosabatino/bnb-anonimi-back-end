@@ -34,7 +34,7 @@ return[
         'bathrooms'=>1,
         'beds'=>1,
         'square_meters'=>30,
-        'cover_image'=>'02.jpg',
+        'cover_image'=>'16.webp',
         'address'=>'Via Saorgio, 49, Torino',
         'latitude'=> 45.0967714,
         'longitude'=> 7.6774966,
