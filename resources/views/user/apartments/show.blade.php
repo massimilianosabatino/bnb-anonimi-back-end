@@ -47,8 +47,10 @@
                     <li class="list-group-item">Metri quadri: {{ $apartment->square_meters }}&#13217</li>
                     <li class="list-group-item">Indirizzo: {{ $apartment->address }}</li>
                     <li class="list-group-item">Prezzo: {{ $apartment->price }} €</li>
+                    @if ($sponsorEnd) 
+                    <li class="list-group-item sponsor">Sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}</li>
+                    @endif
                 </ul>
-
 
                 <div class="my-3">
                     {{-- bottone per tornare all'index  --}}
