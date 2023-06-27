@@ -76,15 +76,16 @@
                                 <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
                                     class="btn btn-warning" title="Edit"><i class="fa-solid fa-pen-to-square"></i></a>
                             </td>
-                            <td class="text-center d-none d-md-table-cell">
+                            {{-- <td class="text-center d-none d-md-table-cell">
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#delete{{ $apartment->id }}" title="Delete">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
-                            </td>
+                            </td> --}}
                         </tr>
                         {{-- Modale delete --}}
-                        <div class="modal fade" id="delete{{ $apartment->id }}" tabindex="-1"
+
+                        {{-- <div class="modal fade" id="delete{{ $apartment->id }}" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
@@ -107,7 +108,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     @endforeach
                 </tbody>
             </table>
