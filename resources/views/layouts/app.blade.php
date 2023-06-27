@@ -42,8 +42,7 @@
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasExampleLabel">BoolBnB</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
 
                     {{-- Contenuto dell offcanvas --}}
@@ -66,15 +65,19 @@
 
                             {{-- Pulsante della pagina delle statistiche --}}
                             <div class="my-4">
-                                <a class="my-btn" href=""><i
-                                        class="fa-solid fa-chart-simple fs-4 me-2"></i></i><span
+                                <a class="my-btn" href=""><i class="fa-solid fa-chart-simple fs-4 me-2"></i></i><span
                                         class="fw-bold">Statistiche</span></a>
+                            </div>
+
+                            {{-- Pulsante del sito front-end--}}
+                            <div class="my-4">
+                                <a class="my-btn" href="http:\\{{ env('URL_FRONT_END') }}"><i
+                                        class="fa-solid fa-earth-europe"></i><span class="fw-bold">Front-end</span></a>
                             </div>
 
                             {{-- Pulsante dell logout con form --}}
                             <div class="my-5">
-                                <a class="logout" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
+                                <a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                     <i class="fa-solid fa-arrow-right-from-bracket fs-4 me-2"></i><span
                                         class="fw-bold">Logout</span>
@@ -117,7 +120,8 @@
 
                         {{-- Pulsante per la pagina delle statistiche --}}
                         <li class="my-4">
-                            <a class="my-btn" href=""><i class="fa-solid fa-chart-simple fs-4 me-2"></i></i><span
+                            <a class="my-btn" href=""><i
+                                    class="fa-solid fa-chart-simple fs-4 me-2"></i></i><span
                                     class="fw-bold d-none d-xxl-inline-block">Statistiche</span></a>
                         </li>
 
@@ -136,12 +140,17 @@
                                     class="fw-bold d-none d-xxl-inline-block">Profilo</span></a>
                         </li>
 
+                        {{-- Pulsante del sito front-end--}}
+                        <li class="my-4">
+                            <a class="my-btn" href="http:\\{{ env('URL_FRONT_END') }}"><i
+                                    class="fa-solid fa-earth-europe"></i><span class="fw-bold d-none d-xxl-inline-block">Front-end</span></a>
+                            </li>
+
                     </ul>
 
                     {{-- Pulsante per il logout con il form --}}
                     <div>
-                        <a class="logout" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
+                        <a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                             <i class="fa-solid fa-arrow-right-from-bracket fs-4 me-2"></i><span
                                 class="fw-bold d-none d-xxl-inline-block">Logout</span>
