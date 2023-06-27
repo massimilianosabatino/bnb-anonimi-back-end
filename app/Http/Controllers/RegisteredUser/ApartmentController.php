@@ -8,7 +8,9 @@ use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Str;
 use App\Models\Service;
+use App\Models\Sponsorship;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -23,11 +25,14 @@ class ApartmentController extends Controller
     public function index()
     {
 
-        $apartments = Apartment::where('user_id', '=', Auth::id())->get();
-        dd($apartments);
-        $activeSponsor = $apartments->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
-
-        return view('user.apartments.index', compact('apartments'), 'activeSponsor');
+        $apartments = Apartment::where('user_id', '=', Auth::id())->with('sponsorships')->get();
+        
+        //dd($apartments->toArray());
+        //dd($apartment->sponsorships->sortByDash('pivot.finish_date'));
+        
+        //$activeSponsor = $apartments->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
+        
+        return view('user.apartments.index', compact('apartments') );
     }
 
     /**

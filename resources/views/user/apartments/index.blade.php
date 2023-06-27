@@ -52,10 +52,13 @@
                     @foreach ($apartments as $apartment)
                         <tr>
                             <th scope="row" class="prova ">
-                                @if($activeSponsor)
-                                <div>
-                                    <span class="stamp">Sponsor</span>
-                                </div>
+                                {{-- @dump($apartment->sponsorships) --}}
+                                @if (count($apartment->sponsorships) > 0)
+                                    @if ($apartment->sponsorships->sortByDesc('pivot.finish_date')->first()->pivot->finish_date > now())
+                                        <div>
+                                            <span class="stamp">Sponsor</span>
+                                        </div>
+                                    @endif
                                 @endif
                                 {{ $loop->iteration }}
                             </th>
@@ -63,7 +66,8 @@
                             <td class="d-none d-xl-table-cell">{{ $apartment->rooms }}</td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->bathrooms }}</td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->beds }}</td>
-                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->square_meters }} &#13217</td>
+                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->square_meters }} &#13217
+                            </td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->address }}</td>
                             @if ($apartment->visible == true)
                                 <td class="text-center"><i class="fa-solid fa-eye"></i></td>
@@ -77,7 +81,8 @@
                             </td>
                             <td class="text-center">
                                 <a href="{{ route('user.sponsorship.index', $apartment) }}" role="button"
-                                class="btn btn-sponsor" title="Edit"><i class="fa-solid fa-money-bill-trend-up"></i></a>
+                                    class="btn btn-sponsor" title="Edit"><i
+                                        class="fa-solid fa-money-bill-trend-up"></i></a>
                             </td>
                             <td class="text-center">
                                 <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
