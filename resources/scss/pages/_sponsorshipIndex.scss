@@ -20,15 +20,16 @@
         }
 
         &.bg-1 {
-            background-color: rgb(180, 180, 180); // Colore per la sponsorizzazione Standard
+            background-color: #fff; // Colore per la sponsorizzazione Standard
         }
 
         &.bg-2 {
-            background-color: rgb(150, 150, 150); // Colore per la sponsorizzazione Premium
+            background-color: #fff; // Colore per la sponsorizzazione Premium
+            transform: scale(1.05);
         }
 
         &.bg-3 {
-            background-color: rgb(110, 110, 110); // Colore per la sponsorizzazione Deluxe
+            background-color: #fff; // Colore per la sponsorizzazione Deluxe
         }
     } 
 
@@ -37,13 +38,37 @@
         transition: transform 0.3s ease;
         z-index: 999;
     }
-}
 
-.sponsor-title-1, .sponsor-title-2, .sponsor-title-3{    
-    color: white;
-    font-size: 24px;
-    text-transform: uppercase;
-}
-.sponsor-title-1{
-    background-color: #0bb2dc;
+    .sponsor-title-1, .sponsor-title-2, .sponsor-title-3{    
+        color: white;
+        font-size: 24px;
+        text-transform: uppercase;
+        font-weight: 600;
+        min-height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sponsor-title-1{
+        background-color: $standard-color;
+    }
+    
+    .sponsor-title-2{
+        background-color: $premium-color;
+    }
+    
+    .sponsor-title-3{
+        background-color: $deluxe-color;
+    }
+
+    .transaction-error{
+        max-width: fit-content;
+        border: 1px solid red;
+        border-radius: 0.375rem;
+        padding: .3125rem;
+        span{
+            font-weight: 500;
+        }
+    }
 }

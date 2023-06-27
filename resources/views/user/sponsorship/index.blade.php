@@ -28,7 +28,7 @@
     {{-- Check if has sponsor --}}
     @if($activeSponsor)
     <div class="row">
-        <div class="col">
+        <div class="col-auto alert alert-success">
             ATTENZIONE - Già sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}
         </div>
     </div>
@@ -45,13 +45,18 @@
                         {{ $sponsorship->name }}
                     </div>
                     <div class="card-body">
-                        <p class="card-subtitle mb-2 card-price" style="color: white">{{ $sponsorship->price }} €</p>
-                        <p class="card-subtitle mb-2" style="color: white">Offerta BnB Anonimi della durata di {{
-                            $sponsorship->time }} ore</p>
+                        <p class="card-subtitle mb-2 card-price" >{{ $sponsorship->price }} €</p>
+                        <p class="card-subtitle mb-2">
+                            Offerta BnB Anonimi della durata di {{
+                            $sponsorship->time }} ore
+                        </p>
+                        <p class="card-text mx-2">
+                            Acquistando questo pacchetto il tuo appartamento verra' visualizzato nella pagina principale del nostro sito per una durata di {{ $sponsorship->time }} ore, inoltre sara' tra i primi risultati nelle ricerche degli utenti.
+                        </p>
                         <input type="radio" class="btn-check" name="tier" id="tier-{{ $sponsorship->id }}"
                             autocomplete="off" value="{{ $sponsorship->id }}" @checked($sponsorship->name ===
                         'Premium')>
-                        <label class="btn btn-secondary" for="tier-{{ $sponsorship->id }}">{{ $sponsorship->name
+                        <label class="btn btn-light" for="tier-{{ $sponsorship->id }}">{{ $sponsorship->name
                             }}</label>
                     </div>
                 </div>
@@ -121,9 +126,12 @@
                 
                         if (result.success) {
                             $('#checkout-message').html('<h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p>');
+                            setTimeout(() => {
+                                window.location='{{ route('user.apartment.index') }}';
+                            }, 3000);
                         } else {
                             console.log(result);
-                            $('#checkout-message').html('<h1>Qualcosa è andato storto</h1><p>Controlla di aver inserito correttamente i dati della carta.</p><p>Se hai inserito correttamente i dati e il credito sulla carta è sufficiente (ad esempio se stai utilizzando una ricaricabile) allora puoi provare a contattare il servizio clienti.</p>');
+                            $('#checkout-message').html(`<h1>Qualcosa è andato storto</h1><p>Controlla di aver inserito correttamente i dati della carta.</p><p>Se hai inserito correttamente i dati e il credito sulla carta è sufficiente (ad esempio se stai utilizzando una ricaricabile) allora puoi provare a contattare il servizio clienti.</p><p class="transaction-error">Errore: <span>${result.results.message}</span></p>`);
                         }
                         });
                     });

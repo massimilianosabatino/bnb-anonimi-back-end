@@ -1,5 +1,9 @@
-@import "@fontsource/quicksand"; // Defaults to weight 400
-@import "@fontsource/quicksand/400.css"; // Specify weight
+@import "@fontsource/quicksand"; // Defaults to weight 400 //Weight available 300,400,500,600,700
+@import "@fontsource/quicksand/300.css"; // Specify weight
+@import "@fontsource/quicksand/500.css"; // Specify weight
+@import "@fontsource/quicksand/600.css"; // Specify weight
+@import "@fontsource/quicksand/700.css"; // Specify weight
+
 
 body{
     font-family: "Quicksand", Arial, sans-serif;

@@ -1,0 +1,19 @@
+.apartmentIndex {
+    .prova {
+        height: 70px;
+    }
+    .stampParent {
+        position: relative;
+       
+        
+        .stamp {
+            position: absolute;
+            left: -30px;
+            transform: rotate(-90deg);
+            font-size: 11px;
+            padding: 3px;
+            //background-color: violet;
+            background-image: $primary-gradient;
+        }
+    }
+}

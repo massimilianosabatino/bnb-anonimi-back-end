@@ -6,9 +6,11 @@ return[
         'bathrooms'=>1,
         'beds'=>2,
         'square_meters'=>40, //Minimo 28
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'01.webp',
         'address'=>'Via Saorgio, 7, Torino',
-        'visible'=>'0 - 1',
+        'latitude'=> 45.096207,
+        'longitude'=> 7.682265,
+        'visible'=>'1',
         'price'=>20 //Minimo 20
 
     ],
@@ -18,9 +20,11 @@ return[
         'bathrooms'=>1,
         'beds'=>3,
         'square_meters'=>65,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'02.jpg',
         'address'=>'Corso Grosseto, 139, Torino',
-        'visible'=>'0 - 1',
+        'latitude'=> 45.1042312,
+        'longitude'=> 7.6781032,
+        'visible'=>'1',
         'price'=>40
 
     ],
@@ -30,9 +34,11 @@ return[
         'bathrooms'=>1,
         'beds'=>1,
         'square_meters'=>30,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'02.jpg',
         'address'=>'Via Saorgio, 49, Torino',
-        'visible'=>'0 - 1',
+        'latitude'=> 45.0967714,
+        'longitude'=> 7.6774966,
+        'visible'=>'1',
         'price'=>20
 
     ],
@@ -42,9 +48,11 @@ return[
         'bathrooms'=>1,
         'beds'=>1,
         'square_meters'=>50,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'03.jpeg',
         'address'=>'Via Orbetello, 85, Torino',
-        'visible'=>'0 - 1',
+        'latitude'=> 45.1060285,
+        'longitude'=> 7.6725618,
+        'visible'=>'1',
         'price'=>40
 
     ],
@@ -54,9 +62,11 @@ return[
         'bathrooms'=>1,
         'beds'=>1,
         'square_meters'=>45,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'04.jpeg',
         'address'=>'Corso Lucio Quinzio Cincinnato, 222, Torino',
-        'visible'=>'0 - 1',
+        'latitude'=> 45.1033089,
+        'longitude'=> 7.6512992,
+        'visible'=>'1',
         'price'=>30
 
     ],
@@ -66,9 +76,11 @@ return[
         'bathrooms'=>2,
         'beds'=>4,
         'square_meters'=>100,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'05.jpeg',
         'address'=>'Corso Vercelli, 15, Torino',
-        'visible'=>'0 - 1',
+        'latitude'=> 45.0843083,
+        'longitude'=> 7.6857811,
+        'visible'=>'1',
         'price'=>40
 
     ],
@@ -78,9 +90,11 @@ return[
         'bathrooms'=>1,
         'beds'=>2,
         'square_meters'=>40,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'06.jpg',
         'address'=>'Via Amilcare Ponchielli, 56, Torino',
-        'visible'=>'0 - 1',
+        'latitude'=> 45.0858601,
+        'longitude'=> 7.7059104,
+        'visible'=>'1',
         'price'=>60
 
     ],
@@ -90,9 +104,11 @@ return[
         'bathrooms'=>2,
         'beds'=>8,
         'square_meters'=>90,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'07.webp',
         'address'=>'Via Po, 15, Torino',
-        'visible'=>'0 - 1',
+        'latitude'=> 45.0693929,
+        'longitude'=> 7.6885657,
+        'visible'=>'1',
         'price'=>90
 
     ],
@@ -102,9 +118,11 @@ return[
         'bathrooms'=>2,
         'beds'=> 4,
         'square_meters'=>100,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'08.webp',
         'address'=>'Via Ronchi, 18, Imperia',
-        'visible'=>'0 - 1',
+        'latitude'=> 43.88332,
+        'longitude'=> 8.02225,
+        'visible'=>'1',
         'price'=>60
 
     ],
@@ -114,9 +132,11 @@ return[
         'bathrooms'=>1,
         'beds'=>1,
         'square_meters'=>60,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'09.webp',
         'address'=>'Via Alfredo Fiorini, 89, Roma',
-        'visible'=>'0 - 1',
+        'latitude'=> 41.900402,
+        'longitude'=> 12.6660318,
+        'visible'=>'1',
         'price'=>40
 
     ],
@@ -126,9 +146,11 @@ return[
         'bathrooms'=>1,
         'beds'=>1,
         'square_meters'=>40,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'10.webp',
         'address'=>'Via Alessandro Cruto, 1, Roma',
-        'visible'=>'0 - 1',
+        'latitude'=> 41.8621577,
+        'longitude'=> 12.4657645,
+        'visible'=>'1',
         'price'=>40
 
     ],
@@ -138,9 +160,11 @@ return[
         'bathrooms'=>1,
         'beds'=>3,
         'square_meters'=>80,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'11.webp',
         'address'=>'Viale Carmelo Bene, 253, Roma',
-        'visible'=>'0 - 1',
+        'latitude'=> 41.9769763,
+        'longitude'=> 12.5328409,
+        'visible'=>'1',
         'price'=>80
 
     ],
@@ -150,9 +174,11 @@ return[
         'bathrooms'=>3,
         'beds'=>10,
         'square_meters'=>150,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'12.webp',
         'address'=>'Via delle Fornaci, 425, Roma',
-        'visible'=>'0 - 1',
+        'latitude'=> 41.8964199,
+        'longitude'=> 12.4570446,
+        'visible'=>'1',
         'price'=>100
 
     ],
@@ -162,9 +188,11 @@ return[
         'bathrooms'=>2,
         'beds'=>4,
         'square_meters'=>74,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'13.webp',
         'address'=>'Via Maragliano, 70, Firenze',
-        'visible'=>'0 - 1',
+        'latitude'=> 43.78689,
+        'longitude'=> 11.2344544,
+        'visible'=>'1',
         'price'=>56
 
     ],
@@ -174,9 +202,11 @@ return[
         'bathrooms'=>2,
         'beds'=>4,
         'square_meters'=>74,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'14.webp',
         'address'=>'Via Maragliano, 80, Firenze',
-        'visible'=>'0 - 1',
+        'latitude'=> 43.7873645,
+        'longitude'=> 11.2335325,
+        'visible'=>'1',
         'price'=>61
 
     ],
@@ -186,9 +216,11 @@ return[
         'bathrooms'=>1,
         'beds'=>2,
         'square_meters'=>40,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'15.webp',
         'address'=>'Via Palestro, 36, Brindisi',
-        'visible'=>'0 - 1',
+        'latitude'=> 40.6368481,
+        'longitude'=> 17.9415376,
+        'visible'=>'1',
         'price'=>36
 
     ],
@@ -198,9 +230,11 @@ return[
         'bathrooms'=>2,
         'beds'=>6,
         'square_meters'=>110,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'17.webp',
         'address'=>'Via Vincenzo Bellini, 23, Taormina',
-        'visible'=>'0 - 1',
+        'latitude'=> 37.8306383,
+        'longitude'=> 15.2465169,
+        'visible'=>'1',
         'price'=>83
 
     ],
@@ -210,9 +244,11 @@ return[
         'bathrooms'=>1,
         'beds'=>6,
         'square_meters'=>70,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'18.webp',
         'address'=>'Via Latiano, 90, Oria',
-        'visible'=>'0 - 1',
+        'latitude'=> 40.5048171,
+        'longitude'=> 17.6500542,
+        'visible'=>'1',
         'price'=>38
 
     ],
@@ -222,9 +258,11 @@ return[
         'bathrooms'=>1,
         'beds'=>2,
         'square_meters'=>55,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'19.webp',
         'address'=>'Piazza Nolana, 13, Napoli',
-        'visible'=>'0 - 1',
+        'latitude'=> 40.8505819,
+        'longitude'=> 14.2683914,
+        'visible'=>'1',
         'price'=>43
 
     ],
@@ -234,9 +272,11 @@ return[
         'bathrooms'=>1,
         'beds'=>1,
         'square_meters'=>30,
-        'cover_image'=>'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+        'cover_image'=>'20.webp',
         'address'=>'Via Saorgio, 9, Torino',
-        'visible'=>'0 - 1',
+        'latitude'=> 45.0962269,
+        'longitude'=> 7.6820975,
+        'visible'=>'1',
         'price'=>29
 
     ],

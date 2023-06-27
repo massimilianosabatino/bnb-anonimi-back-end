@@ -3,7 +3,7 @@
 @section('content')
     <div class="container pb-3 apartment-show">
         <div class="my-5">
-            <a href="{{ url()->previous() }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
+            <a href="{{ route('user.apartment.index') }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
         </div>
         <div class="row">
             <div class="col-12 col-md-8">
@@ -47,8 +47,10 @@
                     <li class="list-group-item">Metri quadri: {{ $apartment->square_meters }}&#13217</li>
                     <li class="list-group-item">Indirizzo: {{ $apartment->address }}</li>
                     <li class="list-group-item">Prezzo: {{ $apartment->price }} €</li>
+                    @if ($sponsorEnd) 
+                    <li class="list-group-item sponsor">Sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}</li>
+                    @endif
                 </ul>
-
 
                 <div class="my-3">
                     {{-- bottone per tornare all'index  --}}
@@ -62,6 +64,36 @@
                         class="btn btn-warning">Modifica
                         questo appartamento
                     </a>
+
+                    {{-- bottone per delete --}}
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Elimina appartamento
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Confermi di voler eliminare {{ $apartment->title }} ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Cancella</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
                 </div>
 
 

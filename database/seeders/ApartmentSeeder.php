@@ -21,52 +21,58 @@ class ApartmentSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        $apartmentArray = config('apartments_db');
 
-        for ($i = 0; $i < 10; $i++) {
+        foreach($apartmentArray as $el){
+
             $apartment = new Apartment();
+
             $users = User::inRandomOrder()->first();
             $apartment->user_id = $users->id;
-            //Variabile Titolo Località BnB
-            $title = $faker->cityPrefix() . $faker->secondaryAddress();
-            //Faker
-            $apartment->title = $title;
-            $apartment->rooms = $faker->randomDigitNotNull();
-            $apartment->bathrooms = $faker->numberBetween(1, 4);
-            $apartment->beds = $faker->randomDigitNotNull();
-            $apartment->square_meters = $faker->numberBetween(40, 255);
             
-            //Create a fake image and save it locally
-            $image = fake()->image('public/storage/uploads',440,260, null, false);
-            $apartment->cover_image = 'uploads/' . $image;
-
-            $apartment->address = $faker->address();
-            $apartment->latitude = $faker->latitude(-90, 90);
-            $apartment->longitude = $faker->longitude(-180, 180);
-            $apartment->price = $faker->randomFloat(2, 1, 999);
-            $apartment->slug = Str::slug($title, '-');
+            $apartment->title = $el['title'];
+            $apartment->rooms = $el['rooms'];
+            $apartment->bathrooms = $el['bathrooms'];
+            $apartment->beds = $el['beds'];
+            $apartment->square_meters = $el['square_meters'];
+            
+            $apartment->cover_image = 'uploads/' . $el['cover_image'];
+    
+            $apartment->address = $el['address'];
+            $apartment->latitude = $el['latitude'];
+            $apartment->longitude = $el['longitude'];
+            $apartment->price = $el['price'];
+            $apartment->slug = Str::slug($el['title'], '-');
             $apartment->save();
+
             //Service Pivot Seeder
             $services = Service::inRandomOrder()->take(7)->get();
-
+    
             foreach ($services as $service) {
                 $apartment->services()->attach([
                     $apartment->id => $service->id,
                 ]);
             }
+
             //Sponsor Pivot Seeder
-            $sponsorship = Sponsorship::inRandomOrder()->first();
+            $rand = rand(0,1);
+            if ($rand) {
+                $sponsorship = Sponsorship::inRandomOrder()->first();
+        
+                $startDate = date("Y-m-d H:i:s");
+                $finishDate = date("Y-m-d H:i:s", strtotime("+{$sponsorship->time} hours"));
+                $apartment->sponsorships()->attach([
+        
+                    $apartment->id => [
+                        'sponsorship_id'=>$sponsorship->id,
+                        'start_date' => $startDate,
+                        'finish_date' => $finishDate
+                    ]
+        
+                ]);
+            }
 
-            $startDate = date("Y-m-d H:i:s");
-            $finishDate = date("Y-m-d H:i:s", strtotime("+{$sponsorship->time} hours"));
-            $apartment->sponsorships()->attach([
-
-                $apartment->id => [
-                    'sponsorship_id'=>$sponsorship->id,
-                    'start_date' => $startDate,
-                    'finish_date' => $finishDate
-                ]
-
-            ]);
         }
+
     }
 }

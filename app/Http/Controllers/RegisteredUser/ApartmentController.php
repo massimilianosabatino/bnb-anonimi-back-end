@@ -8,6 +8,9 @@ use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Str;
 use App\Models\Service;
+use App\Models\Sponsorship;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -21,9 +24,10 @@ class ApartmentController extends Controller
      */
     public function index()
     {
+
+        $apartments = Apartment::where('user_id', '=', Auth::id())->with('sponsorships')->get();
         
-        $apartments = Apartment::where('user_id', '=', Auth::id())->get();
-        return view('user.apartments.index', compact('apartments'));
+        return view('user.apartments.index', compact('apartments') );
     }
 
     /**
@@ -84,7 +88,20 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         if ($apartment->user_id == Auth::user()->id) {
-            return view('user.apartments.show', compact('apartment'));
+            
+            // Get last active sponsorship for this apartment
+            $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
+            $sponsorEnd = null;
+            if ($activeSponsor) {
+                $sponsorEndDate = Carbon::create($activeSponsor->pivot->finish_date)->format('d-m-Y');
+                $sponsorEndTime = Carbon::create($activeSponsor->pivot->finish_date)->format('h:i');
+
+                $sponsorEnd = [
+                    'date' => $sponsorEndDate,
+                    'time' => $sponsorEndTime
+                ];
+            }
+            return view('user.apartments.show', compact('apartment', 'sponsorEnd'));
         } else {
             return redirect()->route('user.apartment.index')->withErrors('Nessun appartamento');
         }
@@ -155,5 +172,4 @@ class ApartmentController extends Controller
 
         return redirect()->route('user.apartment.index')->with('message', "Appartamento $old_id eliminato con successo");
     }
-
 }
