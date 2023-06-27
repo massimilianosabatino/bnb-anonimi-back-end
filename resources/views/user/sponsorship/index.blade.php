@@ -121,6 +121,9 @@
                 
                         if (result.success) {
                             $('#checkout-message').html('<h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p>');
+                            setTimeout(() => {
+                                window.location='{{ route('user.apartment.index') }}';
+                            }, 3000);
                         } else {
                             console.log(result);
                             $('#checkout-message').html(`<h1>Qualcosa è andato storto</h1><p>Controlla di aver inserito correttamente i dati della carta.</p><p>Se hai inserito correttamente i dati e il credito sulla carta è sufficiente (ad esempio se stai utilizzando una ricaricabile) allora puoi provare a contattare il servizio clienti.</p><p class="transaction-error">Errore: <span>${result.results.message}</span></p>`);
