@@ -88,6 +88,7 @@ class SponsorshipController extends Controller
 
         $result = $gateway->transaction()->sale([
             'amount' => $sponsorship->price,
+            // 'amount' => 2000.00, //test error
             'paymentMethodNonce' => $nonceFromTheClient,
             // 'deviceData' => $deviceDataFromTheClient,
             'options' => [
