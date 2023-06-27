@@ -9,7 +9,7 @@
         @endif
         {{-- barra con back e aggiungi appartamento --}}
         <div class="my-5">
-            <a href="{{ url()->previous() }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
+            <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
         </div>
 
         @if (session('message'))

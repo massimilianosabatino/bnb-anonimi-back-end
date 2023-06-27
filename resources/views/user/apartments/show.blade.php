@@ -3,7 +3,7 @@
 @section('content')
     <div class="container pb-3 apartment-show">
         <div class="my-5">
-            <a href="{{ url()->previous() }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
+            <a href="{{ route('user.apartment.index') }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
         </div>
         <div class="row">
             <div class="col-12 col-md-8">
