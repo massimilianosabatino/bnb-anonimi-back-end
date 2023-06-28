@@ -14,10 +14,12 @@ class ApartmentController extends Controller
     public function index()
     {
         $apartments = Apartment::with('services')->get();
+       
         return response()->json([
             'success' => true,
             'results' => $apartments
         ]);
+      
     }
 
     public function show($id)

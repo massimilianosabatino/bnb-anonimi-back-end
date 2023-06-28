@@ -8,10 +8,11 @@
         
         .stamp {
             position: absolute;
-            left: -30px;
-            transform: rotate(-90deg);
-            font-size: 11px;
-            padding: 3px;
+            left: -40px;
+            top: -10px;
+            font-size: 14px;
+            border-radius: 10px;
+            padding: 10px 5px;
             //background-color: violet;
             background-image: $primary-gradient;
         }

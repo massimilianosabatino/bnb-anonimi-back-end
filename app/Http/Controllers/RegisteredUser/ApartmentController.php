@@ -27,6 +27,7 @@ class ApartmentController extends Controller
 
         $apartments = Apartment::where('user_id', '=', Auth::id())->with('sponsorships')->get();
         
+        
         return view('user.apartments.index', compact('apartments') );
     }
 

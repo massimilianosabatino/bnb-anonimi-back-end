@@ -1,23 +1,45 @@
 .apartment-show {
 
     .show-img-container {
-        width: 600px;
+        width: 100%;
     }
 
     .apart-services {
         text-align: center;
         margin-top: 3.9375rem;
-        // width: 60rem;
         padding-bottom: 20px;
+        width: 100%;
 
         .single-service {
             background-color: rgb(96, 96, 122);
-            margin: 5px;
             border-radius: 5px;
+            margin: 2px;
             font-size: 11px;
+            width: calc((100% - 30px) / 6);
         }
     }
 
+    .tasti-extra {
+        height: 100%;
+    }
+
+    .tasti-extra > div{
+        height: calc(80% / 3);
+        width: 50%;
+        text-align: center;
+        margin: auto;
+    }
+
+    .bottone {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: bisque;
+    }
+
+    .sopra {
+        margin-top: auto;
+    }
 
     @media screen and (min-width:768px) {
         .extra {
