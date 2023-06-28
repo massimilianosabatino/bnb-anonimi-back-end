@@ -71,7 +71,7 @@
                 <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1 mb-2">
-                            {{ $totalApartments }}
+                            {{ $apartments }}
                         </div>
                         <div class="number-text fw-bold">
                             Appartamenti inseriti
@@ -83,7 +83,7 @@
                 <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1  mb-2">
-                            13
+                            {{ $sponsored }}
                         </div>
                         <div class="number-text fw-bold">
                             Appartamenti sponsorizzati
@@ -117,7 +117,7 @@
                             standard
                         </div>
                         <div class="card-body">
-                            <p class="card-subtitle mb-2 card-price">5.99 €</p>
+                            <p class="card-subtitle mb-2 card-price">2.99 €</p>
                             <p class="card-subtitle mb-2">
                                 Offerta BnB Anonimi della durata di 24 ore
                             </p>
@@ -133,12 +133,12 @@
                             standard
                         </div>
                         <div class="card-body">
-                            <p class="card-subtitle mb-2 card-price">9.99 €</p>
+                            <p class="card-subtitle mb-2 card-price">5.99 €</p>
                             <p class="card-subtitle mb-2">
-                                Offerta BnB Anonimi della durata di 48 ore
+                                Offerta BnB Anonimi della durata di 72 ore
                             </p>
                             <p class="card-text mx-2">
-                                Acquistando questo pacchetto il tuo appartamento verra' visualizzato nella pagina principale del nostro sito per una durata di 48 ore, inoltre sara' tra i primi risultati nelle ricerche degli utenti.
+                                Acquistando questo pacchetto il tuo appartamento verra' visualizzato nella pagina principale del nostro sito per una durata di 72 ore, inoltre sara' tra i primi risultati nelle ricerche degli utenti.
                             </p>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                             standard
                         </div>
                         <div class="card-body">
-                            <p class="card-subtitle mb-2 card-price">12.99 €</p>
+                            <p class="card-subtitle mb-2 card-price">9.99 €</p>
                             <p class="card-subtitle mb-2">
                                 Offerta BnB Anonimi della durata di 144 ore
                             </p>
