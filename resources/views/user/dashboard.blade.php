@@ -94,11 +94,12 @@
             <div class="col-12 col-md-3">
                 <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
                     <div class="box-content">
-                        <div class="number fs-1  mb-2">
-                            {{ $messages }}
+                        <div class="number fs-1 mb-2">
+                            {{ $messagesCount }}
                         </div>
-                        <div class="number-text fw-bold">
+                        <div class="number-text fw-bold position-relative">
                             Messaggi ricevuti
+                            <small class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">non letti {{ $messagesUnread }}</small>
                         </div>
                     </div>
                 </div>
