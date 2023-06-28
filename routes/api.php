@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\SponsorController;
 use App\Http\Controllers\Api\ViewController;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
@@ -35,3 +36,4 @@ Route::get('service/{id}', [ServiceController::class,'show']);
 
 //API Views
 Route::post('views', [ViewController::class,'views']);
+Route::get('sponsor', [SponsorController::class, 'index']);
