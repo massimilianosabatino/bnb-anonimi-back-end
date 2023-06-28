@@ -30,10 +30,10 @@
             </div>
         </div>
         <div class="row align-items-center">
-            <div class="col-6">
+            <div class="col-auto col-md-6">
                 <img class="img-fluid" src="{{ asset('img/front.png') }}" alt="Anteprima front-end">
             </div>
-            <div class="col-6">
+            <div class="col-auto col-md-6">
                 <div class="side-img-text">
                     <div class="fw-bold">
                         Carica un nuovo appartamento
@@ -66,8 +66,8 @@
                 </div>
             </div>
         </div>
-        <div class="row p-4 my-4 text-center gx-4 justify-content-between">
-            <div class="col-3">
+        <div class="row p-4 my-4 text-center gx-md-4 justify-content-between">
+            <div class="col-12 col-md-3 mb-4 mb-md-0">
                 <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1 mb-2">
@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-12 col-md-3 mb-4 mb-md-0">
                 <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1  mb-2">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-12 col-md-3">
                 <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1  mb-2">
@@ -130,7 +130,7 @@
                 <div class="col-12 col-md-4 text-center mb-4">
                     <div class="card tier-card bg-2 m-2">
                         <div class="car-header sponsor-title-2">
-                            standard
+                            premium
                         </div>
                         <div class="card-body">
                             <p class="card-subtitle mb-2 card-price">5.99 €</p>
@@ -146,7 +146,7 @@
                 <div class="col-12 col-md-4 text-center mb-4">
                     <div class="card tier-card bg-3 m-2">
                         <div class="car-header sponsor-title-3">
-                            standard
+                            deluxe
                         </div>
                         <div class="card-body">
                             <p class="card-subtitle mb-2 card-price">9.99 €</p>
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                 </div>
-                <p>Accedi al dettaglio dell'appartamento che vuoi sponsorizzare e rendilo visibile per la durata del pacchetto scelto. Puoi anche acquistare più sponsorizzazioni per un appartamento, queste verranno sommate è il tuo appartamento sarà maggiornmente visibile per più tempo!</p>
+                <p class="text-center">Accedi al dettaglio dell'appartamento che vuoi sponsorizzare e rendilo visibile per la durata del pacchetto scelto. Puoi anche acquistare più sponsorizzazioni per un appartamento, queste verranno sommate è il tuo appartamento sarà maggiornmente visibile per più tempo!</p>
             </div>
         </div>
     </div>
