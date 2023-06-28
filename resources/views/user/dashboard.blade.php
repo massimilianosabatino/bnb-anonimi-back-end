@@ -95,7 +95,7 @@
                 <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1  mb-2">
-                            10
+                            {{ $messages }}
                         </div>
                         <div class="number-text fw-bold">
                             Messaggi ricevuti

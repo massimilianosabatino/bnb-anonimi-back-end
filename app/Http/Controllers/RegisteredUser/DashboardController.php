@@ -21,8 +21,11 @@ class DashboardController extends Controller
         ->where('finish_date', '>', now())
         ->count();
         
+        $messages = DB::table('messages')
+        ->whereIn('apartment_id', $apartmentId)
+        ->count();
         // $totalApartments = count($apartments);
         // $apartments = $apartments->take(2);
-        return view('user.dashboard',compact('apartments', 'sponsored'));
+        return view('user.dashboard',compact('apartments', 'sponsored', 'messages'));
     }
 }
