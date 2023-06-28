@@ -159,7 +159,7 @@
                         </div>
                     </div>
                 </div>
-                
+                <p>Accedi al dettaglio dell'appartamento che vuoi sponsorizzare e rendilo visibile per la durata del pacchetto scelto. Puoi anche acquistare più sponsorizzazioni per un appartamento, queste verranno sommate è il tuo appartamento sarà maggiornmente visibile per più tempo!</p>
             </div>
         </div>
     </div>
