@@ -14,8 +14,7 @@ class DashboardController extends Controller
     {
         $apartments = Apartment::where('user_id' , '=', Auth::id())->count();
         $apartmentId = Apartment::where('user_id', Auth::id())->select('id')->get();
-        // dd($apartmentId);
-        // $sponsored = Apartment::where('user_id', Auth::id())->with('sponsorships')->where('finish_date', '>', now())->get();
+
         $sponsored = DB::table('apartment_sponsorship')
         ->whereIn('apartment_id', $apartmentId)
         ->where('finish_date', '>', now())
@@ -26,9 +25,7 @@ class DashboardController extends Controller
         ->get();
         $messagesCount = count($messages);
         $messagesUnread = count($messages->where('read', false));
-        
-        // $totalApartments = count($apartments);
-        // $apartments = $apartments->take(2);
+
         return view('user.dashboard',compact('apartments', 'sponsored', 'messagesCount', 'messagesUnread'));
     }
 }
