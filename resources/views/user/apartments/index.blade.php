@@ -26,7 +26,7 @@
                 </div>
             </div>
         @endif
-        <div class="rounded-2 border bg-white shadow p-4 my-4 stampParent">
+        <div class="rounded-2 border bg-white shadow p-4 my-4 ">
             <div class="my-2 d-flex justify-content-between">
                 <h1 class="fs-3 fw-bold mb-3">Gestisci i tuoi appartamenti</h1>
                 <a class="btn btn-primary mb-3" href="{{ route('user.apartment.create') }}">Aggiungi appartamento</a>
@@ -36,9 +36,10 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col" class="text-start">Nome</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Stanze</th>
+                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Sponsorizzazione</th>
+                        {{--<th class="d-none d-lg-none d-xl-table-cell" scope="col">Stanze</th>
                         <th class="d-none d-lg-none d-xl-table-cell" scope="col">Bagni</th>
-                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Letti</th>
+                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Letti</th> --}}
                         <th class="d-none d-lg-none d-xl-table-cell" scope="col">Metri quadri</th>
                         <th class="d-none d-lg-none d-xl-table-cell" scope="col">Indirizzo</th>
                         <th scope="col">Visibilità</th>
@@ -55,17 +56,18 @@
                                 {{-- @dump($apartment->sponsorships) --}}
                                 @if (count($apartment->sponsorships) > 0)
                                     @if ($apartment->sponsorships->sortByDesc('pivot.finish_date')->first()->pivot->finish_date > now())
-                                        <div>
-                                            <span class="stamp">Sponsor</span>
+                                        <div class="stampParent">
+                                            <span class="stamp">$</span>
                                         </div>
                                     @endif
                                 @endif
                                 {{ $loop->iteration }}
                             </th>
                             <td class="text-start">{{ $apartment->title }}</td>
-                            <td class="d-none d-xl-table-cell">{{ $apartment->rooms }}</td>
+                            {{-- <td class="d-none d-xl-table-cell">{{ $apartment->rooms }}</td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->bathrooms }}</td>
-                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->beds }}</td>
+                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->beds }}</td> --}}
+                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">Fino al {{ $apartment->sponsorEnd() }}</td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->square_meters }} &#13217
                             </td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->address }}</td>
