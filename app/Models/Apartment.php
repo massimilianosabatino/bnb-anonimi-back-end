@@ -46,9 +46,16 @@ class Apartment extends Model
     }
 
     public function sponsorEnd(){
-        $abc = $this->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
-        $newabc = Carbon::create($abc->pivot->finish_date)->format('d-m-Y');
-        
-        return $newabc;
+
+        if ($this->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last()){
+
+            $abc = $this->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
+
+            $newabc = Carbon::create($abc->pivot->finish_date)->format('d-m-Y');
+            return $newabc;
+        }
+ 
+
+       
     }
 }

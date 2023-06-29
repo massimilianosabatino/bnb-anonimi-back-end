@@ -1,49 +1,114 @@
 .apartment-show {
 
+    //IMMAGINI
     .show-img-container {
         width: 100%;
     }
 
+    // GALLERIA
+
+    
+    //VISIBILITA'
+    .visible {
+        font-weight: 500;
+        span {
+            font-weight: 900;
+        }
+    }
+
+    //SERVICES
     .apart-services {
         text-align: center;
         margin-top: 3.9375rem;
-        padding-bottom: 20px;
+        padding-right: 40px;
         width: 100%;
+
 
         .single-service {
             background-color: rgb(96, 96, 122);
             border-radius: 5px;
             margin: 2px;
-            font-size: 11px;
             width: calc((100% - 30px) / 6);
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+
+            .service-name {
+                font-size: 10px;
+            }
         }
     }
 
+    //DETTAGLI 
+    .list-group {
+        padding: 10px 20px 20px 0px;
+    }
+
+
+    //TASTIERA UTENTE
     .tasti-extra {
-        height: 100%;
-    }
-
-    .tasti-extra > div{
-        height: calc(80% / 3);
         width: 50%;
-        text-align: center;
-        margin: auto;
+        margin: 0 auto;
     }
 
-    .bottone {
+    .icon-cont {
+
+        width: calc(100% / 3);
+        border-radius: 15px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: bisque;
+        height: 80px;
+        text-decoration: none;
+        margin: 5px;
+
+        .bottone {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            div {
+                color: rgb(255, 238, 218);
+                font-size: 14px;
+            }
+
+            .fa-solid {
+                color: white;
+                font-size: 25px;
+                color: antiquewhite;
+            }
+        }
     }
 
-    .sopra {
-        margin-top: auto;
+    .color-1{
+        background-color: $standard-color;
     }
+
+    .color-2{
+        background-color: $premium-color;
+    }
+
+    .color-3{
+        background-color: $deluxe-color;
+    }
+
+    .parent-extra a:hover {
+        background-color: rgb(51, 55, 75);
+        ;
+    }
+
+    .elimina:hover {
+        background-color: rgb(51, 55, 75);
+        ;
+    }
+
+
 
     @media screen and (min-width:768px) {
         .extra {
             margin-top: 145px;
         }
     }
+
 }
