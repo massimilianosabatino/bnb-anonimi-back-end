@@ -230,39 +230,25 @@
 
                                     </div>
 
-
-
-
-
-
-
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Cancella</button>
+                                        </form>
+                                    </div>
                                 </div>
-
-
-
-
-
-
-
-                                <div class="row justify-content-between">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                </div>
-
-
                             </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
 
 
                             {{-- <div class=" d-flex flex-md-column col-12 col-md-4 gy-4 extra">
