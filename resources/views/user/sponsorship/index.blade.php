@@ -27,9 +27,9 @@
 
     {{-- Check if has sponsor --}}
     @if($activeSponsor)
-    <div class="row">
+    <div id="active-sponsor" class="row">
         <div class="col-auto alert alert-success">
-            ATTENZIONE - Già sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}
+            Questo appartamento è sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}. Puoi estendere la scadenza acquistando un nuovo pacchetto.
         </div>
     </div>
     @endif
@@ -67,6 +67,20 @@
 
     <div class="row payment">
         <div class="col-8">
+            {{-- <h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p>
+            ID prezzo scadenza nome appartamento e pacchetto --}}
+            {{-- <div>
+                <strong>ID transazione:</strong> ${result.results.transaction.paymentReceipt.id}
+            </div>
+            <div>
+                <strong>Pacchetto acquistato:</strong> ${result.results.plan}
+            </div>
+            <div>
+                <strong>Prezzo:</strong> ${result.results.transaction.paymentReceipt.amount}
+            </div>
+            <div>
+                <strong>Scadenza sponsorizzazione:</strong> ${result.results.end}
+            </div> --}}
             <div id="dropin-wrapper">
                 <div id="checkout-message"></div>
                 <div id="dropin-container"></div>
@@ -112,7 +126,7 @@
                             'apartmentSelected': {{ $apartment->id }}
                         }
                         }).done(function(result) {
-                        console.log(result);
+                        
                         // Tear down the Drop-in UI
                         instance.teardown(function (teardownErr) {
                             if (teardownErr) {
@@ -125,10 +139,13 @@
                         });
                 
                         if (result.success) {
-                            $('#checkout-message').html('<h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p>');
-                            setTimeout(() => {
-                                window.location='{{ route('user.apartment.index') }}';
-                            }, 3000);
+                            console.log(result.results);
+                            let active_sponsor = document.getElementById('active-sponsor');
+                            if (active_sponsor) {
+                                active_sponsor.classList.add('d-none');
+                            }
+                            // console.log(result.transaction.paymentReceipt.id, result.transaction.paymentReceipt.amount )
+                            $('#checkout-message').html(`<h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p><div><strong>ID transazione:</strong> ${result.results.transaction.paymentReceipt.id}</div><div><strong>Pacchetto acquistato:</strong> ${result.plan}</div><div><strong>Prezzo:</strong> ${result.results.transaction.paymentReceipt.amount}</div><div><strong>Scadenza sponsorizzazione:</strong> ${result.end}</div>`);
                         } else {
                             console.log(result);
                             $('#checkout-message').html(`<h1>Qualcosa è andato storto</h1><p>Controlla di aver inserito correttamente i dati della carta.</p><p>Se hai inserito correttamente i dati e il credito sulla carta è sufficiente (ad esempio se stai utilizzando una ricaricabile) allora puoi provare a contattare il servizio clienti.</p><p class="transaction-error">Errore: <span>${result.results.message}</span></p>`);

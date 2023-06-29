@@ -96,6 +96,7 @@ class SponsorshipController extends Controller
             ]
         ]);
 
+
         // Results
 
         if ($result->success) {
@@ -112,7 +113,13 @@ class SponsorshipController extends Controller
                 // Write plan purchased on pivot
                 $apartment->sponsorships()->attach($plan, ['start_date' => $start, 'finish_date' => $end]);
             }
-            return $result;
+            
+            return response()->json([
+                'success' => true,
+                'results' => $result,
+                'plan' => $sponsorship->name,
+                'end' => $end->format('d-m-Y')
+            ]);
         } else {
             return response()->json([
                 'success' => false,
