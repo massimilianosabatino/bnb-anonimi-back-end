@@ -24,14 +24,17 @@
                     {{-- fine immagine --}}
 
                     {{-- colonna Gallery --}}
-                    <div class="col-5 gallery d-flex flex-wrap">
-                        @if ($apartment->galleries)
-                        @foreach ($apartment->galleries as $gallery)
-                            <div class="img-cont col-2 ">
-                                <img src="{{ asset("storage/".$gallery->image_path)}}" alt="{{ $apartment->slug }}" class="img-gallery">
-                            </div>
-                        @endforeach
-                        @endif
+                    <div class="col-5 d-flex flex-wrap">
+                        <div class="gallery d-flex flex-wrap">
+                            @if ($apartment->galleries)
+                                @foreach ($apartment->galleries as $gallery)
+                                    <div class="img-cont">
+                                        <img src="{{ asset('storage/' . $gallery->image_path) }}"
+                                            alt="{{ $apartment->slug }}" class="img-gallery">
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,7 +125,7 @@
                         <a href="{{ route('user.gallery.show', $apartment->id) }}" role="button"
                             class="btn icon-cont color-1">
                             <div class="bottone">
-                                <div>Galleria</div><i class="fa-solid fa-circle-left"></i>
+                                <div>Galleria</div><i class="fa-solid fa-image"></i>
                             </div>
                         </a>
 
