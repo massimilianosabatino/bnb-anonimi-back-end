@@ -9,10 +9,14 @@
     .gallery {
         .img-cont {
             width: 45%;
-            height: auto;
+            height: calc(100% / 4);
             border: 1px solid black;
             margin-bottom: 3px;
             margin-left: 3px;
+
+            .img-gallery {
+                width: 100%;
+            }
         }
     }
     //VISIBILITA'

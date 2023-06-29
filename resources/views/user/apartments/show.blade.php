@@ -25,11 +25,13 @@
 
                     {{-- colonna Gallery --}}
                     <div class="col-5 gallery d-flex flex-wrap">
-                        @for ($i = 0; $i < 8; $i++)
+                        @if ($apartment->galleries)
+                        @foreach ($apartment->galleries as $gallery)
                             <div class="img-cont col-2 ">
-                                <img src="" alt="" class="img-fluid">
+                                <img src="{{ asset("storage/".$gallery->image_path)}}" alt="{{ $apartment->slug }}" class="img-gallery">
                             </div>
-                        @endfor
+                        @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -117,11 +119,10 @@
                         </a>
 
                         {{-- bottone per tornare all'index  --}}
-                        <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                        <a href="{{ route('user.gallery.show', $apartment->id) }}" role="button"
                             class="btn icon-cont color-1">
                             <div class="bottone">
-                                <div>Torna
-                                    alla lista</div><i class="fa-solid fa-circle-left"></i>
+                                <div>Galleria</div><i class="fa-solid fa-circle-left"></i>
                             </div>
                         </a>
 
