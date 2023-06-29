@@ -98,7 +98,6 @@ class SponsorshipController extends Controller
 
 
         // Results
-
         if ($result->success) {
             if ($apartment->user_id == Auth::user()->id) {
 
@@ -126,13 +125,6 @@ class SponsorshipController extends Controller
                 'results' => $result
             ]);
         }
-        // $apartment = Apartment::where('id', key($_REQUEST))->first();
-        // if ($apartment->user_id == Auth::user()->id) {
-        //     return view('user.sponsorship.show', compact('apartment', 'sponsorship'));
-        // } else {
-        //     return redirect()->route('user.sponsorship.index')->withErrors('Nessun appartamento');
-        // }
-
     }
 
     /**
