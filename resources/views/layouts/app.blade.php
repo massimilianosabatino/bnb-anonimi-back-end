@@ -72,7 +72,7 @@
                             {{-- Pulsante del sito front-end--}}
                             <div class="my-4">
                                 <a class="my-btn" href="http:\\{{ env('URL_FRONT_END') }}"><i
-                                        class="fa-solid fa-earth-europe"></i><span class="fw-bold">Front-end</span></a>
+                                        class="fa-solid fa-earth-europe fs-4 me-2"></i><span class="fw-bold">Vai al sito</span></a>
                             </div>
 
                             {{-- Pulsante dell logout con form --}}
@@ -143,7 +143,7 @@
                         {{-- Pulsante del sito front-end--}}
                         <li class="my-4">
                             <a class="my-btn" href="http:\\{{ env('URL_FRONT_END') }}"><i
-                                    class="fa-solid fa-earth-europe"></i><span class="fw-bold d-none d-xxl-inline-block">Front-end</span></a>
+                                    class="fa-solid fa-earth-europe fs-4 me-2"></i><span class="fw-bold d-none d-xxl-inline-block">Vai al sito</span></a>
                             </li>
 
                     </ul>
