@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class View extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+    
     public function views(){
         return $this->belongsTo(Apartament::class);
     }
