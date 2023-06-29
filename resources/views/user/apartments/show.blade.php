@@ -24,10 +24,12 @@
                     {{-- fine immagine --}}
 
                     {{-- colonna Gallery --}}
-                    <div class="col-4 gallery">
-                        @foreach ($collection as $item)
-                            
-                        @endforeach
+                    <div class="col-5 gallery d-flex flex-wrap">
+                        @for ($i = 0; $i < 8; $i++)
+                            <div class="img-cont col-2 ">
+                                <img src="" alt="" class="img-fluid">
+                            </div>
+                        @endfor
                     </div>
                 </div>
             </div>
@@ -92,7 +94,8 @@
                     <div class="tasti-extra d-flex justify-content-center flex-wrap">
 
                         {{-- //vai a messaggi appartamento --}}
-                        <a href="{{ route('user.message.index', $apartment->id) }}" role="button" class="icon-cont color-1">
+                        <a href="{{ route('user.message.index', $apartment->id) }}" role="button"
+                            class="icon-cont color-1">
                             <div class="bottone">
                                 <div>Messaggi</div><i class="fa-solid fa-envelope"></i>
                             </div>
@@ -106,7 +109,8 @@
                         </a>
 
                         {{-- //sponsorizzazioni --}}
-                        <a href="{{ route('user.sponsorship.index', $apartment) }}" role="button" class="icon-cont color-3">
+                        <a href="{{ route('user.sponsorship.index', $apartment) }}" role="button"
+                            class="icon-cont color-3">
                             <div class="bottone">
                                 <div>Sponsor</div><i class="fa-solid fa-money-bill-trend-up"></i>
                             </div>
