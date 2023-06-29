@@ -13,7 +13,7 @@ class Apartment extends Model
 
     //protected $fillable = ['*'];
 
-    protected $guarded = ['service', 'user_id', 'slug', 'latitude', 'longitude', 'cover_image'];
+    protected $guarded = ['service', 'user_id', 'slug', 'latitude', 'longitude', 'cover_image','galleries'];
     protected function coverImage(): Attribute
     {
         return Attribute::make(

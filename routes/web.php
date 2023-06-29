@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisteredUser\ApartmentController;
 use App\Http\Controllers\RegisteredUser\DashboardController;
 use App\Http\Controllers\RegisteredUser\SponsorshipController;
+use App\Http\Controllers\RegisteredUser\GalleryController;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +47,8 @@ Route::middleware('auth')
         // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/gallery/{id}',[GalleryController::class,'show'])->name('gallery.show');
+        Route::delete('gallery/{gallery}', [GalleryController::class,'destroy'])->name('gallery.destroy');
     });
 
 

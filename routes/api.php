@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApartmentController;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\SponsorController;
 use App\Http\Controllers\Api\ViewController;
@@ -37,3 +38,6 @@ Route::get('service/{id}', [ServiceController::class,'show']);
 //API Views
 Route::post('views', [ViewController::class,'views']);
 Route::get('sponsor', [SponsorController::class, 'index']);
+
+//API Message
+Route::post('message', [MessageController::class, 'index']);
