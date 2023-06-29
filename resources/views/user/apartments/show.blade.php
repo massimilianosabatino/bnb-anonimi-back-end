@@ -170,39 +170,7 @@
                     </div>
 
                 </div>
-
-
-
-
-
-
-
             </div>
-
-
-
-
-
-
-
-            <div class="row justify-content-between">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-
-
         </div>
 
 
