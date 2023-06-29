@@ -31,14 +31,15 @@
                             </div>
                         @endfor
                     </div>
-                @endif
-                @if ($apartment->galleries)
-                    @foreach ($apartment->galleries as $gallery)
-                    <div class="show-img-container">
-                        <img class="img-fluid" src="{{asset("storage/". $gallery->image_path)}}" alt="{{ $apartment->title }}">
-                    </div>
-                    @endforeach
-                @endif
+
+                    @if ($apartment->galleries)
+                        @foreach ($apartment->galleries as $gallery)
+                            <div class="show-img-container">
+                                <img class="img-fluid" src="{{ asset('storage/' . $gallery->image_path) }}"
+                                    alt="{{ $apartment->title }}">
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
 
@@ -60,205 +61,211 @@
                 </div>
             </div>
 
-                <ul class="list-group list-group-flush col-6">
-                    <li class="list-group-item">Stanze: {{ $apartment->rooms }}</li>
-                    <li class="list-group-item">Bagni: {{ $apartment->bathrooms }}</li>
-                    <li class="list-group-item">Letti: {{ $apartment->beds }}</li>
-                    <li class="list-group-item">Metri quadri: {{ $apartment->square_meters }}&#13217</li>
-                    <li class="list-group-item">Indirizzo: {{ $apartment->address }}</li>
-                    <li class="list-group-item">Prezzo: {{ $apartment->price }} €</li>
-                    @if ($sponsorEnd)
-                        <li class="list-group-item sponsor">Sponsorizzato fino al {{ $sponsorEnd['date'] }} alle
-                            {{ $sponsorEnd['time'] }}</li>
-                    @endif
-                </ul>
+            <ul class="list-group list-group-flush col-6">
+                <li class="list-group-item">Stanze: {{ $apartment->rooms }}</li>
+                <li class="list-group-item">Bagni: {{ $apartment->bathrooms }}</li>
+                <li class="list-group-item">Letti: {{ $apartment->beds }}</li>
+                <li class="list-group-item">Metri quadri: {{ $apartment->square_meters }}&#13217</li>
+                <li class="list-group-item">Indirizzo: {{ $apartment->address }}</li>
+                <li class="list-group-item">Prezzo: {{ $apartment->price }} €</li>
+                @if ($sponsorEnd)
+                    <li class="list-group-item sponsor">Sponsorizzato fino al {{ $sponsorEnd['date'] }} alle
+                        {{ $sponsorEnd['time'] }}</li>
+                @endif
+            </ul>
 
-                <div class="my-3">
-                    {{-- bottone per tornare all'index  --}}
-                    <a href="{{ route('user.apartment.index', $apartment) }}" role="button" class="btn btn-success">Torna
-                        ai
-                        tuoi appartamenti
-                    </a>
+            <div class="my-3">
+                {{-- bottone per tornare all'index  --}}
+                <a href="{{ route('user.apartment.index', $apartment) }}" role="button" class="btn btn-success">Torna
+                    ai
+                    tuoi appartamenti
+                </a>
 
-                    {{-- bottone per edit --}}
-                    <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
-                        class="btn btn-warning">Modifica
-                        questo appartamento
-                    </a>
-                    <a href="{{route('user.gallery.show',$apartment->id)}}">IL MIO CUORE</a>
+                {{-- bottone per edit --}}
+                <a href="{{ route('user.apartment.edit', $apartment) }}" role="button" class="btn btn-warning">Modifica
+                    questo appartamento
+                </a>
+                <a href="{{ route('user.gallery.show', $apartment->id) }}">IL MIO CUORE</a>
 
-                    {{-- bottone per delete --}}
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Elimina appartamento
-                    </button>
+                {{-- bottone per delete --}}
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Elimina appartamento
+                </button>
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Confermi di voler eliminare {{ $apartment->title }} ?
+                                {{-- servizi --}}
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col apart-services row m-0 my-3">
+                                            <div class="d-flex flex-wrap">
+
+                                                @foreach ($apartment->services as $service)
+                                                    <div
+                                                        class="single-service col-2 text-light d-flex justify-content-center align-items-center p-2">
+                                                        <div>
+                                                            {!! $service->icon !!}
+                                                        </div>
+                                                        <div class="service-name">
+                                                            {{ $service->name }}
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        {{-- dettagli appartamento --}}
+                                        <ul class="col list-group list-group-flush ">
+                                            <li class="list-group-item">Stanze: {{ $apartment->rooms }}</li>
+                                            <li class="list-group-item">Bagni: {{ $apartment->bathrooms }}</li>
+                                            <li class="list-group-item">Letti: {{ $apartment->beds }}</li>
+                                            <li class="list-group-item">Metri quadri:
+                                                {{ $apartment->square_meters }}&#13217</li>
+                                            <li class="list-group-item">Indirizzo: {{ $apartment->address }}</li>
+                                            <li class="list-group-item">Prezzo: {{ $apartment->price }} €</li>
+                                            @if ($sponsorEnd)
+                                                <li class="list-group-item sponsor">Sponsorizzato fino al
+                                                    {{ $sponsorEnd['date'] }}
+                                                    alle
+                                                    {{ $sponsorEnd['time'] }}</li>
+                                            @endif
+                                        </ul>
+                                    </div>
+
+
+                                    {{-- sezione tasti --}}
+
+                                    <div class=" d-flex flex-md-column col-5 parent-extra pb-3 mt-auto">
+                                        <h4 class="mx-auto fw-bolder">Tasti rapidi</h4>
+                                        <div class="tasti-extra d-flex justify-content-center flex-wrap">
+
+                                            {{-- //vai a messaggi appartamento --}}
+                                            <a href="{{ route('user.message.index', $apartment->id) }}" role="button"
+                                                class="icon-cont color-1">
+                                                <div class="bottone">
+                                                    <div>Messaggi</div><i class="fa-solid fa-envelope"></i>
+                                                </div>
+                                            </a>
+
+                                            {{-- // visualizza le statistiche --}}
+                                            <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                                                class="icon-cont color-2">
+                                                <div class="bottone">
+                                                    <div>Statistiche</div><i class="fa-solid fa-chart-simple"></i>
+                                                </div>
+                                            </a>
+
+                                            {{-- //sponsorizzazioni --}}
+                                            <a href="{{ route('user.sponsorship.index', $apartment) }}" role="button"
+                                                class="icon-cont color-3">
+                                                <div class="bottone">
+                                                    <div>Sponsor</div><i class="fa-solid fa-money-bill-trend-up"></i>
+                                                </div>
+                                            </a>
+
+                                            {{-- bottone per tornare all'index  --}}
+                                            <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                                                class="btn icon-cont color-1">
+                                                <div class="bottone">
+                                                    <div>Torna
+                                                        alla lista</div><i class="fa-solid fa-circle-left"></i>
+                                                </div>
+                                            </a>
+
+                                            {{-- bottone per edit --}}
+                                            <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
+                                                class="btn icon-cont color-2">
+                                                <div class="bottone">
+                                                    <div>Modifica</div><i class="fa-solid fa-pen-to-square"></i>
+                                                </div>
+                                            </a>
+
+                                            {{-- bottone per delete --}}
+                                            <button type="button" class="btn icon-cont color-3 elimina"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <div class="bottone">
+                                                    <div>Elimina</div><i class="fa-solid fa-trash"></i>
+                                                </div>
+
+                                            </button>
+
+                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella
+                                                            </h1>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Confermi di voler eliminare {{ $apartment->title }} ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <form
+                                                                action="{{ route('user.apartment.destroy', $apartment) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Cancella</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
                                 </div>
-                                <div class="modal-body">
-                                    Confermi di voler eliminare {{ $apartment->title }} ?
-            {{-- servizi --}}
-            <div class="row">
-                <div class="col">
-                    <div class="col apart-services row m-0 my-3">
-                        <div class="d-flex flex-wrap">
 
-                            @foreach ($apartment->services as $service)
-                                <div
-                                    class="single-service col-2 text-light d-flex justify-content-center align-items-center p-2">
-                                    <div>
-                                        {!! $service->icon !!}
-                                    </div>
-                                    <div class="service-name">
-                                        {{ $service->name }}
-                                    </div>
+
+
+
+
+
+
+                                <div class="row justify-content-between">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    {{-- dettagli appartamento --}}
-                    <ul class="col list-group list-group-flush ">
-                        <li class="list-group-item">Stanze: {{ $apartment->rooms }}</li>
-                        <li class="list-group-item">Bagni: {{ $apartment->bathrooms }}</li>
-                        <li class="list-group-item">Letti: {{ $apartment->beds }}</li>
-                        <li class="list-group-item">Metri quadri: {{ $apartment->square_meters }}&#13217</li>
-                        <li class="list-group-item">Indirizzo: {{ $apartment->address }}</li>
-                        <li class="list-group-item">Prezzo: {{ $apartment->price }} €</li>
-                        @if ($sponsorEnd)
-                            <li class="list-group-item sponsor">Sponsorizzato fino al {{ $sponsorEnd['date'] }}
-                                alle
-                                {{ $sponsorEnd['time'] }}</li>
-                        @endif
-                    </ul>
-                </div>
 
 
-                {{-- sezione tasti --}}
-
-                <div class=" d-flex flex-md-column col-5 parent-extra pb-3 mt-auto">
-                    <h4 class="mx-auto fw-bolder">Tasti rapidi</h4>
-                    <div class="tasti-extra d-flex justify-content-center flex-wrap">
-
-                        {{-- //vai a messaggi appartamento --}}
-                        <a href="{{ route('user.message.index', $apartment->id) }}" role="button"
-                            class="icon-cont color-1">
-                            <div class="bottone">
-                                <div>Messaggi</div><i class="fa-solid fa-envelope"></i>
-                            </div>
-                        </a>
-
-                        {{-- // visualizza le statistiche --}}
-                        <a href="{{ route('user.apartment.index', $apartment) }}" role="button" class="icon-cont color-2">
-                            <div class="bottone">
-                                <div>Statistiche</div><i class="fa-solid fa-chart-simple"></i>
-                            </div>
-                        </a>
-
-                        {{-- //sponsorizzazioni --}}
-                        <a href="{{ route('user.sponsorship.index', $apartment) }}" role="button"
-                            class="icon-cont color-3">
-                            <div class="bottone">
-                                <div>Sponsor</div><i class="fa-solid fa-money-bill-trend-up"></i>
-                            </div>
-                        </a>
-
-                        {{-- bottone per tornare all'index  --}}
-                        <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
-                            class="btn icon-cont color-1">
-                            <div class="bottone">
-                                <div>Torna
-                                    alla lista</div><i class="fa-solid fa-circle-left"></i>
-                            </div>
-                        </a>
-
-                        {{-- bottone per edit --}}
-                        <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
-                            class="btn icon-cont color-2">
-                            <div class="bottone">
-                                <div>Modifica</div><i class="fa-solid fa-pen-to-square"></i>
-                            </div>
-                        </a>
-
-                        {{-- bottone per delete --}}
-                        <button type="button" class="btn icon-cont color-3 elimina" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            <div class="bottone">
-                                <div>Elimina</div><i class="fa-solid fa-trash"></i>
                             </div>
 
-                        </button>
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Confermi di voler eliminare {{ $apartment->title }} ?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Cancella</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-            <div class="row justify-content-between">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-
-
-        </div>
-
-
-        {{-- <div class=" d-flex flex-md-column col-12 col-md-4 gy-4 extra">
+                            {{-- <div class=" d-flex flex-md-column col-12 col-md-4 gy-4 extra">
 
                  //vai a messaggi appartamento 
                 <div class="me-2 mb-md-3">
@@ -284,5 +291,5 @@
 
 
 
-    </div>
-@endsection
+                        </div>
+                    @endsection
