@@ -96,8 +96,8 @@ class SponsorshipController extends Controller
             ]
         ]);
 
-        // Results
 
+        // Results
         if ($result->success) {
             if ($apartment->user_id == Auth::user()->id) {
 
@@ -112,20 +112,19 @@ class SponsorshipController extends Controller
                 // Write plan purchased on pivot
                 $apartment->sponsorships()->attach($plan, ['start_date' => $start, 'finish_date' => $end]);
             }
-            return $result;
+            
+            return response()->json([
+                'success' => true,
+                'results' => $result,
+                'plan' => $sponsorship->name,
+                'end' => $end->format('d-m-Y')
+            ]);
         } else {
             return response()->json([
                 'success' => false,
                 'results' => $result
             ]);
         }
-        // $apartment = Apartment::where('id', key($_REQUEST))->first();
-        // if ($apartment->user_id == Auth::user()->id) {
-        //     return view('user.sponsorship.show', compact('apartment', 'sponsorship'));
-        // } else {
-        //     return redirect()->route('user.sponsorship.index')->withErrors('Nessun appartamento');
-        // }
-
     }
 
     /**

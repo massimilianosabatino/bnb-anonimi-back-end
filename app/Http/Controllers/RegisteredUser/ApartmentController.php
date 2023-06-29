@@ -28,7 +28,8 @@ class ApartmentController extends Controller
 
         $apartments = Apartment::where('user_id', '=', Auth::id())->with('sponsorships')->get();
 
-        return view('user.apartments.index', compact('apartments'));
+        return view('user.apartments.index', compact('apartments') );
+
     }
 
     /**
@@ -105,6 +106,7 @@ class ApartmentController extends Controller
             // Get last active sponsorship for this apartment
             $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
             $sponsorEnd = null;
+
             if ($activeSponsor) {
                 $sponsorEndDate = Carbon::create($activeSponsor->pivot->finish_date)->format('d-m-Y');
                 $sponsorEndTime = Carbon::create($activeSponsor->pivot->finish_date)->format('h:i');
@@ -114,6 +116,8 @@ class ApartmentController extends Controller
                     'time' => $sponsorEndTime
                 ];
             }
+
+            
             return view('user.apartments.show', compact('apartment', 'sponsorEnd'));
         } else {
             return redirect()->route('user.apartment.index')->withErrors('Nessun appartamento');

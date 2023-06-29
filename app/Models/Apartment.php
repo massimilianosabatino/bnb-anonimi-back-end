@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,5 +43,19 @@ class Apartment extends Model
 
     public function sponsorships(){
         return $this->belongsToMany(Sponsorship::class)->withPivot('start_date','finish_date')->withTimestamps();
+    }
+
+    public function sponsorEnd(){
+
+        if ($this->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last()){
+
+            $abc = $this->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
+
+            $newabc = Carbon::create($abc->pivot->finish_date)->format('d-m-Y');
+            return $newabc;
+        }
+ 
+
+       
     }
 }

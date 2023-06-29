@@ -25,15 +25,15 @@
     @endif
     {{-- /Error list --}}
 
-    {{-- Check if has sponsor --}}
+    {{-- Check if has sponsor ad show banner --}}
     @if($activeSponsor)
-    <div class="row">
+    <div id="active-sponsor" class="row">
         <div class="col-auto alert alert-success">
-            ATTENZIONE - Già sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}
+            Questo appartamento è sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}. Puoi estendere la scadenza acquistando un nuovo pacchetto.
         </div>
     </div>
     @endif
-    {{-- /Check if has sponsor --}}
+    {{-- /Check if has sponsor ad show banner --}}
 
     {{-- Banner delle sponsorizzazioni generati dinamicamente sulla base dei dati salvati nel database --}}
     <div class="row">
@@ -64,8 +64,9 @@
             @endforeach
         </div>
     </div>
-
-    <div class="row payment">
+    {{-- /Banner delle sponsorizzazioni generati dinamicamente sulla base dei dati salvati nel database --}}
+    {{-- Drop In Braintree --}}
+    <div class="row payment mb-4">
         <div class="col-8">
             <div id="dropin-wrapper">
                 <div id="checkout-message"></div>
@@ -112,7 +113,7 @@
                             'apartmentSelected': {{ $apartment->id }}
                         }
                         }).done(function(result) {
-                        console.log(result);
+                        
                         // Tear down the Drop-in UI
                         instance.teardown(function (teardownErr) {
                             if (teardownErr) {
@@ -125,10 +126,13 @@
                         });
                 
                         if (result.success) {
-                            $('#checkout-message').html('<h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p>');
-                            setTimeout(() => {
-                                window.location='{{ route('user.apartment.index') }}';
-                            }, 3000);
+                            // console.log(result.results);
+                            //Revome banner for activer sponsor after payment
+                            let active_sponsor = document.getElementById('active-sponsor');
+                            if (active_sponsor) {
+                                active_sponsor.classList.add('d-none');
+                            }
+                            $('#checkout-message').html(`<h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p><div><strong>ID transazione:</strong> ${result.results.transaction.paymentReceipt.id}</div><div><strong>Pacchetto acquistato:</strong> ${result.plan}</div><div><strong>Prezzo:</strong> ${result.results.transaction.paymentReceipt.amount}</div><div><strong>Scadenza sponsorizzazione:</strong> ${result.end}</div>`);
                         } else {
                             console.log(result);
                             $('#checkout-message').html(`<h1>Qualcosa è andato storto</h1><p>Controlla di aver inserito correttamente i dati della carta.</p><p>Se hai inserito correttamente i dati e il credito sulla carta è sufficiente (ad esempio se stai utilizzando una ricaricabile) allora puoi provare a contattare il servizio clienti.</p><p class="transaction-error">Errore: <span>${result.results.message}</span></p>`);
@@ -140,29 +144,6 @@
             </script>
         </div>
     </div>
-
-    {{-- Cards degli appartamenti dell'utente registrato con relativi bottoni per scegliere la sponsorizzazione --}}
-
-    {{-- <div class="row">
-
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="card h-100 cardhover">
-                <img src="{{ $apartment->cover_image }}" class="card-img-top" alt="{{ $apartment->title }}">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">{{ $apartment->title }}</h5>
-                    <p class="card-text">Indirizzo: {{ $apartment->address }}</p>
-                    <div class="mt-auto d-grid">
-                        <a href="{{ route('user.sponsorship.show', [1, $apartment->id]) }}" class="btn text-white mb-2"
-                            style="background-color: rgb(180, 180, 180)">Standard!</a>
-                        <a href="{{ route('user.sponsorship.show', [2, $apartment->id]) }}" class="btn text-white mb-2"
-                            style="background-color: rgb(150, 150, 150)">Premium!</a>
-                        <a href="{{ route('user.sponsorship.show', [3, $apartment->id]) }}" class="btn text-white mb-2"
-                            style="background-color: rgb(110, 110, 110)">Deluxe!</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div> --}}
+    {{-- /Drop In Braintree --}}
 </div>
 @endsection
