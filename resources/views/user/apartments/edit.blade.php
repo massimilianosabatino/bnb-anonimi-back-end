@@ -70,6 +70,12 @@
                         <!-- /anteprima immagine upload -->
                     </div>
 
+                    {{-- GALLERY --}}
+                    <div class="mb-3 cover-image-field">
+                        <label for="galleries" class="form-label">Immagini per galleria</label>
+                        <input class="form-control select_img" type="file" multiple id="galleries" name="galleries[]">
+                    </div>
+
                     {{-- ADDRESS --}}
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo</label>

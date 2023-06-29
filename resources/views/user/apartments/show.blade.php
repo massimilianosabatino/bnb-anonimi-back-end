@@ -23,6 +23,14 @@
                         <img class="img-fluid" src="{{ $apartment->cover_image }}" alt="{{ $apartment->title }}">
                     </div>
                 @endif
+                @if ($apartment->galleries)
+                    @foreach ($apartment->galleries as $gallery)
+                    <div class="show-img-container">
+                        <img class="img-fluid" src="{{asset("storage/". $gallery->image_path)}}" alt="{{ $apartment->title }}">
+                    </div>
+                    @endforeach
+                @endif
+
 
                 <div class="apart-services row m-0 my-3">
 
@@ -47,8 +55,9 @@
                     <li class="list-group-item">Metri quadri: {{ $apartment->square_meters }}&#13217</li>
                     <li class="list-group-item">Indirizzo: {{ $apartment->address }}</li>
                     <li class="list-group-item">Prezzo: {{ $apartment->price }} €</li>
-                    @if ($sponsorEnd) 
-                    <li class="list-group-item sponsor">Sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}</li>
+                    @if ($sponsorEnd)
+                        <li class="list-group-item sponsor">Sponsorizzato fino al {{ $sponsorEnd['date'] }} alle
+                            {{ $sponsorEnd['time'] }}</li>
                     @endif
                 </ul>
 
@@ -64,6 +73,7 @@
                         class="btn btn-warning">Modifica
                         questo appartamento
                     </a>
+                    <a href="{{route('user.gallery.show',$apartment->id)}}">IL MIO CUORE</a>
 
                     {{-- bottone per delete --}}
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -93,7 +103,7 @@
                             </div>
                         </div>
                     </div>
- 
+
                 </div>
 
 
