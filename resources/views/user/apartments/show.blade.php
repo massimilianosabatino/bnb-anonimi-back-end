@@ -29,7 +29,7 @@
                             @if ($apartment->galleries)
                                 @foreach ($apartment->galleries as $gallery)
                                     <div class="img-cont">
-                                        <img src="{{ asset('storage/' . $gallery->image_path) }}"
+                                        <img src="{{ $gallery->image_path }}"
                                             alt="{{ $apartment->slug }}" class="img-gallery">
                                     </div>
                                 @endforeach
