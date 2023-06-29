@@ -17,6 +17,7 @@ class ViewController extends Controller
         $view->apartment_id=$id_ap;
         $view->visit_date=$visit_date;
         $view->ip_address=$ip_address;
+        dd('ciao');
 
         return response()->json([
             'success'=>true,
