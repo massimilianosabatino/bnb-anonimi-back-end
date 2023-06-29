@@ -27,7 +27,7 @@ class ApartmentController extends Controller
     public function show($id)
     {
         try {
-            $apartment = Apartment::where('id', $id)->with(['services', 'user'])->first();
+            $apartment = Apartment::where('id', $id)->with(['services', 'user','galleries'])->first();
 
             if ($apartment) {
                 return response()->json([
