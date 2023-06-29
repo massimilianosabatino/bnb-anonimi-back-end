@@ -31,8 +31,17 @@
                             </div>
                         @endfor
                     </div>
+                @endif
+                @if ($apartment->galleries)
+                    @foreach ($apartment->galleries as $gallery)
+                    <div class="show-img-container">
+                        <img class="img-fluid" src="{{asset("storage/". $gallery->image_path)}}" alt="{{ $apartment->title }}">
+                    </div>
+                    @endforeach
+                @endif
                 </div>
             </div>
+
 
 
 
@@ -51,6 +60,49 @@
                 </div>
             </div>
 
+                <ul class="list-group list-group-flush col-6">
+                    <li class="list-group-item">Stanze: {{ $apartment->rooms }}</li>
+                    <li class="list-group-item">Bagni: {{ $apartment->bathrooms }}</li>
+                    <li class="list-group-item">Letti: {{ $apartment->beds }}</li>
+                    <li class="list-group-item">Metri quadri: {{ $apartment->square_meters }}&#13217</li>
+                    <li class="list-group-item">Indirizzo: {{ $apartment->address }}</li>
+                    <li class="list-group-item">Prezzo: {{ $apartment->price }} €</li>
+                    @if ($sponsorEnd)
+                        <li class="list-group-item sponsor">Sponsorizzato fino al {{ $sponsorEnd['date'] }} alle
+                            {{ $sponsorEnd['time'] }}</li>
+                    @endif
+                </ul>
+
+                <div class="my-3">
+                    {{-- bottone per tornare all'index  --}}
+                    <a href="{{ route('user.apartment.index', $apartment) }}" role="button" class="btn btn-success">Torna
+                        ai
+                        tuoi appartamenti
+                    </a>
+
+                    {{-- bottone per edit --}}
+                    <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
+                        class="btn btn-warning">Modifica
+                        questo appartamento
+                    </a>
+                    <a href="{{route('user.gallery.show',$apartment->id)}}">IL MIO CUORE</a>
+
+                    {{-- bottone per delete --}}
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Elimina appartamento
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cancella</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Confermi di voler eliminare {{ $apartment->title }} ?
             {{-- servizi --}}
             <div class="row">
                 <div class="col">

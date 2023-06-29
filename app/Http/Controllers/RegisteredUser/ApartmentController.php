@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Str;
 use App\Models\Service;
 use App\Models\Sponsorship;
+use App\Models\Gallery;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Auth;
@@ -26,9 +27,9 @@ class ApartmentController extends Controller
     {
 
         $apartments = Apartment::where('user_id', '=', Auth::id())->with('sponsorships')->get();
-        
-        
+
         return view('user.apartments.index', compact('apartments') );
+
     }
 
     /**
@@ -63,6 +64,7 @@ class ApartmentController extends Controller
             $newApartments->cover_image = Storage::put('uploads', $data['cover_image']);
         }
 
+
         $apiUrl = "https://api.tomtom.com/search/2/geocode/";
         $apiAddress = $data['address'];
         $apiKey = env('API_KEY');
@@ -71,6 +73,17 @@ class ApartmentController extends Controller
         $newApartments->latitude = $address['results'][0]['position']['lat'];
         $newApartments->longitude = $address['results'][0]['position']['lon'];
         $newApartments->save();
+
+        if (isset($request['galleries'])) {
+            foreach ($request['galleries'] as $gallery) {
+                $newGallery = new Gallery;
+                $newGallery->apartment_id = $newApartments->id;
+                $newGallery->image_path = (Storage::putFile('uploads', $gallery));
+                $newGallery->title = $newApartments->slug;
+                $newGallery->save();
+            }
+        }
+
 
         // salvo i services selezionati nella pivot solo se esistono nell"array service
         if ($request['service']) {
@@ -89,7 +102,7 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         if ($apartment->user_id == Auth::user()->id) {
-            
+
             // Get last active sponsorship for this apartment
             $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
             $sponsorEnd = null;
@@ -148,7 +161,16 @@ class ApartmentController extends Controller
 
             $apartment->cover_image = Storage::put('uploads', $data['cover_image']);
         }
+        if (isset($request['galleries'])) {
+            foreach ($request['galleries'] as $gallery) {
 
+                $newGallery = new Gallery;
+                $newGallery->apartment_id = $apartment->id;
+                $newGallery->image_path = (Storage::putFile('uploads', $gallery));
+                $newGallery->title = $apartment->slug;
+                $newGallery->save();
+            }
+        }
 
         $apartment->update($data);
         if ($request['service']) {
