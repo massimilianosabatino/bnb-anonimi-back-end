@@ -60,7 +60,7 @@
       <p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p>
       <div><strong>ID transazione:</strong> {{ $result->transaction->paymentReceipt['id'] }}</div>
       <div><strong>Pacchetto acquistato:</strong> {{ $plan }}</div>
-      <div><strong>Appartemento sponsorizzato:</strong> {{ $name }}</div>
+      <div><strong>Appartemento sponsorizzato:</strong> {{ $apartment->title }}</div>
       <div><strong>Prezzo:</strong> {{ $result->transaction->paymentReceipt['amount'] }}</div>
       <div><strong>Scadenza sponsorizzazione:</strong> {{ $end }}</div>
     </div>

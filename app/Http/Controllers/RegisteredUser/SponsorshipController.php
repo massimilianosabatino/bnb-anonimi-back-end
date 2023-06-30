@@ -35,6 +35,7 @@ class SponsorshipController extends Controller
                 'date' => $sponsorEndDate,
                 'time' => $sponsorEndTime
             ];
+            
         }
 
         return view('user.sponsorship.index', compact('apartment', 'sponsorships', 'activeSponsor', 'sponsorEnd'));
@@ -234,7 +235,7 @@ dd($_REQUEST);
             //     'plan' => $sponsorship->name,
             //     'end' => $end->format('d-m-Y')
             // ]);
-
+            $end = $end->format('d-m-Y') . ' alle ' . $end->format('h:m');
             $plan = $sponsorship->name;
 
             return view('user.sponsorship.checkout', compact('success', 'result', 'plan', 'end', 'name', 'sponsorships', 'apartment'));
