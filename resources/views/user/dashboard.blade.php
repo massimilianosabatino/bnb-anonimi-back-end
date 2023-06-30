@@ -169,6 +169,9 @@
 <div class="container my-4 py-4">
     <div class="row">
         <div class="col">
+            <h2 class="text-center mb-4">Visualizzazioni totali per i tuoi appartamenti</h2>
+        </div>
+        <div class="col">
             <canvas id="myChart" height="100px"></canvas>
         </div>
     </div>
