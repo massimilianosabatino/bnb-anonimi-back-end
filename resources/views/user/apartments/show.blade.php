@@ -4,7 +4,7 @@
     <div class="container apartment-show">
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-lg-12">
                 <div class="my-5">
                     <a href="{{ route('user.apartment.index') }}" type="button"
                         class="btn btn-outline-secondary mb-3">Back</a>
@@ -13,10 +13,10 @@
                 <div class="row">
                     <h2 class="fs-3 fw-bold mb-3">{{ strtoupper($apartment->title) }}</h2>
 
-                    <div class="col-7">
+                    <div class="col-lg-7">
                         {{-- colonna Immagine --}}
                         @if ($apartment->cover_image)
-                            <div class="show-img-container col-8">
+                            <div class="show-img-container col-lg-8">
                                 <img class="img-fluid" src="{{ $apartment->cover_image }}" alt="{{ $apartment->title }}">
                             </div>
                         @endif
@@ -24,7 +24,7 @@
                     {{-- fine immagine --}}
 
                     {{-- colonna Gallery --}}
-                    <div class="col-5 d-flex flex-wrap">
+                    <div class="col-lg-5 d-flex flex-wrap">
                         <div class="gallery d-flex flex-wrap">
                             @if ($apartment->galleries)
                                 @foreach ($apartment->galleries as $gallery)
@@ -42,7 +42,7 @@
 
 
             <div class="row">
-                <div class="col-7">
+                <div class="col-lg-7">
                     {{-- visibilita' --}}
                     <p class="mt-3 visible">Il tuo appartamento e' impostato su:
                         <span>
@@ -58,13 +58,13 @@
 
             {{-- servizi --}}
             <div class="row">
-                <div class="col">
-                    <div class="col apart-services row m-0 my-3">
+                <div class="col-lg">
+                    <div class="col-lg apart-services row m-0 my-3">
                         <div class="d-flex flex-wrap">
 
                             @foreach ($apartment->services as $service)
                                 <div
-                                    class="single-service col-2 text-light d-flex justify-content-center align-items-center p-2">
+                                    class="single-service col-lg-2 text-light d-flex justify-content-center align-items-center p-2">
                                     <div>
                                         {!! $service->icon !!}
                                     </div>
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     {{-- dettagli appartamento --}}
-                    <ul class="col list-group list-group-flush ">
+                    <ul class="col-lg list-group list-group-flush ">
                         <li class="list-group-item">Stanze: {{ $apartment->rooms }}</li>
                         <li class="list-group-item">Bagni: {{ $apartment->bathrooms }}</li>
                         <li class="list-group-item">Letti: {{ $apartment->beds }}</li>
@@ -94,7 +94,7 @@
 
                 {{-- sezione tasti --}}
 
-                <div class=" d-flex flex-md-column col-5 parent-extra pb-3 mt-auto">
+                <div class=" d-flex flex-md-column col-lg-5 parent-extra pb-3 mt-auto">
                     <h4 class="mx-auto fw-bolder">Tasti rapidi</h4>
                     <div class="tasti-extra d-flex justify-content-center flex-wrap">
 
