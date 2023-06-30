@@ -80,7 +80,7 @@
         clearInterval(time);
       } else {
         conta--;
-        timer.innerText = `Attendi ${conta} secondi per effettuare una nuova sponsorizzazione sullo stesso appartamento`;
+        timer.innerText = `Attendi ${conta} secondi per effettuare una nuova sponsorizzazione sullo stesso appartamento.`;
       }
     }, 1000);
 if(document.getElementById('enable-timer')){

@@ -127,6 +127,8 @@
                         // Send payload.nonce to your server
                         nonceInput.value = payload.nonce;
                         form.submit();
+                        let submitButton = document.getElementByID('submit-button');
+                        submitButton.classList.add('d-none');
                     });
                     });
                 });
