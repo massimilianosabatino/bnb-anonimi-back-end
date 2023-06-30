@@ -70,8 +70,8 @@ class SponsorshipController extends Controller
      */
     public function show()
     {
-        $sponsorships = Sponsorship::all();
-dd($_REQUEST);
+//         $sponsorships = Sponsorship::all();
+// dd($_REQUEST);
         // // Get data from request
         // $plan = $_POST['planSelected'];
         // $apartmentID = $_POST['apartmentSelected'];
@@ -117,7 +117,7 @@ dd($_REQUEST);
         //         $apartment->sponsorships()->attach($plan, ['start_date' => $start, 'finish_date' => $end]);
         //     }
             
-            $success = true;
+            // $success = true;
         //     $name = $apartment->title;
             // dd($result->transaction->paymentReceipt);
             // Return for response on payment page
