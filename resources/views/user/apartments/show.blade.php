@@ -27,12 +27,18 @@
                     <div class="col-5 d-flex flex-wrap">
                         <div class="gallery d-flex flex-wrap">
                             @if ($apartment->galleries)
-                                @foreach ($apartment->galleries as $gallery)
+                                @foreach ($apartment->galleries->take(3) as $gallery)
                                     <div class="img-cont">
-                                        <img src="{{ $gallery->image_path }}"
-                                            alt="{{ $apartment->slug }}" class="img-gallery">
+                                        <img src="{{ $gallery->image_path }}" alt="{{ $apartment->slug }}"
+                                            class="img-gallery">
                                     </div>
                                 @endforeach
+                                {{-- @dd($apartment->galleries) --}}
+                                @if (count($apartment->galleries) > 2)
+                                <a href="{{ route('user.gallery.show', $apartment->id) }}" class="img-cont">
+                                    <img src="{{ $apartment->galleries->slice( count($apartment->galleries) - 1)->first()->image_path }}" alt="{{ $apartment->slug }}" class="img-gallery">
+                                </a>
+                                @endif
                             @endif
                         </div>
                     </div>
@@ -61,7 +67,6 @@
                 <div class="col">
                     <div class="col apart-services row m-0 my-3">
                         <div class="d-flex flex-wrap">
-
                             @foreach ($apartment->services as $service)
                                 <div
                                     class="single-service col-2 text-light d-flex justify-content-center align-items-center p-2">
@@ -121,7 +126,7 @@
                             </div>
                         </a>
 
-                        {{-- bottone per tornare all'index  --}}
+                        {{-- bottone per la galleria  --}}
                         <a href="{{ route('user.gallery.show', $apartment->id) }}" role="button"
                             class="btn icon-cont color-1">
                             <div class="bottone">
