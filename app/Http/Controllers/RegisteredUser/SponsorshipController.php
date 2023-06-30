@@ -22,6 +22,10 @@ class SponsorshipController extends Controller
 
         $sponsorships = Sponsorship::all();
         $apartment = Apartment::where('user_id', '=', Auth::id())->where('id', '=', key($_REQUEST))->first();
+        //Controllo per non far modificare appartamenti diversi da quello selezionato
+        if($apartment===null){
+            return redirect()->route('user.apartment.index')->with('message','Operazione non consentita');
+        }
 
         // Get last active sponsorship for this apartment
         $activeSponsor = $apartment->sponsorships->where('pivot.finish_date', '>', now())->sortBy('pivot.finish_date')->last();
