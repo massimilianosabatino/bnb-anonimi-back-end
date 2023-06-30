@@ -64,10 +64,33 @@
       <div><strong>Scadenza sponsorizzazione:</strong> {{ $end }}</div>
     </div>
     <div class="col-12 mt-3">
-      <a href="{{ route('user.sponsorship.index', $apartment->id) }}" type="button" class="btn btn-outline-secondary mb-1">Sponsorizza di nuovo</a>
+      <div id="timer"></div>
+      <a id="enable-timer" href="{{ route('user.sponsorship.index', $apartment->id) }}" type="button" class="btn btn-outline-secondary mb-1 opacity-0">Sponsorizza di nuovo</a>
     </div>
   </div>
 </div>
 
+<script>
+    const timer = document.getElementById("timer");
+
+    let conta = 20;
+    const time = setInterval(function () {
+      if (conta === 1) {
+        timer.innerHTML = '';
+        clearInterval(time);
+      } else {
+        conta--;
+        timer.innerText = `Attendi ${conta} secondi per effettuare una nuova sponsorizzazione sullo stesso appartamento`;
+      }
+    }, 1000);
+if(document.getElementById('enable-timer')){
+    window.addEventListener('load',function(){
+    let button = document.getElementById('enable-timer');
+    this.setTimeout(function(){
+        button.classList.remove('opacity-0');
+    },20000)
+})
+}
+</script>
 
 @endsection
