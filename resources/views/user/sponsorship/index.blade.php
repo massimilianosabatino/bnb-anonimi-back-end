@@ -18,16 +18,16 @@
     </h1>
 
     {{-- Error list --}}
-    @if ($errors->any())
+    {{-- @if ($errors->any())
     @foreach ($errors->all() as $error)
     <div class="alert alert-danger my-3 col-6 col-md-3" id="autorizzazione">{{ $error }}</div>
     @endforeach
-    @endif
+    @endif --}}
     {{-- /Error list --}}
 
     {{-- Check if has sponsor ad show banner --}}
     @if($activeSponsor)
-    <div id="active-sponsor" class="row">
+    <div id="active-sponsor" class="row justify-content-center mb-3">
         <div class="col-auto alert alert-success">
             Questo appartamento è sponsorizzato fino al {{ $sponsorEnd['date'] }} alle {{ $sponsorEnd['time'] }}. Puoi estendere la scadenza acquistando un nuovo pacchetto.
         </div>
@@ -36,6 +36,8 @@
     {{-- /Check if has sponsor ad show banner --}}
 
     {{-- Banner delle sponsorizzazioni generati dinamicamente sulla base dei dati salvati nel database --}}
+    <form id="payment-form" action="{{ route('user.sponsorship.checkout') }}" method="post">
+        @csrf
     <div class="row">
         <div class="d-flex flex-wrap">
             @foreach ($sponsorships as $key => $sponsorship)
@@ -68,80 +70,128 @@
     {{-- Drop In Braintree --}}
     <div class="row payment mb-4">
         <div class="col-8">
-            <div id="dropin-wrapper">
-                <div id="checkout-message"></div>
-                <div id="dropin-container"></div>
-                <button id="submit-button">Submit payment</button>
-            </div>
+                <div id="dropin-wrapper">
+                    <div id="checkout-message"></div>
+                    <div id="dropin-container"></div>
+                    <input type="hidden" id="nonce" name="payment_method_nonce">
+                    <input type="hidden" id="apartmentSelected" name="apartmentSelected" value="{{ $apartment->id }}">
+                    {{-- <input type="hidden" id="planSelected" name="planSelected" value="3"> --}}
+
+                    <button id="submit-button">Submit payment</button>
+                </div>
+            </form>
+            @if ($errors->any())
+            <h3 class="my-4">Qualcosa è andato storto</h3>
+            <p>Controlla di aver inserito correttamente i dati della carta.</p>
+            <p>Se hai inserito correttamente i dati e il credito sulla carta è sufficiente (ad esempio se stai utilizzando una ricaricabile) allora puoi provare a contattare il servizio clienti.</p>
+            <p class="transaction-error">Errore: <span>{{ $errors->first('msg') }}</span></p>
+
+            @endif
             <script>
                 // Get plain selected from dom
-                function getPlainsValue() {
-                    let tierSelected = null;
-                    let tierButton = document.getElementsByName('tier');
+                // function getPlainsValue() {
+                //     let tierSelected = null;
+                //     let tierButton = document.getElementsByName('tier');
 
-                    for (i = 0; i < tierButton.length; i++) {
-                        if (tierButton[i].checked)
-                            tierSelected = tierButton[i].value
-                        }
-                        return tierSelected;
-                }
+                //     for (i = 0; i < tierButton.length; i++) {
+                //         if (tierButton[i].checked)
+                //             tierSelected = tierButton[i].value
+                //         }
+                //         return tierSelected;
+                // }
                 // /Get plain selected from dom
 
-                // Braintree Drop-In
-                var button = document.querySelector('#submit-button');
-                
+                var form = document.querySelector('#payment-form');
+                var nonceInput = document.querySelector('#nonce');
+
                 braintree.dropin.create({
-                    // Insert your tokenization key here
                     authorization: '{{ env('AUTHORIZATION') }}',
                     container: '#dropin-container'
-                }, function (createErr, instance) {
-                    button.addEventListener('click', function () {
-                    // Get plain chosen
-                    let planSelected = getPlainsValue();
-                    
-                    instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
-                        // When the user clicks on the 'Submit payment' button this code will send the
-                        // encrypted payment information in a variable called a payment method nonce
-                        // Add also plan selected 
-                        $.ajax({
-                        type: 'POST',
-                        url: 'sponsorship/checkout',
-                        data: {
-                            '_token': '{{ csrf_token() }}',
-                            'paymentMethodNonce': payload.nonce,
-                            'planSelected': planSelected,
-                            'apartmentSelected': {{ $apartment->id }}
-                        }
-                        }).done(function(result) {
-                        
-                        // Tear down the Drop-in UI
-                        instance.teardown(function (teardownErr) {
-                            if (teardownErr) {
-                            console.error('Could not tear down Drop-in UI!');
-                            } else {
-                            console.info('Drop-in UI has been torn down!');
-                            // Remove the 'Submit payment' button
-                            $('#submit-button').remove();
-                            }
-                        });
-                
-                        if (result.success) {
-                            // console.log(result.results);
-                            //Revome banner for activer sponsor after payment
-                            let active_sponsor = document.getElementById('active-sponsor');
-                            if (active_sponsor) {
-                                active_sponsor.classList.add('d-none');
-                            }
-                            $('#checkout-message').html(`<h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p><div><strong>ID transazione:</strong> ${result.results.transaction.paymentReceipt.id}</div><div><strong>Pacchetto acquistato:</strong> ${result.plan}</div><div><strong>Prezzo:</strong> ${result.results.transaction.paymentReceipt.amount}</div><div><strong>Scadenza sponsorizzazione:</strong> ${result.end}</div>`);
-                        } else {
+                }, function (err, dropinInstance) {
+                    if (err) {
+                    // Handle any errors that might've occurred when creating Drop-in
+                    console.error(err);
+                    return;
+                    }
+                    form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    dropinInstance.requestPaymentMethod(function (err, payload) {
+                        if (err) {
+                        // Handle errors in requesting payment method
                             console.log(result);
                             $('#checkout-message').html(`<h1>Qualcosa è andato storto</h1><p>Controlla di aver inserito correttamente i dati della carta.</p><p>Se hai inserito correttamente i dati e il credito sulla carta è sufficiente (ad esempio se stai utilizzando una ricaricabile) allora puoi provare a contattare il servizio clienti.</p><p class="transaction-error">Errore: <span>${result.results.message}</span></p>`);
+                        return;
                         }
-                        });
+
+                        // Send payload.nonce to your server
+                        nonceInput.value = payload.nonce;
+                        form.submit();
+                        let submitButton = document.getElementByID('submit-button');
+                        submitButton.classList.add('d-none');
                     });
                     });
                 });
+                
+                
+                // Braintree Drop-In standard
+                // var button = document.querySelector('#submit-button');
+                
+                // braintree.dropin.create({
+                //     // Insert your tokenization key here
+                //     authorization: '{{ env('AUTHORIZATION') }}',
+                //     container: '#dropin-container'
+                // }, function (createErr, instance) {
+                //     button.addEventListener('click', function () {
+                        
+                //     Get plain chosen
+                //     let planSelected = getPlainsValue();
+                    
+                //     instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+                //         // When the user clicks on the 'Submit payment' button this code will send the
+                //         // encrypted payment information in a variable called a payment method nonce
+                //         // Add also plan selected 
+                //         $.ajax({
+                //         type: 'POST',
+                //         url: 'sponsorship/checkout',
+                //         data: {
+                //             '_token': '{{ csrf_token() }}',
+                //             'paymentMethodNonce': payload.nonce,
+                //             'planSelected': planSelected,
+                //             'apartmentSelected': {{ $apartment->id }}
+                //         }
+                //         }).done(function(result) {
+                        
+                //         // Tear down the Drop-in UI
+                //         instance.teardown(function (teardownErr) {
+                //             if (teardownErr) {
+                //             console.error('Could not tear down Drop-in UI!');
+                //             } else {
+                //             console.info('Drop-in UI has been torn down!');
+                //             // Remove the 'Submit payment' button
+                //             $('#submit-button').remove();
+                //             }
+                //         });
+                
+                //         if (result.success) {
+                            
+                //             // console.log(result.results);
+                //             //Revome banner for activer sponsor after payment
+                //             let active_sponsor = document.getElementById('active-sponsor');
+                //             if (active_sponsor) {
+                //                 active_sponsor.classList.add('d-none');
+                //             }
+                //             $('#checkout-message').html(`<h1>Sponsorizzazione effettuata</h1><p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p><div><strong>ID transazione:</strong> ${result.results.transaction.paymentReceipt.id}</div><div><strong>Pacchetto acquistato:</strong> ${result.plan}</div><div><strong>Prezzo:</strong> ${result.results.transaction.paymentReceipt.amount}</div><div><strong>Scadenza sponsorizzazione:</strong> ${result.end}</div>`);
+                //         } else {
+                //             console.log(result);
+                //             $('#checkout-message').html(`<h1>Qualcosa è andato storto</h1><p>Controlla di aver inserito correttamente i dati della carta.</p><p>Se hai inserito correttamente i dati e il credito sulla carta è sufficiente (ad esempio se stai utilizzando una ricaricabile) allora puoi provare a contattare il servizio clienti.</p><p class="transaction-error">Errore: <span>${result.results.message}</span></p>`);
+                //         }
+                //         });
+                //     });
+                //     });
+                // });
             </script>
+            
         </div>
     </div>
     {{-- /Drop In Braintree --}}
