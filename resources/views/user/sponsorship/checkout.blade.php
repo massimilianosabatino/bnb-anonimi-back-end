@@ -25,7 +25,7 @@
   <div class="row">
     <div class="d-flex flex-wrap">
       @foreach ($sponsorships as $key => $sponsorship)
-      <div class="col-12 col-md-4 text-center mb-4">
+      <div class="col-12 col-md-4 text-center mb-4 {{ $sponsorship->name != $plan ? 'blurred' : '' }}">
         <div class="card tier-card bg-{{ $key + 1 }} m-2">
           <div class="car-header sponsor-title-{{ $key + 1 }}">
             {{ $sponsorship->name }}
@@ -60,6 +60,7 @@
       <p>Da questo momento il tuo appartamento apparirà in cima ai risultati di ricerca e sarà visibile in Homepage.</p>
       <div><strong>ID transazione:</strong> {{ $result->transaction->paymentReceipt['id'] }}</div>
       <div><strong>Pacchetto acquistato:</strong> {{ $plan }}</div>
+      <div><strong>Appartemento sponsorizzato:</strong> {{ $name }}</div>
       <div><strong>Prezzo:</strong> {{ $result->transaction->paymentReceipt['amount'] }}</div>
       <div><strong>Scadenza sponsorizzazione:</strong> {{ $end }}</div>
     </div>
