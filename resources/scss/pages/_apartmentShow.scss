@@ -9,6 +9,7 @@
     .gallery {
         width: 100%;
         padding: 2px;
+
         .img-cont {
             width: 48%;
             height: 50%;
@@ -21,10 +22,34 @@
                 height: auto;
             }
         }
+
+        .gallery-link {
+            text-decoration: none;
+
+            .on-gallery:hover {
+                background-color: $premium-color;
+            }
+
+            .on-gallery {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: $standard-color;
+                border-radius: 20px;
+                padding: 3px;
+                opacity: 0.8;
+                color: rgb(43, 40, 40);
+                font-weight: 900;
+                font-size: 14px;
+            }
+        }
     }
+
     //VISIBILITA'
     .visible {
         font-weight: 500;
+
         span {
             font-weight: 900;
         }
@@ -95,15 +120,15 @@
         }
     }
 
-    .color-1{
+    .color-1 {
         background-color: $standard-color;
     }
 
-    .color-2{
+    .color-2 {
         background-color: $premium-color;
     }
 
-    .color-3{
+    .color-3 {
         background-color: $deluxe-color;
     }
 

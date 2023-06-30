@@ -35,9 +35,12 @@
                                 @endforeach
                                 {{-- @dd($apartment->galleries) --}}
                                 @if (count($apartment->galleries) > 2)
-                                <a href="{{ route('user.gallery.show', $apartment->id) }}" class="img-cont">
-                                    <img src="{{ $apartment->galleries->slice( count($apartment->galleries) - 1)->first()->image_path }}" alt="{{ $apartment->slug }}" class="img-gallery">
-                                </a>
+                                    <a href="{{ route('user.gallery.show', $apartment->id) }}"
+                                        class="img-cont gallery-link position-relative">
+                                        <img src="{{ $apartment->galleries->slice(count($apartment->galleries) - 1)->first()->image_path }}"
+                                            alt="{{ $apartment->slug }}" class="img-gallery">
+                                        <div class="on-gallery">Guarda piu' foto</div>
+                                    </a>
                                 @endif
                             @endif
                         </div>
