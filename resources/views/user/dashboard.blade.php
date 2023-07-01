@@ -68,7 +68,7 @@
         </div>
         <div class="row p-4 my-4 text-center gx-md-4 justify-content-between">
             <div class="col-12 col-md-3 mb-4 mb-md-0">
-                <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
+                <div class="ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1 mb-2">
                             {{ $apartments }}
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-3 mb-4 mb-md-0">
-                <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
+                <div class="ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1  mb-2">
                             {{ $sponsored }}
@@ -92,14 +92,14 @@
                 </div>
             </div>
             <div class="col-12 col-md-3">
-                <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
+                <div class="ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1 mb-2">
                             {{ $messagesCount }}
                         </div>
                         <div class="number-text fw-bold position-relative">
                             Messaggi ricevuti
-                            <small class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">non letti {{ $messagesUnread }}</small>
+                            {{-- <small class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">non letti {{ $messagesUnread }}</small> --}}
                         </div>
                     </div>
                 </div>
