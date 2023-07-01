@@ -5,7 +5,7 @@
         <div class="row row-cols-3">
             @foreach ($galleries as $gallery)
                 <div class="card p-0 hard-disk-zoppo col-3 m-3">
-                    <img class="card-img-top" src="{{ asset('storage/' . $gallery->image_path) }}" alt="{{ $gallery->title }}">
+                    <img class="card-img-top" src="{{$gallery->image_path }}" alt="{{ $gallery->title }}">
                     <div class="card-body">
                         <p class="card-text">
                             {{ $gallery->title }}
