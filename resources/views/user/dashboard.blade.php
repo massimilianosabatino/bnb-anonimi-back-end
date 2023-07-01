@@ -189,13 +189,16 @@
 
       var labels =  {{ Js::from($labels) }};
 
-      var views =  {{ Js::from($data) }};
-    console.log(labels);
+      var controllerData =  {{ Js::from($dataSets) }};
+
+      let currYear = new Date().getFullYear();
+
+      let views = controllerData.data[currYear]
   
 
       const data = {
 
-        labels: ['Giugno', 'Luglio'],
+        labels: labels,
 
         datasets: [{
 
