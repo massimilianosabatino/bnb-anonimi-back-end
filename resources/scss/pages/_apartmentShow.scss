@@ -1,5 +1,42 @@
 .apartment-show {
 
+    //PULSANTI MOBILE
+    .btn-mobile {
+        width: fit-content;
+        height: fit-content;
+        padding: 0 12px;
+        
+        .icon-cont {
+
+            width: calc(100% / 3);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            text-decoration: none;
+            margin: 5px;
+    
+            .bottone {
+    
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+    
+                div {
+                    color: rgb(255, 238, 218);
+                    font-size: 14px;
+                }
+    
+                .fa-solid {
+                    color: white;
+                    font-size: 25px;
+                    color: antiquewhite;
+                }
+            }
+        }
+
+    }
     //IMMAGINI
     .show-img-container {
         width: 100%;
@@ -16,6 +53,10 @@
             margin-bottom: 2px;
             margin-left: 3px;
             display: inline-flex;
+            img {
+                object-fit: cover;
+            }
+
 
             .img-gallery {
                 width: 100%;
@@ -25,6 +66,7 @@
 
         .gallery-link {
             text-decoration: none;
+            text-align: center;
 
             .on-gallery:hover {
                 background-color: $premium-color;
@@ -49,6 +91,7 @@
     //VISIBILITA'
     .visible {
         font-weight: 500;
+        padding-left: 12px;
 
         span {
             font-weight: 900;
@@ -59,7 +102,7 @@
     .apart-services {
         text-align: center;
         margin-top: 3.9375rem;
-        padding-right: 40px;
+        // padding-right: 40px;
         width: 100%;
 
 
@@ -71,6 +114,7 @@
             height: 50px;
             display: flex;
             flex-direction: column;
+            
 
             .service-name {
                 font-size: 10px;
@@ -80,7 +124,7 @@
 
     //DETTAGLI 
     .list-group {
-        padding: 10px 20px 20px 0px;
+        padding: 10px 0px 20px 0px;
     }
 
 

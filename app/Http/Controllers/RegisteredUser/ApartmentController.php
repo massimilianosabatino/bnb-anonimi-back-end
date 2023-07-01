@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Models\Service;
 use App\Models\Sponsorship;
 use App\Models\Gallery;
+use App\Models\View;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Auth;
@@ -117,8 +118,42 @@ class ApartmentController extends Controller
                 ];
             }
 
+            //Get views
+            $apartmentsView = View::where('apartment_id', $apartment->id)
+            ->selectRaw('YEAR(visit_date) as year, MONTH(visit_date) as month, COUNT(*) as count')
+            ->groupBy('year', 'month')
+            ->get();
+
+            $data = [];
+
+            foreach($apartmentsView->groupBy('year') as $key => $year){
+                // dd($key);
+                $tempData = [];
+                
+                for($i=1; $i <= 12; $i++){
+                    $month = date('F', mktime(0,0,0,$i));
+                    $count = 0;
+                    
+                    foreach($year as $views){
+                        if($views->month == $i){
+                            $count = $views->count;
+                            break;
+                        }
+                    
+                    }
+                    array_push($tempData, $count);
+                }
+                $data[$key] = $tempData;
+                
+            }
             
-            return view('user.apartments.show', compact('apartment', 'sponsorEnd'));
+    
+            $dataSets = [
+                'label' => 'Views',
+                'data' => $data
+            ];
+            // dd($dataSets);
+            return view('user.apartments.show', compact('apartment', 'sponsorEnd', 'dataSets'));
         } else {
             return redirect()->route('user.apartment.index')->withErrors('Nessun appartamento');
         }

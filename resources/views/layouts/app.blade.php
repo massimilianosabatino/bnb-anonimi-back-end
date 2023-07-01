@@ -64,10 +64,10 @@
                             </div>
 
                             {{-- Pulsante della pagina delle statistiche --}}
-                            <div class="my-4">
+                            {{-- <div class="my-4">
                                 <a class="my-btn" href=""><i class="fa-solid fa-chart-simple fs-4 me-2"></i><span
                                         class="fw-bold">Statistiche</span></a>
-                            </div>
+                            </div> --}}
 
                             {{-- Pulsante del sito front-end--}}
                             <div class="my-4">
@@ -119,11 +119,11 @@
                         </li>
 
                         {{-- Pulsante per la pagina delle statistiche --}}
-                        <li class="my-4">
+                        {{-- <li class="my-4">
                             <a class="my-btn" href=""><i
                                     class="fa-solid fa-chart-simple fs-4 me-2"></i></i><span
                                     class="fw-bold d-none d-xxl-inline-block">Statistiche</span></a>
-                        </li>
+                        </li> --}}
 
 
                         {{-- Pulsante per la pagina della sponsorship --}}
@@ -169,6 +169,7 @@
             </div>
         </div>
     </div>
+    @yield('jsScript')
 </body>
 
 </html>

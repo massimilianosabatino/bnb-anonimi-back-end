@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([UsersTableSeeder::class, ServiceSeeder::class,SponsorshipSeeder::class ,ApartmentSeeder::class,MessageSeeder::class]);
+        $this->call([UsersTableSeeder::class, ServiceSeeder::class,SponsorshipSeeder::class, ApartmentSeeder::class, MessageSeeder::class, ViewsSeeder::class]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
