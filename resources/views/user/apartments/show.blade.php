@@ -222,11 +222,13 @@
           var controllerData =  {{ Js::from($dataSets) }};
     
           let currYear = new Date().getFullYear();
-          console.log(controllerData)
+
           let views = controllerData.data[currYear]
       
 
           let data = {
+
+            
     
             labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', ' Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
     
@@ -243,17 +245,16 @@
             }]
     
           };
-    
-      
+
     
           const config = {
     
-            type: 'line',
+            type: 'bar',
     
             data: data,
     
             options: {}
-    
+            
           };
     
       
