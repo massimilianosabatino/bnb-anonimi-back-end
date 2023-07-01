@@ -174,6 +174,7 @@
         <div class="col">
             <canvas id="myChart" height="100px"></canvas>
         </div>
+        {{-- <button onclick="subYear()">anno precedente</button> --}}
     </div>
 </div>
 @section('jsScript')
@@ -195,14 +196,23 @@
 
       let views = controllerData.data[currYear]
   
+    // function subYear(myChart) {
 
-      const data = {
+    //     currYear -= 1;
+    //     views = controllerData.data[currYear];
+
+    //     data.data = views;
+    //     // console.log(myChart.config.data.data)
+    //     myChart.update();
+    // }
+    // console.log(currYear)
+      let data = {
 
         labels: labels,
 
         datasets: [{
 
-          label: 'Totale visite',
+          label: `Totale visite - anno ${currYear}`,
 
           backgroundColor: 'rgb(255, 99, 132)',
 
