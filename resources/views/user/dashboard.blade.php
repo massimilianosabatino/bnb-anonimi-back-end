@@ -214,11 +214,17 @@
 
           label: `Totale visite - anno ${currYear}`,
 
-          backgroundColor: 'rgb(255, 99, 132)',
+          backgroundColor: '#7EBCE6',
 
-          borderColor: 'rgb(255, 99, 132)',
+          borderColor: '#7EBCE6',
 
           data: views,
+
+          fill: {
+                target: 'origin',
+                above: '#69D1C5',
+                below: 'rgb(100, 0, 200)'
+              }
 
         }]
 

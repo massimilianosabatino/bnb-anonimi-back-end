@@ -228,19 +228,18 @@
 
           let data = {
 
-            
-    
             labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', ' Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
     
             datasets: [{
     
               label: `Totale visite - anno ${currYear}`,
     
-              backgroundColor: 'rgb(255, 99, 132)',
+              backgroundColor: '#69D1C5',
     
               borderColor: 'rgb(255, 99, 132)',
     
               data: views,
+                
     
             }]
     
