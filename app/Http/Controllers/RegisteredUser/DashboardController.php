@@ -17,7 +17,7 @@ class DashboardController extends Controller
         
         $apartmentId = Apartment::where('user_id', Auth::id())->select('id')->get();
 
-        $conf = View::whereIn('apartment_id', $apartmentId)->get();
+        // $confronto = View::whereIn('apartment_id', $apartmentId)->get();
         //Per l'anno corrente raggruppati per mese
         // $apartmentsView = View::whereIn('apartment_id', $apartmentId)
         // ->whereYear('visit_date', date('Y'))
@@ -31,7 +31,7 @@ class DashboardController extends Controller
         ->groupBy('year', 'month')
         ->get();
 
-        // dd($apartmentsView->groupBy('year'), $conf);
+        // dd($apartmentsView->groupBy('year'), $confronto);
 
         $labels = [];
         

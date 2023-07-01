@@ -168,10 +168,10 @@
 
 <div class="container my-4 py-4">
     <div class="row">
-        <div class="col">
+        <div class="col-12">
             <h2 class="text-center mb-4">Visualizzazioni totali per i tuoi appartamenti</h2>
         </div>
-        <div class="col">
+        <div class="col-12">
             <canvas id="myChart" height="100px"></canvas>
         </div>
         {{-- <button onclick="subYear()">anno precedente</button> --}}
