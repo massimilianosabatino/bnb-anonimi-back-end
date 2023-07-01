@@ -104,7 +104,7 @@
 
                 <div class=" d-flex flex-md-column col-5 parent-extra pb-3 mt-auto">
                     <h4 class="mx-auto fw-bolder">Tasti rapidi</h4>
-                    <div class="tasti-extra d-flex justify-content-center flex-wrap">
+                    <div class="tasti-extra d-flex justify-content-between flex-wrap">
 
                         {{-- //vai a messaggi appartamento --}}
                         <a href="{{ route('user.message.index', $apartment->id) }}" role="button"
@@ -115,11 +115,11 @@
                         </a>
 
                         {{-- // visualizza le statistiche --}}
-                        <a href="{{ route('user.apartment.index', $apartment) }}" role="button" class="icon-cont color-2">
+                        {{-- <a href="{{ route('user.apartment.index', $apartment) }}" role="button" class="icon-cont color-2">
                             <div class="bottone">
                                 <div>Statistiche</div><i class="fa-solid fa-chart-simple"></i>
                             </div>
-                        </a>
+                        </a> --}}
 
                         {{-- //sponsorizzazioni --}}
                         <a href="{{ route('user.sponsorship.index', $apartment) }}" role="button"
@@ -146,7 +146,7 @@
                         </a>
 
                         {{-- bottone per delete --}}
-                        <button type="button" class="btn icon-cont color-3 elimina" data-bs-toggle="modal"
+                        <button type="button" class="btn icon-cont color-3 elimina me-auto" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             <div class="bottone">
                                 <div>Elimina</div><i class="fa-solid fa-trash"></i>
@@ -208,9 +208,74 @@
                 </div>
 
             </div> --}}
-
-
-
-
+        <div class="row my-4">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Visualizzazioni totali per i tuoi appartamenti</h2>
+            </div>
+            <div class="col-12">
+                <canvas id="myChart" height="100px"></canvas>
+            </div>
+            </div>
+        </div>
     </div>
+@section('jsScript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+      
+    
+    <script type="text/javascript">
+    
+          var controllerData =  {{ Js::from($dataSets) }};
+    
+          let currYear = new Date().getFullYear();
+
+          let views = controllerData.data[currYear]
+      
+
+          let data = {
+
+            labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', ' Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+    
+            datasets: [{
+    
+              label: `Totale visite - anno ${currYear}`,
+    
+              backgroundColor: '#69D1C5',
+    
+              borderColor: 'rgb(255, 99, 132)',
+    
+              data: views,
+                
+    
+            }]
+    
+          };
+
+    
+          const config = {
+    
+            type: 'bar',
+    
+            data: data,
+    
+            options: {}
+            
+          };
+    
+      
+    
+          const myChart = new Chart(
+    
+            document.getElementById('myChart'),
+    
+            config
+    
+          );
+    
+      
+    
+    </script>
+@endsection
 @endsection
