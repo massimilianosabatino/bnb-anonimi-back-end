@@ -67,7 +67,13 @@
                             {{-- <td class="d-none d-xl-table-cell">{{ $apartment->rooms }}</td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->bathrooms }}</td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->beds }}</td> --}}
-                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">Fino al {{ $apartment->sponsorEnd() }}</td>
+                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">
+                                @if ($apartment->sponsorEnd())
+                                    Fino al {{ $apartment->sponsorEnd() }}
+                                @else
+                                    Non attiva
+                                @endif
+                            </td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->square_meters }} &#13217
                             </td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->address }}</td>

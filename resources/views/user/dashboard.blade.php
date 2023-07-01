@@ -62,7 +62,7 @@
                     <div class="fw-bold">
                         Statistiche personali
                     </div>
-                    <p>Controlla il risultati raggiunti da i tuoi appartamenti, scopri quelli più richiesti. Otttieni tutti dati utili per ottimizzare le performance.</p>
+                    <p>Controlla i risultati raggiunti dai tuoi appartamenti, scopri quelli più richiesti. Ottieni tutti i dati utili per ottimizzare le performance.</p>
                 </div>
             </div>
         </div>
@@ -160,7 +160,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="text-center">Accedi al dettaglio dell'appartamento che vuoi sponsorizzare e rendilo visibile per la durata del pacchetto scelto. Puoi anche acquistare più sponsorizzazioni per un appartamento, queste verranno sommate è il tuo appartamento sarà maggiornmente visibile per più tempo!</p>
+                <p class="text-center">Accedi al dettaglio dell'appartamento che vuoi sponsorizzare e rendilo visibile per la durata del pacchetto scelto. Puoi anche acquistare più sponsorizzazioni per un appartamento, queste verranno sommate e il tuo appartamento sarà maggiornmente visibile per più tempo!</p>
             </div>
         </div>
     </div>
