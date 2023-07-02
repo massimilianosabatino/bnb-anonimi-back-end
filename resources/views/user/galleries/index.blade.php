@@ -6,10 +6,10 @@
             <a href="{{ url()->previous() }}" type="button" class="btn btn-outline-secondary mb-1">Back</a>
         </div>
         <div class="d-flex">
-            <div class="row row-cols-3">
+            <div class="row flex-column flex-md-row container">
                 @foreach ($galleries as $gallery)
-                    <div class="card p-0 hard-disk-zoppo col-3 m-3">
-                        <img class="card-img-top" src="{{ $gallery->image_path }}" alt="{{ $gallery->title }}">
+                    <div class="card p-0 hard-disk-zoppo col-12 col-md-3 m-3">
+                        <img class="peruviano-pelato" src="{{ $gallery->image_path }}" alt="{{ $gallery->title }}">
                         <div class="card-body">
                             <p class="card-text">
                                 {{ $gallery->title }}
