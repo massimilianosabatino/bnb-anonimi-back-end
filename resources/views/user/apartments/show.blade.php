@@ -220,12 +220,12 @@
                         </a>
 
                         {{-- // visualizza le statistiche --}}
-                        <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
+                        {{-- <a href="{{ route('user.apartment.index', $apartment) }}" role="button"
                             class="icon-cont color-2">
                             <div class="bottone">
                                 <div>Statistiche</div><i class="fa-solid fa-chart-simple"></i>
                             </div>
-                        </a>
+                        </a> --}}
 
                         {{-- //sponsorizzazioni --}}
                         <a href="{{ route('user.sponsorship.index', $apartment) }}" role="button"
@@ -237,7 +237,7 @@
 
                         {{-- bottone per la galleria  --}}
                         <a href="{{ route('user.gallery.show', $apartment->id) }}" role="button"
-                            class="btn icon-cont color-1">
+                            class="btn icon-cont color-3">
                             <div class="bottone">
                                 <div>Galleria</div><i class="fa-solid fa-image"></i>
                             </div>
@@ -245,14 +245,14 @@
 
                         {{-- bottone per edit --}}
                         <a href="{{ route('user.apartment.edit', $apartment) }}" role="button"
-                            class="btn icon-cont color-2">
+                            class="btn icon-cont color-1">
                             <div class="bottone">
                                 <div>Modifica</div><i class="fa-solid fa-pen-to-square"></i>
                             </div>
                         </a>
 
                         {{-- bottone per delete --}}
-                        <button type="button" class="btn icon-cont color-3 elimina" data-bs-toggle="modal"
+                        <button type="button" class="btn icon-cont color-2 elimina" data-bs-toggle="modal"
                             data-bs-target="#giacomo">
                             <div class="bottone">
                                 <div>Elimina</div><i class="fa-solid fa-trash"></i>

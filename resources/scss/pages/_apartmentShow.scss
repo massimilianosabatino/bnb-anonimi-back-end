@@ -87,7 +87,7 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 background-color: $standard-color;
-                border-radius: 20px;
+                border-radius: 5px;
                 padding: 3px;
                 opacity: 0.8;
                 color: rgb(43, 40, 40);
@@ -142,7 +142,7 @@
 
 
         .tasti-extra {
-            width: 50%;
+            width: 70%;
             margin: 0 auto;
         }
 
@@ -189,7 +189,7 @@
         background-color: $deluxe-color;
     }
 
-    
+
 
     .parent-extra a:hover {
         background-color: rgb(51, 55, 75);
