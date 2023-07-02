@@ -96,7 +96,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
+                                            data-bs-dismiss="modal">Annulla</button>
                                         <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -143,12 +143,12 @@
             </div>
 
 
-
-            <div class="row justify-content-center m-0">
+            {{-- visibilita' --}}
+            <div class="row m-0">
                 <div class="col-lg-7">
-                    {{-- visibilita' --}}
+                    
                     {{-- md+ SIZE --}}
-                    <p class="mt-3 visible d-none d-md-block">Il tuo appartamento e' impostato su:
+                    <p class="mt-3 visible d-none d-md-block text-start">Il tuo appartamento e' impostato su:
                         <span>
                             @if ($apartment->visible == true)
                                 'VISIBILE'
@@ -173,11 +173,10 @@
             {{-- servizi --}}
             <div class="row m-0">
                 <div class="col">
-                    <div class="apart-services row m-0 my-3 d-flex flex-wrap justify-content-start">
+                    <div class="apart-services row m-0 my-3 d-flex flex-wrap">
                         {{-- <div class="d-flex "> --}}
                         @foreach ($apartment->services as $service)
-                            <div
-                                class="single-service col-lg-2 text-light d-flex justify-content-center align-items-center p-2">
+                            <div class="single-service col-lg-2 text-light d-flex justify-content-center align-items-center">
                                 <div>
                                     {!! $service->icon !!}
                                 </div>
@@ -274,7 +273,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
+                                            data-bs-dismiss="modal">Annulla</button>
                                         <form action="{{ route('user.apartment.destroy', $apartment) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

@@ -113,17 +113,16 @@
         margin-top: 3.9375rem;
         // padding-right: 40px;
         width: 100%;
-
+        
 
         .single-service {
             background-color: rgb(96, 96, 122);
             border-radius: 5px;
-            margin: 2px;
-            width: calc((100% - 30px) / 6);
-            height: 50px;
-            display: flex;
+            margin: 5px;
+            width: calc((100% - 50px) / 5);
             flex-direction: column;
-
+            padding: 5px;
+            height: 60px;
 
             .service-name {
                 font-size: 10px;
