@@ -41,33 +41,33 @@ class StoreApartmentRequest extends FormRequest
     public function messages()
     {
         return [
-            "title.required" => 'Il campo che deve contenere il nome dell`appartamento non può essere vuoto. Inserisci il nome dell`appartamento per continuare.',
-            "title.max" => 'il nome dell`appartamento non può essere lungo più di 255 caratteri.',
+            "title.required" => 'Il nome dell`appartamento è obbligatorio.',
+            "title.max" => 'Il nome dell`appartamento non può essere lungo più di 255 caratteri.',
 
-            "rooms.required" => 'Il campo che deve contenere il numero di stanze non può essere vuoto o uguale a zero. Inserisci il numero di stanze per continuare.',
-            "rooms.min" => 'Il campo che deve contenere il numero di stanze non può essere vuoto o uguale a zero. Inserisci il numero di stanze per continuare.',
-            "rooms.numeric" => 'Il campo che deve contenere il numero di stanze può contenere solo numeri interi. Inserisci il numero di stanze per continuare.',
+            "rooms.required" => 'Il numero di stanze è obbligatorio.',
+            "rooms.min" => 'Deve essere minimo una stanza.',
+            "rooms.numeric" => 'Il numero di stanze può contenere solo numeri interi. Es. 1 2 3 ecc.',
 
-            "bathrooms.required" => 'Il campo che deve contenere il numero dei bagni non può essere vuoto o uguale a zero. Inserisci il numero dei bagni per continuare.',
-            "bathrooms.min" => 'Il campo che deve contenere il numero dei bagni non può essere vuoto o uguale a zero. Inserisci il numero dei bagni per continuare.',
-            "bathrooms.numeric" => 'Il campo che deve contenere il numero dei bagni può contenere solo numeri interi. Inserisci il numero dei bagni per continuare.',
+            "bathrooms.required" => 'Il numero di bagni è obbligatorio.',
+            "bathrooms.min" => 'Deve essere minimo un bagno.',
+            "bathrooms.numeric" => 'Il numero di bagni può contenere solo numeri interi. Es. 1 2 3 ecc.',
 
-            "beds.required" => 'Il campo che deve contenere il numero di letti disponibili non può essere vuoto o uguale a zero. Inserisci il numero di letti disponibili per continuare.',
-            "beds.min" => 'Il campo che deve contenere il numero di letti disponibili non può essere vuoto o uguale a zero. Inserisci il numero di letti disponibili per continuare.',
-            "beds.numeric" => 'Il campo che deve contenere il numero di letti disponibili può contenere solo numeri interi. Inserisci il numero di letti disponibili per continuare.',
+            "beds.required" => 'Il numero di letti è obbligatorio.',
+            "beds.min" => 'Deve essere un minimo un letto.',
+            "beds.numeric" => 'Il numero di letti può contenere solo numeri interi. Es. 1 2 3 ecc.',
 
-            "square_meters.required" => 'Il campo che deve contenere il numero dei metri quadri non può essere vuoto o minore di 28. Inserisci il numero dei metri quadri per continuare.',
-            "square_meters.min" => 'Il campo che deve contenere il numero dei metri quadri non può essere vuoto o minore di 28. Inserisci il numero dei metri quadri per continuare.',
-            "square_meters.numeric" => 'Il campo che deve contenere il numero dei metri quadri può contenere solo numeri interi. Inserisci il numero dei metri quadri per continuare.',
+            "square_meters.required" => 'Il numero di metri quadri è obbligatorio.',
+            "square_meters.min" => 'Il numero di metri quadri deve essere minimo di 28',
+            "square_meters.numeric" => 'Il numero di metri quadri può contenere solo numeri interi. Es. 1 2 3 ecc.',
 
             
-            "cover_image.required" => 'Il campo che deve contenere l`immagine di copertina non può essere vuoto. Inserisci un`immagine per continuare',
+            "cover_image.required" => 'L`immagine di copertina è obbligatoria.',
 
-            "address.required" => 'Il campo che deve contenere l`indirizzo non può essere vuoto. Inserisci un indirizzo esistente per continuare',
+            "address.required" => 'L`indirizzo dell`appartamento è obbligatorio.',
 
-            "price.required" => 'Il campo che deve contenere il prezzo non può essere vuoto o minore di 20. Inserisci il prezzo per continuare.',
-            "price.min" => 'Il campo che deve contenere il prezzo non può essere vuoto o minore di 20. Inserisci il prezzo per continuare.',
-            "price.numeric" => 'Il campo che deve contenere il prezzo può contenere solo numeri interi. Inserisci il prezzo per continuare.',
+            "price.required" => 'Il prezzo dell`appartamento è obbligatorio.',
+            "price.min" => 'Il prezzo non può essere inferiore di 20.',
+            "price.numeric" => 'Il numero di metri quadri può contenere solo numeri interi. Es. 20,30,100 ecc.',
 
             "service.required" => 'Nessun servizio selezionato. Seleziona il servizio (o i servizi) che offre il tuo appartamento per continuare.'
         ];
