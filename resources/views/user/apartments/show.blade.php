@@ -313,7 +313,7 @@
             <div class="col-12">
                 <h2 class="text-center mb-4">Visualizzazioni totali per i tuoi appartamenti</h2>
             </div>
-            <div class="col-12">
+            <div class="col-12 chart-container">
                 <canvas id="myChart" height="100px"></canvas>
             </div>
             </div>
