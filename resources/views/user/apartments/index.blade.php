@@ -42,8 +42,8 @@
                         <th class="d-none d-lg-none d-xl-table-cell" scope="col">Letti</th> --}}
                         <th class="d-none d-lg-none d-xl-table-cell" scope="col">Metri quadri</th>
                         <th class="d-none d-lg-none d-xl-table-cell" scope="col">Indirizzo</th>
-                        <th scope="col">Visibilità</th>
-                        <th scope="col">Prezzo</th>
+                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Visibilità</th>
+                        <th class="d-none d-lg-none d-xl-table-cell" scope="col">Prezzo</th>
                         <th class="text-center" scope="col" colspan="4">Funzioni</th>
                     </tr>
                 </thead>
@@ -78,16 +78,16 @@
                             </td>
                             <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->address }}</td>
                             @if ($apartment->visible == true)
-                                <td class="text-center"><i class="fa-solid fa-eye"></i></td>
+                                <td class="text-center d-none d-md-none d-lg-none d-xl-table-cell"><i class="fa-solid fa-eye"></i></td>
                             @elseif ($apartment->visible == false)
-                                <td class="text-center"><i class="fa-solid fa-eye-slash"></i></td>
+                                <td class="text-center d-none d-md-none d-lg-none d-xl-table-cell"><i class="fa-solid fa-eye-slash"></i></td>
                             @endif
-                            <td>{{ $apartment->price }}€</td>
+                            <td class="d-none d-md-none d-lg-none d-xl-table-cell">{{ $apartment->price }}€</td>
                             <td class="text-center">
                                 <a href="{{ route('user.apartment.show', $apartment->id) }}" role="button"
                                     class="btn btn-success" title="Info"><i class="fa-solid fa-circle-info"></i></a>
                             </td>
-                            <td class="text-center">
+                            <td class="text-center d-none d-md-none d-lg-none d-xl-table-cell">
                                 <a href="{{ route('user.sponsorship.index', $apartment) }}" role="button"
                                     class="btn btn-sponsor" title="Edit"><i
                                         class="fa-solid fa-money-bill-trend-up"></i></a>
