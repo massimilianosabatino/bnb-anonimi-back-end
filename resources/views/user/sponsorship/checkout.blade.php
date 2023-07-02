@@ -11,8 +11,7 @@
     <a href="{{ route('user.apartment.show', $apartment) }}" type="button" class="btn btn-outline-secondary mb-1">Torna all'appartamento</a>
   </div>
 
-  <h1 class="main-title fs-3 fw-bold mb-4 text-center">Acquista una sponsorizzazione e metti il tuo appartamento in
-    evidenza!
+  <h1 class="main-title fs-3 fw-bold mb-4 text-center">Acquisto effettuato con successo!
   </h1>
   {{-- Error list --}}
   @if ($errors->any())
