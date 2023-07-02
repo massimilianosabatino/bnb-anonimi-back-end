@@ -15,15 +15,16 @@
                         <h2 class="fs-3 fw-bold mb-3">{{ strtoupper($apartment->title) }}</h2>
                     </div>
                     {{-- Pulsanti mobile --}}
-                    <div class="btn-group btn-mobile col-3 ms-auto mb-3 d-flex align-items-center d-lg-none">
+                    <div class="btn-group btn-mobile col-3 ms-auto mb-3 d-flex align-items-center d-lg-none col-4">
                         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
                             data-bs-display="static" aria-expanded="false">
                             Opzioni
                         </button>
                         {{-- CONTENUTO DROP DOWN --}}
-                        <div class="dropdown-menu dropdown-menu-lg-end">
-                            <ul class="d-flex flex-wrap list-unstyled col-12">
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <ul class="d-flex flex-wrap list-unstyled col-12 ul-mobile justify-content-center">
                                 <li class="col-6">
+                                    
                                     <a class="dropdown-item icon-cont color-1"
                                         href="{{ route('user.message.index', $apartment->id) }}">
                                         <div class="bottone">
@@ -31,15 +32,17 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="col-6">
+                                {{-- <li class="col-6">
+
                                     <a class="dropdown-item icon-cont color-2"
                                         href="{{ route('user.apartment.index', $apartment) }}">
                                         <div class="bottone">
-                                            <div>Statistiche</div><i class="fa-solid fa-chart-simple"></i>
+                                            <div>Stats</div><i class="fa-solid fa-chart-simple"></i>
                                         </div>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="col-6">
+
                                     <a class="dropdown-item icon-cont color-3"
                                         href="{{ route('user.sponsorship.index', $apartment) }}">
                                         <div class="bottone">
@@ -48,7 +51,8 @@
                                     </a>
                                 </li>
                                 <li class="col-6">
-                                    <a class="dropdown-item icon-cont color-1"
+
+                                    <a class="dropdown-item icon-cont color-3"
                                         href="{{ route('user.gallery.show', $apartment->id) }}">
                                         <div class="bottone">
                                             <div>Galleria</div><i class="fa-solid fa-image"></i>
@@ -56,7 +60,8 @@
                                     </a>
                                 </li>
                                 <li class="col-6">
-                                    <a class="dropdown-item icon-cont color-2"
+
+                                    <a class="dropdown-item icon-cont color-1"
                                         href="{{ route('user.apartment.edit', $apartment) }}">
                                         <div class="bottone">
                                             <div>Modifica</div><i class="fa-solid fa-pen-to-square"></i>
@@ -65,7 +70,7 @@
                                 </li>
                                 <li class="col-6">
 
-                                    <button type="button" class="btn icon-cont color-3 elimina" data-bs-toggle="modal"
+                                    <button type="button" class="btn icon-cont color-2 elimina" data-bs-toggle="modal"
                                         data-bs-target="#piero">
                                         <div class="bottone">
                                             <div>Elimina</div><i class="fa-solid fa-trash"></i>
