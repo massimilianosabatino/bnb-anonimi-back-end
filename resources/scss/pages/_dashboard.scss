@@ -80,3 +80,26 @@
 .sponsor-title-3{
     background-color: $deluxe-color;
 }
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 20vh;
+    width: 100%;
+  }
+
+@media screen and (min-width: 500px) {
+    .chart-container {
+        height: 40vh;
+      }
+}
+@media screen and (min-width: 768px) {
+    .chart-container {
+        height: 60vh;
+      }
+}
+@media screen and (min-width: 992px) {
+    .chart-container {
+        height: 80vh;
+      }
+}

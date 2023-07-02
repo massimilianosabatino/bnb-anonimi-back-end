@@ -313,9 +313,74 @@
                 </div>
 
             </div> --}}
-
-
-
-
+        <div class="row my-4">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Visualizzazioni totali per i tuoi appartamenti</h2>
+            </div>
+            <div class="col-12 chart-container">
+                <canvas id="myChart" height="100px"></canvas>
+            </div>
+            </div>
+        </div>
     </div>
+@section('jsScript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+      
+    
+    <script type="text/javascript">
+    
+          var controllerData =  {{ Js::from($dataSets) }};
+    
+          let currYear = new Date().getFullYear();
+
+          let views = controllerData.data[currYear]
+      
+
+          let data = {
+
+            labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', ' Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+    
+            datasets: [{
+    
+              label: `Totale visite - anno ${currYear}`,
+    
+              backgroundColor: '#69D1C5',
+    
+              borderColor: 'rgb(255, 99, 132)',
+    
+              data: views,
+                
+    
+            }]
+    
+          };
+
+    
+          const config = {
+    
+            type: 'bar',
+    
+            data: data,
+    
+            options: {}
+            
+          };
+    
+      
+    
+          const myChart = new Chart(
+    
+            document.getElementById('myChart'),
+    
+            config
+    
+          );
+    
+      
+    
+    </script>
+@endsection
 @endsection

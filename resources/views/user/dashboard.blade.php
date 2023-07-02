@@ -68,7 +68,7 @@
         </div>
         <div class="row p-4 my-4 text-center gx-md-4 justify-content-between">
             <div class="col-12 col-md-3 mb-4 mb-md-0">
-                <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
+                <div class="ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1 mb-2">
                             {{ $apartments }}
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-3 mb-4 mb-md-0">
-                <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
+                <div class="ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1  mb-2">
                             {{ $sponsored }}
@@ -92,14 +92,14 @@
                 </div>
             </div>
             <div class="col-12 col-md-3">
-                <div class="rounded-2 border bg-white shadow ratio ratio-1x1">
+                <div class="ratio ratio-1x1">
                     <div class="box-content">
                         <div class="number fs-1 mb-2">
                             {{ $messagesCount }}
                         </div>
                         <div class="number-text fw-bold position-relative">
                             Messaggi ricevuti
-                            <small class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">non letti {{ $messagesUnread }}</small>
+                            {{-- <small class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">non letti {{ $messagesUnread }}</small> --}}
                         </div>
                     </div>
                 </div>
@@ -160,103 +160,100 @@
                         </div>
                     </div>
                 </div>
-                <p class="text-center">Accedi al dettaglio dell'appartamento che vuoi sponsorizzare e rendilo visibile per la durata del pacchetto scelto. Puoi anche acquistare più sponsorizzazioni per un appartamento, queste verranno sommate e il tuo appartamento sarà maggiornmente visibile per più tempo!</p>
+                <p class="text-center">Accedi al dettaglio dell'appartamento che vuoi sponsorizzare e rendilo visibile per la durata del pacchetto scelto. Puoi anche acquistare più sponsorizzazioni per un appartamento, queste verranno sommate e il tuo appartamento sarà maggiormente visibile per più tempo!</p>
             </div>
         </div>
     </div>
 </div>
-        
-        
-        
-        
-            {{-- <div class="rounded-2 border bg-white shadow p-4 my-4">
-            <h3 class="fs-3 fw-bold mb-3">Appartmenti</h3>
-            <div class="row gx-4">
-                
-            </div>
 
-
-
-
-
-
-            <div class="w-100 text-end">
-                <a class="btn btn-primary my-3" href="{{ route('user.apartment.index') }}">Vai alla lista degli
-                    appartamenti</a>
-            </div>
-            
-            @if (!$apartments->isEmpty())
-            <div class="row card-body justify-content-center">
-                <div class="col-12">
-                    <table class="table d-none d-lg-block align-middle">
-                        <thead>
-                            <tr>
-                                <th scope="col">Immagine</th>
-                                <th scope="col">Appartmenti</th>
-                                <th scope="col">Indirizzo</th>
-                                <th scope="col">Prezzo</th>
-                                <th scope="col">Visibile</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($apartments as $apartment)
-                            <tr>
-                                <td class="w-25">
-                                    <a href="{{ route('user.apartment.show', $apartment->id) }}">
-                                        <div class="p-2">
-                                            <img class="img-fluid rounded-3" src="{{ $apartment->cover_image }}"
-                                            alt="{{ $apartment->title }}">
-                                        </div>
-                                    </a>
-                                </td>
-                                    <td>{{ $apartment->title }}</td>
-                                    <td class="card-text">{{ substr($apartment->address, 0, 50) . '...' }}</td>
-                                    <td>{{ $apartment->price }} €</td>
-                                    @if ($apartment->visible == true)
-                                    <td class="text-center"><i class="fa-solid fa-eye"></i></td>
-                                    @elseif ($apartment->visible == false)
-                                    <td class="text-center"><i class="fa-solid fa-eye-slash"></i></td>
-                                    @endif
-                            </tr>
-                            @endforeach
-
-                            <caption class="text-center mt-3">Al momento ci sono {{ $totalApartments }} appartamenti registrati sul tuo account.</caption>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="row d-lg-none">
-                <div class="col-12">
-                    <!--Mobile layout-->
-                    @foreach ($apartments as $apartment)
-                    <div class="card d-lg-none my-2">
-                        <a href="{{ route('user.apartment.show', $apartment->id) }}">
-                            <img class="card-img-top" src="{{ $apartment->cover_image }}" alt=" {{ $apartment->title }}">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title fs-3">{{ $apartment->title }}</h5>
-                            <p class="card-text fs-4">Indirizzo: {{ $apartment->address }}.</p>
-                            <p class="card-text fs-5">Prezzo: {{ $apartment->price }} €</p>
-                            @if ($apartment->visible == true)
-                            <p><i class="fa-solid fa-eye"></i></p>
-                            @elseif ($apartment->visible == false)
-                            <p><i class="fa-solid fa-eye-slash"></i></p>
-                            @endif
-                            <a href="{{ route('user.apartment.show', $apartment->id) }}" class="btn btn-primary">Info</a>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
+<div class="container my-4 py-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-4">Visualizzazioni totali per i tuoi appartamenti</h2>
         </div>
-        @else
-        <div class="alert alert-danger mb-0 w-25">
-            Nessun appartamento inserito
+        <div class="col-12 chart-container">
+            <canvas id="myChart" ></canvas>
         </div>
-        <div>
-            <a href="{{ route('user.apartment.create') }}" class="btn btn-primary my-3">Aggiungi nuovo appartamento</a>
-        </div>
-        @endif --}}
+        {{-- <button onclick="subYear()">anno precedente</button> --}}
     </div>
 </div>
+@section('jsScript')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  
+
+<script type="text/javascript">
+
+  
+
+      var labels =  {{ Js::from($labels) }};
+
+      var controllerData =  {{ Js::from($dataSets) }};
+
+      let currYear = new Date().getFullYear();
+
+      let views = controllerData.data[currYear]
+  
+    // function subYear(myChart) {
+
+    //     currYear -= 1;
+    //     views = controllerData.data[currYear];
+
+    //     data.data = views;
+    //     // console.log(myChart.config.data.data)
+    //     myChart.update();
+    // }
+    // console.log(currYear)
+      let data = {
+
+        labels: labels,
+
+        datasets: [{
+
+          label: `Totale visite - anno ${currYear}`,
+
+          backgroundColor: '#7EBCE6',
+
+          borderColor: '#7EBCE6',
+
+          data: views,
+
+          fill: {
+                target: 'origin',
+                above: '#69D1C5',
+                below: 'rgb(100, 0, 200)'
+              }
+
+        }]
+
+      };
+
+  
+
+      const config = {
+
+        type: 'line',
+
+        data: data,
+
+        options: {}
+
+      };
+
+  
+
+      const myChart = new Chart(
+
+        document.getElementById('myChart'),
+
+        config
+
+      );
+
+  
+
+</script>
+@endsection
 @endsection
