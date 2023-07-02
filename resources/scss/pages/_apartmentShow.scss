@@ -5,38 +5,46 @@
         width: fit-content;
         height: fit-content;
         padding: 0 12px;
-        
-        .icon-cont {
 
-            width: calc(100% / 3);
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80px;
-            text-decoration: none;
-            margin: 5px;
-    
-            .bottone {
-    
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-    
-                div {
-                    color: rgb(255, 238, 218);
-                    font-size: 14px;
-                }
-    
-                .fa-solid {
-                    color: white;
-                    font-size: 25px;
-                    color: antiquewhite;
+        .dropdown-menu {
+            margin: 0;
+            background-color: transparent;
+            border: transparent;
+            padding-right: 12px;
+        }
+
+        .ul-mobile {
+            li {
+                
+
+                .icon-cont {
+                    border-radius: 6px;
+                    width: 100%;
+                    
+
+                    .bottone {
+                        text-align: center;
+
+                        div {
+                            font-size: 10px;
+                            color: rgb(255, 238, 218);
+                        }
+
+                        .fa-solid {
+                            color: white;
+                            color: antiquewhite;
+                        }
+                    }
                 }
             }
         }
 
+        a:hover {
+            background-color: rgb(51, 55, 75);
+
+        }
     }
+
     //IMMAGINI
     .show-img-container {
         width: 100%;
@@ -53,6 +61,7 @@
             margin-bottom: 2px;
             margin-left: 3px;
             display: inline-flex;
+
             img {
                 object-fit: cover;
             }
@@ -78,8 +87,8 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 background-color: $standard-color;
-                border-radius: 20px;
-                padding: 3px;
+                border-radius: 5px;
+                padding: 6px;
                 opacity: 0.8;
                 color: rgb(43, 40, 40);
                 font-weight: 900;
@@ -104,17 +113,16 @@
         margin-top: 3.9375rem;
         // padding-right: 40px;
         width: 100%;
-
+        
 
         .single-service {
             background-color: rgb(96, 96, 122);
             border-radius: 5px;
-            margin: 2px;
-            width: calc((100% - 30px) / 6);
-            height: 50px;
-            display: flex;
+            margin: 5px;
+            width: calc((100% - 50px) / 5);
             flex-direction: column;
-            
+            padding: 5px;
+            height: 60px;
 
             .service-name {
                 font-size: 10px;
@@ -129,37 +137,41 @@
 
 
     //TASTIERA UTENTE
-    .tasti-extra {
-        width: 50%;
-        margin: 0 auto;
-    }
+    .parent-extra {
 
-    .icon-cont {
 
-        width: calc(100% / 3);
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80px;
-        text-decoration: none;
-        margin: 5px;
+        .tasti-extra {
+            width: 70%;
+            margin: 0 auto;
+        }
 
-        .bottone {
+        .icon-cont {
 
+            width: calc(100% / 3);
+            border-radius: 15px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            height: 80px;
+            text-decoration: none;
+            margin: 5px;
 
-            div {
-                color: rgb(255, 238, 218);
-                font-size: 14px;
-            }
+            .bottone {
 
-            .fa-solid {
-                color: white;
-                font-size: 25px;
-                color: antiquewhite;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                div {
+                    color: rgb(255, 238, 218);
+                    font-size: 14px;
+                }
+
+                .fa-solid {
+                    color: white;
+                    font-size: 25px;
+                    color: antiquewhite;
+                }
             }
         }
     }
@@ -175,6 +187,8 @@
     .color-3 {
         background-color: $deluxe-color;
     }
+
+
 
     .parent-extra a:hover {
         background-color: rgb(51, 55, 75);
