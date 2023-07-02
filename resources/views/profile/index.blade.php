@@ -2,6 +2,9 @@
 @section('content')
 
 <div class="container">
+    <div class="my-5">
+        <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-outline-secondary mb-3">Back</a>
+    </div>
     <h2 class="fs-4 text-secondary my-4">
         {{ __('Profilo') }}
     </h2>
